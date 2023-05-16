@@ -5,12 +5,12 @@
 
 ![logo](https://user-images.githubusercontent.com/3129134/163255685-857aa780-880f-4c09-b08c-4b53bf4af54d.png)
 
-<h1 align="center">[INSERT YOUR REPO / PROJ NAME HERE]</h1>
+<h1 align="center">Unity UI</h1>
 <!-- ☝️ Replace with your repo name ☝️ -->
 
 </div>
 
-<pre align="center">[INSERT A SINGLE SENTENCE DESCRIBING THE PURPOSE OF YOUR REPO / PROJ]</pre>
+<pre align="center">Web application to access Unity Services</pre>
 <!-- ☝️ Replace with a single sentence describing the purpose of your repo / proj ☝️ -->
 
 <!-- Header block for project -->
