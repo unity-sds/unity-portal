@@ -1,0 +1,32 @@
+
+/* Menu */
+
+.st-react-menu-label {
+   text-transform: uppercase;
+}
+
+/* Navbar */
+
+.st-react-navbar {
+   background: #394044;
+}
+
+.st-react-navbar-content {
+   color: var(--st-gray-10);
+}
+
+.st-react-navbar-brand--title {
+   --st-react-navbar-brand-title-color: #FFFFFF;
+}
+
+.st-react-navbar-brand--version {
+   --st-react-navbar-brand-version-color: #BEC0C2;
+}
+
+.st-react-navbar-content .st-button.tertiary, .st-react-navbar-content .st-button.tertiary svg {
+   color: var(--st-gray-10);
+}
+
+.st-react-navbar-content .st-button.tertiary:hover, .st-react-navbar-content .st-button.tertiary:hover svg {
+   color: var(--st-button-tertiary-color);
+}
