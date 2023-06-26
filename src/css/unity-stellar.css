@@ -30,3 +30,7 @@
 .st-react-navbar-content .st-button.tertiary:hover, .st-react-navbar-content .st-button.tertiary:hover svg {
    color: var(--st-button-tertiary-color);
 }
+
+.st-react-navbar-content button span.st-react-avatar {
+   color: var(--st-button-tertiary-color);
+}
