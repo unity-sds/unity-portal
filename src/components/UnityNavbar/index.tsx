@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
+import { logout } from "../../AuthenticationWrapper";
 
 export default function UnityNavbar() {
    return (
@@ -61,7 +62,7 @@ export default function UnityNavbar() {
                         <MenuItem>
                            Account Settings
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={logout}>
                            Logout
                            <MenuRightSlot>
                               <IconArrowRight />
@@ -128,7 +129,7 @@ export default function UnityNavbar() {
                         <MenuItem>
                            Account Settings
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={logout}>
                            Logout
                            <MenuRightSlot>
                               <IconArrowRight />
@@ -157,7 +158,7 @@ export default function UnityNavbar() {
                      <MenuItem>
                         Account Settings
                      </MenuItem>
-                     <MenuItem>
+                     <MenuItem onClick={logout}>
                         Logout
                         <MenuRightSlot>
                            <IconArrowRight />

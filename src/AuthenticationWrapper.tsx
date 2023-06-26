@@ -83,6 +83,19 @@ function decodeToken(encodedToken) {
     }
     return decodedToken;
 }
+/**
+ * Invokes logout for the the user and clears all the tokens
+ */
+const logout = async () => {
+    console.log("Logging User Out...")
+    tokens = null;
+    window.localStorage.clear();
+    await authService.logout(true);
+    const logoutUrl = OAUTH2_LOGOUT_ENDPOINT +
+        "?client_id=" + OAUTH2_CLIENT_ID +
+        "&logout_uri=" + OAUTH2_REDIRECT_URI;
+    window.location.replace(logoutUrl);
+}
 
 /**
  * Checks for user authentication and only shows the App, if the user is Authenticated AND belongs to valid user groups.
@@ -94,19 +107,6 @@ function AuthenticationWrapper() {
      * Invokes login for the the user
      */
     const login = async () => authService.authorize();
-
-    /**
-     * Invokes logout for the the user and clears all the tokens
-     */
-    const logout = async () => {
-        tokens = null;
-        window.localStorage.clear();
-        await authService.logout(true);
-        const logoutUrl = OAUTH2_LOGOUT_ENDPOINT +
-            "?client_id=" + OAUTH2_CLIENT_ID +
-            "&logout_uri=" + OAUTH2_REDIRECT_URI;
-        window.location.replace(logoutUrl);
-    }
 
     // If the user authentication is pending,show a Reset button to logout
     if (authService.isPending()) {
@@ -177,12 +177,6 @@ function AuthenticationWrapper() {
 
     return (
         <App />
-        /*<div>
-            <div align="right" style={{backgroundColor: "white"}}>
-                <AuthButton onClick={logout}>{logoutLabel}</AuthButton>
-            </div>
-            <App />
-        </div>*/
     );
 }
 
@@ -203,3 +197,4 @@ const AuthProviderWrapper = () => {
 }
 
 export default AuthProviderWrapper;
+export { logout };
