@@ -6,7 +6,7 @@ import {
 import Home from "./routes/home"
 import JobMonitoring from "./routes/jobs/monitoring";
 
-import Navbar from "./components/UnityNavbar"
+import Navbar from "./components/Navbar"
 
 function Root() {
    return (

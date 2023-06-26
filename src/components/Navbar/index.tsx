@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
+import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
 import { logout } from "../../AuthenticationWrapper";
 
-export default function UnityNavbar() {
+export default function Navbar() {
    return (
       <>
-         <Navbar mobileBreakpoint={800}>
+         <StellarNavbar mobileBreakpoint={800}>
             <NavbarBreakpoint min={1100}>
                <NavbarBrand
                   link="/"
@@ -38,7 +38,9 @@ export default function UnityNavbar() {
                         <MenuItem>Jupyter</MenuItem>
                         <MenuItem>GitHub</MenuItem>
                         <MenuLabel>Catalogs</MenuLabel>
-                        <MenuItem>Application Catalog</MenuItem>
+                        <MenuItem>
+                           <NavLink to="/applications/catalog">Application Catalog</NavLink>
+                        </MenuItem>
                         <MenuItem>Data Catalog</MenuItem>
                         <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
@@ -105,7 +107,9 @@ export default function UnityNavbar() {
                         <MenuItem>Jupyter</MenuItem>
                         <MenuItem>GitHub</MenuItem>
                         <MenuLabel>Catalogs</MenuLabel>
-                        <MenuItem>Application Catalog</MenuItem>
+                        <MenuItem>
+                           <NavLink to="/applications/catalog">Application Catalog</NavLink>
+                        </MenuItem>
                         <MenuItem>Data Catalog</MenuItem>
                         <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
@@ -180,7 +184,7 @@ export default function UnityNavbar() {
                   {' '}GitHub
                </NavbarLink>
                <MenuLabel>Catalogs</MenuLabel>
-               <NavbarLink href="/">
+               <NavbarLink href="/applications/catalog">
                   {' '}Application Catalog
                </NavbarLink>
                <NavbarLink href="/">
@@ -205,7 +209,7 @@ export default function UnityNavbar() {
                   {' '}Kion
                </NavbarLink>
             </NavbarMobileMenu>
-         </Navbar>
+         </StellarNavbar>
       </>
    )
 }
