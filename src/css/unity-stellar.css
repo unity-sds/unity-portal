@@ -1,3 +1,10 @@
+:root {
+
+   /* Navbar */
+   --st-react-navbar-brand-title-color: var(--unity-white);
+   --st-react-navbar-brand-version-color: #BEC0C2;
+
+}
 
 /* Menu */
 
@@ -13,14 +20,6 @@
 
 .st-react-navbar-content {
    color: var(--st-gray-10);
-}
-
-.st-react-navbar-brand--title {
-   --st-react-navbar-brand-title-color: #FFFFFF;
-}
-
-.st-react-navbar-brand--version {
-   --st-react-navbar-brand-version-color: #BEC0C2;
 }
 
 .st-react-navbar-content .st-button.tertiary, .st-react-navbar-content .st-button.tertiary svg {
