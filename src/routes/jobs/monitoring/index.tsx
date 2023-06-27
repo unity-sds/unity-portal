@@ -102,7 +102,7 @@ function JobMonitoring() {
                               <Button variant="icon" onClick={closeDetailPanel}><IconClose></IconClose></Button>
                            </div>
                         </div>
-                        <div className='st-typography-body'>{selectedJob.jobId}</div>
+                        <div className='st-typography-displayBody'>{selectedJob.jobId}</div>
                         <br />
                         <Button variant="secondary" icon={<IconTimeline />}>Open Outputs</Button>
                         <br />
@@ -111,27 +111,27 @@ function JobMonitoring() {
                         <br />
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Process</div>
-                           <div className='st-typography-body'>{selectedJob.process}</div>
+                           <div className='st-typography-displayBody'>{selectedJob.process}</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Status</div>
-                           <div className='st-typography-body'>{selectedJob.status}</div>
+                           <div className='st-typography-displayBody'>{selectedJob.status}</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Submitter</div>
-                           <div className='st-typography-body'>{selectedJob.submitter}</div>
+                           <div className='st-typography-displayBody'>{selectedJob.submitter}</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Start Time</div>
-                           <div className='st-typography-body'>{selectedJob.startTime}</div>
+                           <div className='st-typography-displayBody'>{selectedJob.startTime}</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Stop Time</div>
-                           <div className='st-typography-body'>{selectedJob.stopTime ? selectedJob.stopTime : '-' }</div>
+                           <div className='st-typography-displayBody'>{selectedJob.stopTime ? selectedJob.stopTime : '-' }</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Duration</div>
-                           <div className='st-typography-body'>{selectedJob.duration ? selectedJob.duration : '-'}</div>
+                           <div className='st-typography-displayBody'>{selectedJob.duration ? selectedJob.duration : '-'}</div>
                         </div>
                      </Panel>
                   </>
