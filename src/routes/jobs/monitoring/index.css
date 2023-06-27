@@ -6,18 +6,3 @@
 .job-detail-item {
    padding-bottom: 8px;
 }
-
-.status-completed {
-   color: var(--st-success-green);
-   font-weight: 700;
-}
-
-.status-running {
-   color: var(--st-blue);
-   font-weight: 700;
-}
-
-.status-failed {
-   color: var(--st-error-red);
-   font-weight: 700;
-}

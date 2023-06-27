@@ -19,14 +19,7 @@ function JobMonitoring() {
    const [columnDefs, setColumnDefs] = useState([
       {field: 'process', headerName: 'Process', filter: true},
       {field: 'jobId', headerName: 'Job ID', filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
-      {field: 'status', headerName: 'Status', filter: true, cellClassRules: {
-         // apply green to "completed"
-         'status-completed': params => params.value.toLowerCase() === "completed",
-         // apply blue "running"
-         'status-running': params => params.value.toLowerCase() === "running",
-         // apply red to "failed"
-         'status-failed': params => params.value.toLowerCase() === "failed",
-     }},
+      {field: 'status', headerName: 'Status', filter: true},
       {field: 'submitter', headerName: 'Submitter', filter: true},
       {field: 'startTime', headerName: 'Start Time', filter: true},
       {field: 'stopTime', headerName: 'Stop Time', filter: true},
