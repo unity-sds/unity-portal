@@ -13,6 +13,9 @@ const Config = {
    ['sps']: {
       endpoint: 'http://a720fb4de892844bf884f037c17bb583-1070798053.us-west-2.elb.amazonaws.com:5001/api/docs'
    },
+
+   ['ads']: {
+      url: 'http://uads-test-dockstore-deploy-lb-1762603872.us-west-2.elb.amazonaws.com:9998'
    }
 
 }
