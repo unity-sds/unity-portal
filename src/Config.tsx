@@ -8,6 +8,11 @@ const Config = {
       app_admin_group_name: 'Unity_Admin',
       app_viewer_group_name: 'Unity_Viewer',
       unity_admin_email: 'anil.natha@jpl.nasa.gov'
+   },
+
+   ['sps']: {
+      endpoint: 'http://a720fb4de892844bf884f037c17bb583-1070798053.us-west-2.elb.amazonaws.com:5001/api/docs'
+   },
    }
 
 }

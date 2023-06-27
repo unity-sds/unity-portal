@@ -1,48 +1,80 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Button } from '@nasa-jpl/react-stellar';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import Config from '../../../Config';
 
 import './index.css';
+import { IconClose, IconTrash, IconTimeline } from '@nasa-jpl/react-stellar';
 
 function JobMonitoring() {
 
+   let { jobId } = useParams();
+
    const [rowData, setRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
+   const [selectedJob, setSelectedJob] = useState(null);
 
    // Each Column Definition results in one Column.
    const [columnDefs, setColumnDefs] = useState([
       {field: 'process', headerName: 'Process', filter: true},
-      {field: 'jobId', headerName: 'Job ID', filter: true},
+      {field: 'jobId', headerName: 'Job ID', filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
+      {field: 'status', headerName: 'Status', filter: true, cellClassRules: {
+         // apply green to "completed"
+         'status-completed': params => params.value.toLowerCase() === "completed",
+         // apply blue "running"
+         'status-running': params => params.value.toLowerCase() === "running",
+         // apply red to "failed"
+         'status-failed': params => params.value.toLowerCase() === "failed",
+     }},
       {field: 'submitter', headerName: 'Submitter', filter: true},
       {field: 'startTime', headerName: 'Start Time', filter: true},
       {field: 'stopTime', headerName: 'Stop Time', filter: true},
       {field: 'duration', headerName: 'Duration', filter: true},
-      {field: 'status', headerName: 'Status', filter: true}
    ]);
-
 
    // DefaultColDef sets props common to all Columns
    const defaultColDef = useMemo( ()=> ({
-      sortable: true
+      sortable: true,
    }), []);
+
+   const closeDetailPanel = () => {
+      setSelectedJob(null)
+   };
 
     // Example of consuming Grid Event
    const cellClickedListener = useCallback( event => {
-      console.log('cellClicked', event);
+      //console.log('cellClicked', event);
+
+      if( event.colDef.field === 'jobId') {
+         //console.log('cellClicked', event);
+         setSelectedJob(event.data)
+      }
+
    }, []);
+
+   const fetchStaticData = async () => {
+      fetch('/data/jobs-data.json')
+         .then(result => result.json())
+         .then(rowData => setRowData(rowData))
+   };
+
+   const fetchDynamicData = async () => {
+      await fetch(Config['sps']['endpoint'] + 'processes/{process}/jobs')
+         .then(result => result.json())
+         .then(rowData => setRowData(rowData))
+   }
 
    // Example load data from server
    useEffect(() => {
-      fetch('/data/jobs-data.json')
-      .then(result => result.json())
-      .then(rowData => setRowData(rowData))
+      fetchStaticData();
+      //fetchDynamicData();
    }, []);
-
-   const showJobDetailPanel = false;
 
    return (
       <>
          <PanelGroup autoSaveId="conditional" direction="horizontal">
-            <Panel order={1}>
+            <Panel order={1} className='mainView'>
                <>
                   <h1>Job Monitoring</h1>
                   <div className="ag-theme-stellar data-grid-container">
@@ -58,11 +90,49 @@ function JobMonitoring() {
                </>
             </Panel>
             {
-               showJobDetailPanel && (
+               selectedJob && (
                   <>
                      <PanelResizeHandle style={{ display: 'flex', padding: 8, placeItems: 'center'}}>||</PanelResizeHandle>
-                     <Panel order={2}>
-                        Job Detail
+                     <Panel order={2} className='detailView'>
+                        <div style={{ display: 'flex'}}>
+                           <div className="st-typography-header" style={{flexGrow:1}}>
+                              <b>Job Details</b>
+                           </div>
+                           <div>
+                              <Button variant="icon" onClick={closeDetailPanel}><IconClose></IconClose></Button>
+                           </div>
+                        </div>
+                        <div className='st-typography-body'>{selectedJob.jobId}</div>
+                        <br />
+                        <Button variant="secondary" icon={<IconTimeline />}>Open Outputs</Button>
+                        <br />
+                        <Button variant="secondary" icon={<IconTrash />}>Dismiss Job</Button>
+                        <br />
+                        <br />
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Process</div>
+                           <div className='st-typography-body'>{selectedJob.process}</div>
+                        </div>
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Status</div>
+                           <div className='st-typography-body'>{selectedJob.status}</div>
+                        </div>
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Submitter</div>
+                           <div className='st-typography-body'>{selectedJob.submitter}</div>
+                        </div>
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Start Time</div>
+                           <div className='st-typography-body'>{selectedJob.startTime}</div>
+                        </div>
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Stop Time</div>
+                           <div className='st-typography-body'>{selectedJob.stopTime ? selectedJob.stopTime : '-' }</div>
+                        </div>
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Duration</div>
+                           <div className='st-typography-body'>{selectedJob.duration ? selectedJob.duration : '-'}</div>
+                        </div>
                      </Panel>
                   </>
                )
