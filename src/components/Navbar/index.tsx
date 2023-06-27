@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
-import { logout } from "../../AuthenticationWrapper";
+import { logout, getUsername } from "../../AuthenticationWrapper";
 
 export default function Navbar() {
+
+   const loggedInUsername = getUsername()
+   const userInitials = loggedInUsername.substring(0,1).toUpperCase();
+
    return (
       <>
          <StellarNavbar mobileBreakpoint={800}>
@@ -55,11 +59,11 @@ export default function Navbar() {
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
-                           <Avatar text="K" /><IconChevronDown />
+                           <Avatar text={userInitials} /><IconChevronDown />
                         </Button>
                      }>
                         <MenuLabel>
-                           Welcome kjaneway
+                           Welcome {loggedInUsername}
                         </MenuLabel>
                         <MenuItem>
                            Account Settings
@@ -124,11 +128,11 @@ export default function Navbar() {
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
-                           <Avatar text="K" />
+                           <Avatar text={userInitials} />
                            <IconChevronDown />
                         </Button>}>
                         <MenuLabel>
-                           Welcome kjaneway
+                           Welcome {loggedInUsername}
                         </MenuLabel>
                         <MenuItem>
                            Account Settings
@@ -153,11 +157,11 @@ export default function Navbar() {
                <NavbarContent align="right">
                   <Menu trigger={
                      <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
-                        <Avatar text="K" />
+                        <Avatar text={userInitials} />
                         <IconChevronDown />
                      </Button>}>
                      <MenuLabel>
-                        Welcome kjaneway
+                        Welcome {loggedInUsername}
                      </MenuLabel>
                      <MenuItem>
                         Account Settings

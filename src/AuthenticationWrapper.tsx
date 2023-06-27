@@ -10,8 +10,9 @@ import styled from 'styled-components';
 
 import Config from './Config';
 
-// Variable to store tokens
+// Variable to store user related info
 let tokens;
+let loggedInUserName:string;
 
 // AuthButton Style
 // TODO added temporarily. As style matching with the theme of doi-ui should be added later.
@@ -147,7 +148,7 @@ function AuthenticationWrapper() {
         logout().then();
     }
 
-    let loggedInUserName = accessTokenDecoded.username;
+    loggedInUserName = accessTokenDecoded.username;
     let loggedInUserEmail = idTokenDecoded.email;
     let logoutLabel = "Logout : " + loggedInUserName;
 
@@ -184,6 +185,11 @@ function AuthenticationWrapper() {
  * Returns the tokens.
  */
 export const getTokens = () => tokens;
+
+/**
+ * Returns the username.
+ */
+export const getUsername = () => loggedInUserName;
 
 /**
  * AuthenticationWrapper wrapped by the AuthProviderWrapper.
