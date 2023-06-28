@@ -1,0 +1,35 @@
+:root {
+
+   /* Navbar */
+   --st-react-navbar-brand-title-color: var(--unity-white);
+   --st-react-navbar-brand-version-color: #BEC0C2;
+
+}
+
+/* Menu */
+
+.st-react-menu-label {
+   text-transform: uppercase;
+}
+
+/* Navbar */
+
+.st-react-navbar {
+   background: #394044;
+}
+
+.st-react-navbar-content {
+   color: var(--st-gray-10);
+}
+
+.st-react-navbar-content .st-button.tertiary, .st-react-navbar-content .st-button.tertiary svg {
+   color: var(--st-gray-10);
+}
+
+.st-react-navbar-content .st-button.tertiary:hover, .st-react-navbar-content .st-button.tertiary:hover svg {
+   color: var(--st-button-tertiary-color);
+}
+
+.st-react-navbar-content button span.st-react-avatar {
+   color: var(--st-button-tertiary-color);
+}
