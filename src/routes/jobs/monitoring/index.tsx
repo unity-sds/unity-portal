@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Button } from '@nasa-jpl/react-stellar';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
@@ -9,8 +8,6 @@ import './index.css';
 import { IconClose, IconTrash, IconTimeline } from '@nasa-jpl/react-stellar';
 
 function JobMonitoring() {
-
-   let { jobId } = useParams();
 
    const [rowData, setRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
    const [selectedJob, setSelectedJob] = useState(null);
