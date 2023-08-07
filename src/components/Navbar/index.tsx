@@ -55,6 +55,9 @@ export default function Navbar() {
                         <MenuItem>ADES Deployments</MenuItem>
                         <MenuItem>GitHub Actions</MenuItem>
                         <MenuLabel>Administration</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
+                        </MenuItem>
                         <MenuItem>Kion</MenuItem>
                      </Menu>
                      <Menu trigger={
@@ -124,6 +127,9 @@ export default function Navbar() {
                         <MenuItem>ADES Deployments</MenuItem>
                         <MenuItem>GitHub Actions</MenuItem>
                         <MenuLabel>Administration</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
+                        </MenuItem>
                         <MenuItem>Kion</MenuItem>
                      </Menu>
                      <Menu trigger={
@@ -209,6 +215,9 @@ export default function Navbar() {
                   {' '}GitHub Actions
                </NavbarLink>
                <MenuLabel>Administration</MenuLabel>
+               <NavbarLink href="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">
+                  {' '}Documentation (Gitbook)
+               </NavbarLink>
                <NavbarLink href="/">
                   {' '}Kion
                </NavbarLink>
