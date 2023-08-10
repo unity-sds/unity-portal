@@ -11,7 +11,7 @@ const Config = {
    },
 
    ['sps']: {
-      endpoint: 'http://a519940d6293d447a8668ea7bf86d326-1806755561.us-west-2.elb.amazonaws.com:5001/'
+      endpoint: 'http://a0e8898ec12884cc28788c9c5b26d90d-762439384.us-west-2.elb.amazonaws.com:5001/'
    },
 
    ['ads']: {

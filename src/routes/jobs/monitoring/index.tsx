@@ -53,9 +53,11 @@ function JobMonitoring() {
                jobs.push({
                   "process": process.id,
                   "jobId": job.jobID,
-                  "startTime": (job.inputs.find(item => item.name == "start_datetime")).value,
-                  "stopTime": (job.inputs.find(item => item.name == "stop_datetime")).value,
+                  "submitter": !!job.submitter ? job.submitter : "-",
+                  "startTime": !!job.startTime ? job.startTime : "-",
+                  "stopTime": !!job.stopTime ? job.stopTime : "-",
                   "status": job.status,
+                  "duration": !!job.duration ? job.duration : "-"
                });
             })
             return jobs;
