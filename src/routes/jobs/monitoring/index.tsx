@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Button } from '@nasa-jpl/react-stellar';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
@@ -12,6 +13,7 @@ function JobMonitoring() {
    const [rowData, setRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
    const [selectedJob, setSelectedJob] = useState(null);
    const process_endpoint = Config['sps']['endpoint'] + 'processes';
+   const navigate = useNavigate();
 
    // Each Column Definition results in one Column.
    const [columnDefs, setColumnDefs] = useState([
@@ -106,6 +108,7 @@ function JobMonitoring() {
             <Panel order={1} className='mainView'>
                <>
                   <h1>Job Monitoring</h1>
+                  <Button onClick={() => navigate("/jobs/new")}>Run New Job or Batch</Button>
                   <div className="ag-theme-stellar data-grid-container">
                      <AgGridReact
                         rowData={rowData} // Row Data for Rows
