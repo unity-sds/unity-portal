@@ -171,7 +171,7 @@ function NewJob() {
                labelPosition="top"
                placeholder=""
                type="string"
-               helperText="Comma delimieted set of labels"
+               helperText="Comma delimited set of labels"
                value={form.input_processing_labels}
                onChange={handleChange}
             />
