@@ -171,6 +171,7 @@ function NewJob() {
                labelPosition="top"
                placeholder=""
                type="string"
+               helperText="Comma delimieted set of labels"
                value={form.input_processing_labels}
                onChange={handleChange}
             />
@@ -205,6 +206,7 @@ function NewJob() {
                onChange={handleChange}
             />
             <Button variant="secondary" onClick={setStopDate}>Set to Start + 16 days</Button>
+            <br /><br />
 
             <TextField
                id="output_collection_id"
