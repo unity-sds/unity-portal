@@ -61,7 +61,8 @@ function JobMonitoring() {
                   "startTime": !!job.startTime ? job.startTime : "-",
                   "stopTime": !!job.stopTime ? job.stopTime : "-",
                   "status": job.status,
-                  "duration": !!job.duration ? job.duration : "-"
+                  "duration": !!job.duration ? job.duration : "-",
+                  "inputs": job.inputs
                });
             })
             return jobs;
@@ -129,9 +130,7 @@ function JobMonitoring() {
                      <PanelResizeHandle style={{ backgroundColor: "#969696", display: 'flex', padding: 3}} />
                      <Panel order={2} defaultSize={20} maxSize={40} className='detailView'>
                         <div style={{ display: 'flex'}}>
-                           <div className="st-typography-header" style={{flexGrow:1}}>
-                              <b>Job Details</b>
-                           </div>
+                           <div className="st-typography-header st-typography-bold" style={{flexGrow:1}}>Job Details</div>
                            <div>
                               <Button variant="icon" onClick={closeDetailPanel}><IconClose></IconClose></Button>
                            </div>
@@ -166,6 +165,21 @@ function JobMonitoring() {
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Duration</div>
                            <div className='st-typography-displayBody'>{selectedJob.duration ? selectedJob.duration : '-'}</div>
+                        </div>
+                        <br />
+                        <div className="st-typography-header st-typography-bold" style={{flexGrow:1}}>Input Parameters</div>
+                        <br />
+                        <div>
+                           {
+                              selectedJob.inputs.length > 0 ? selectedJob.inputs.map( (input, index) => {
+                                 return <div className="job-detail-item" key={index + "_" + input.name}>
+                                    <div className='st-typography-label'>{input.name}</div>
+                                    <div className='st-typography-displayBody'>{input.value ? input.value : '-'}</div>
+                                 </div>
+                              })
+                              :
+                              <div className='st-typography-displayBody'>No Input Paramters to display</div>
+                           }
                         </div>
                      </Panel>
                   </>
