@@ -19,6 +19,7 @@ function Root() {
             <Routes>
                <Route path="/applications/catalog" element={<WebView url={Config.ads.url} />} />
                <Route path="/jobs/monitoring" element={<JobMonitoring />} />
+               <Route path="/jobs/monitoring/:jobid_param" element={<JobMonitoring />} />
                <Route path="/jobs/new" element={<NewJob />} />
                <Route path="*" element={<Home />} />
             </Routes>

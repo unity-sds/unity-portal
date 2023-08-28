@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Button } from '@nasa-jpl/react-stellar';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
@@ -14,6 +15,8 @@ function JobMonitoring() {
    const [selectedJob, setSelectedJob] = useState(null);
    const process_endpoint = Config['sps']['endpoint'] + 'processes';
    const navigate = useNavigate();
+
+   let { jobid_param } = useParams();
 
    // Each Column Definition results in one Column.
    const [columnDefs, setColumnDefs] = useState([
@@ -90,20 +93,25 @@ function JobMonitoring() {
       jobsByProcess.map( (jobList) => {
          jobs = jobs.concat(jobList)
       });
+
       setRowData(jobs);
+
       return () => abortController.abort();
+
    }
 
-   // Example load data from server
    useEffect( () => {
+      if( jobid_param && rowData ) {
+         const selectedJob = rowData.find((element) => element.jobId == jobid_param);
+         setSelectedJob(selectedJob);
+      }
+   }, [rowData]);
 
+   const onGridReady = useCallback((params) => {
       const abortController = new AbortController();
-
       fetchData(abortController)
-
       return () => abortController.abort();
-
-   }, []);
+    }, []);
 
    return (
       <>
@@ -112,15 +120,20 @@ function JobMonitoring() {
                <>
                   <h1>Job Monitoring</h1>
                   <Button onClick={() => navigate("/jobs/new")}>Run New Job or Batch</Button>
-                  <div className="ag-theme-stellar data-grid-container">
-                     <AgGridReact
-                        rowData={rowData} // Row Data for Rows
-                        columnDefs={columnDefs} // Column Defs for Columns
-                        defaultColDef={defaultColDef} // Default Column Properties
-                        animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-                        rowSelection='multiple' // Options - allows click selection of rows 
-                        onCellClicked={cellClickedListener} // Optional - registering for Grid Event
-                     />
+                  <div style={{ width: '100%', height: '100%' }}>
+                     <div className="ag-theme-stellar data-grid-container">
+                        <AgGridReact
+                           rowData={rowData} // Row Data for Rows
+                           columnDefs={columnDefs} // Column Defs for Columns
+                           defaultColDef={defaultColDef} // Default Column Properties
+                           animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                           rowSelection='multiple' // Options - allows click selection of rows 
+                           onCellClicked={cellClickedListener} // Optional - registering for Grid Event
+                           paginationPageSize={20}
+                           pagination={true}
+                           onGridReady={onGridReady}
+                        />
+                     </div>
                   </div>
                </>
             </Panel>

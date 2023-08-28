@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, FormField, TextField } from "@nasa-jpl/react-stellar";
+import { Link } from "react-router-dom";
+import { Button, TextField } from "@nasa-jpl/react-stellar";
 import Config from "../../../Config";
 
 import "./index.css"
@@ -39,7 +40,7 @@ function NewJob() {
       version: "develop"
    }
    const [form, setForm] = React.useState(JOB_FORM_PAGE_LOAD_STATE);
-   const [responseMessage, setResponseMessage] = useState("")
+   const [newJobId, setNewJobId] = useState();
 
    const handleChange = (e:Event) => {
       setForm({
@@ -143,13 +144,12 @@ function NewJob() {
 
          
          if( response.ok ) {
-            console.log("Job Submission Success!");
             let jobId = response.headers.get("Location")?.replace("http://127.0.0.1:5000/processes/" + process.id + ":" + process.version + "/jobs/","")
-            setResponseMessage("Your job request was submitted successfully! Your Job ID is " + jobId);
+            setNewJobId(jobId);
          }
 
       }).catch( (errpr:Error) => {
-         console.debug("Error",error.message);
+         console.debug("Error", error.message);
       })
 
 
@@ -164,7 +164,13 @@ function NewJob() {
          <form onSubmit={handleSubmit}>
 
             <h2>{process.title}</h2>
-            <div>{responseMessage}</div>
+            { newJobId && 
+               <>
+                  <div>Your job request was submitted successfully!</div>
+                  <div>Your Job ID is <Link to={`/jobs/monitoring/${newJobId}`}>{newJobId}</Link></div>
+                  <br />
+               </> 
+            }
             <TextField
                id="input_processing_labels"
                label="Execution Labels"
