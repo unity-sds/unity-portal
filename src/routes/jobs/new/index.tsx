@@ -39,8 +39,9 @@ function NewJob() {
       title: "Chirp Rebinning Workflow",
       version: "develop"
    }
-   const [form, setForm] = React.useState(JOB_FORM_PAGE_LOAD_STATE);
+   const [form, setForm] = useState(JOB_FORM_PAGE_LOAD_STATE);
    const [newJobId, setNewJobId] = useState();
+   const [submittingJob, setSubmittingJob] = useState(false);
 
    const handleChange = (e:Event) => {
       setForm({
@@ -77,6 +78,7 @@ function NewJob() {
    const handleSubmit = async (e:Event) => {
 
       e.preventDefault();
+      setSubmittingJob(true);
 
       const data =  {
          "mode": "async",
@@ -146,10 +148,12 @@ function NewJob() {
          if( response.ok ) {
             let jobId = response.headers.get("Location")?.replace("http://127.0.0.1:5000/processes/" + process.id + ":" + process.version + "/jobs/","")
             setNewJobId(jobId);
+            setSubmittingJob(false);
          }
 
       }).catch( (errpr:Error) => {
          console.debug("Error", error.message);
+         setSubmittingJob(false);
       })
 
 
@@ -235,7 +239,7 @@ function NewJob() {
             />
 
             <div style={{display: "flex", gap: "8px"}}>
-               <Button type="submit">Submit New Job</Button>
+               <Button type="submit" disabled={submittingJob}>Submit New Job</Button>
                <Button variant="secondary" type="reset" onClick={handleReset}>Reset</Button>
             </div>
 
