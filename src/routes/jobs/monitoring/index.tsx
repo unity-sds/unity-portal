@@ -36,13 +36,19 @@ function JobMonitoring() {
    }), []);
 
    const closeDetailPanel = () => {
-      setSelectedJob(null)
+      setSelectedJob(null);
+      navigate("/jobs/monitoring");
    };
+
+   useEffect(() => {
+      !jobid_param && closeDetailPanel();
+   }, [jobid_param])
 
     // Example of consuming Grid Event
    const cellClickedListener = useCallback( event => {
 
       if( event.colDef.field === 'jobId') {
+         navigate('/jobs/monitoring/' + event.data.jobId);
          setSelectedJob(event.data)
       }
 
