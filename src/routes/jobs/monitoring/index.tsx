@@ -16,7 +16,7 @@ function JobMonitoring() {
    const process_endpoint = Config['sps']['endpoint'] + 'processes';
    const navigate = useNavigate();
 
-   let { jobid_param } = useParams();
+   const { jobid_param } = useParams();
 
    // Each Column Definition results in one Column.
    const [columnDefs, setColumnDefs] = useState([
@@ -65,12 +65,12 @@ function JobMonitoring() {
                jobs.push({
                   "process": process.id,
                   "jobId": job.jobID,
-                  "submitter": !!job.submitter ? job.submitter : "-",
-                  "submit_time": !!job.submit_time ? job.submit_time : "-",
-                  "startTime": !!job.startTime ? job.startTime : "-",
-                  "stopTime": !!job.stopTime ? job.stopTime : "-",
+                  "submitter": job.submitter ? job.submitter : "-",
+                  "submit_time": job.submit_time ? job.submit_time : "-",
+                  "startTime": job.startTime ? job.startTime : "-",
+                  "stopTime": job.stopTime ? job.stopTime : "-",
                   "status": job.status,
-                  "duration": !!job.duration ? job.duration : "-",
+                  "duration": job.duration ? job.duration : "-",
                   "inputs": job.inputs
                });
             })
@@ -91,7 +91,7 @@ function JobMonitoring() {
       const processes = await response.json();
       
       const jobAbortController = new AbortController();
-      let jobsByProcess = await fetchJobsByprocess(jobAbortController, processes.processes).then((data) => {
+      const jobsByProcess = await fetchJobsByprocess(jobAbortController, processes.processes).then((data) => {
          return data
       });
       

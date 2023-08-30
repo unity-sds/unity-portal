@@ -56,12 +56,12 @@ function NewJob() {
 
    const setStopDate = (e:Event) => {
 
-      let endDate = addDays(new Date(form.input_cmr_search_start_time), 16);
+      const endDate = addDays(new Date(form.input_cmr_search_start_time), 16);
       
-      let year = endDate.toLocaleString("default", { year: "numeric" });
-      let month = endDate.toLocaleString("default", { month: "2-digit" });
-      let day = endDate.toLocaleString("default", { day: "2-digit" });
-      let formattedEndDate = year + "-" + month + "-" + day;
+      const year = endDate.toLocaleString("default", { year: "numeric" });
+      const month = endDate.toLocaleString("default", { month: "2-digit" });
+      const day = endDate.toLocaleString("default", { day: "2-digit" });
+      const formattedEndDate = year + "-" + month + "-" + day;
 
       setForm({
          ...form,
@@ -146,7 +146,7 @@ function NewJob() {
 
          
          if( response.ok ) {
-            let jobId = response.headers.get("Location")?.replace("http://127.0.0.1:5000/processes/" + process.id + ":" + process.version + "/jobs/","")
+            const jobId = response.headers.get("Location")?.replace("http://127.0.0.1:5000/processes/" + process.id + ":" + process.version + "/jobs/","")
             setNewJobId(jobId);
             setSubmittingJob(false);
          }
