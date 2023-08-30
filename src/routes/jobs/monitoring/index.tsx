@@ -24,7 +24,7 @@ function JobMonitoring() {
       {field: 'jobId', headerName: 'Job ID', filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
       {field: 'status', headerName: 'Status', filter: true},
       {field: 'submitter', headerName: 'Submitter', filter: true},
-      {field: 'submit_time', headerName: 'Submit Time', filter: true},
+      {field: 'submitTime', headerName: 'Submit Time', filter: true},
       {field: 'startTime', headerName: 'Start Time', filter: true},
       {field: 'stopTime', headerName: 'Stop Time', filter: true},
       {field: 'duration', headerName: 'Duration', filter: true},
@@ -66,7 +66,7 @@ function JobMonitoring() {
                   "process": process.id,
                   "jobId": job.jobID,
                   "submitter": job.submitter ? job.submitter : "-",
-                  "submit_time": job.submit_time ? job.submit_time : "-",
+                  "submitTime": job.submitTime ? job.submitTime : "-",
                   "startTime": job.startTime ? job.startTime : "-",
                   "stopTime": job.stopTime ? job.stopTime : "-",
                   "status": job.status,
@@ -172,6 +172,10 @@ function JobMonitoring() {
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Submitter</div>
                            <div className='st-typography-displayBody'>{selectedJob.submitter ? selectedJob.submitter : '-'}</div>
+                        </div>
+                        <div className="job-detail-item">
+                           <div className='st-typography-label'>Submit Time</div>
+                           <div className='st-typography-displayBody'>{selectedJob.submitTime ? selectedJob.submitTime.toString() : '-' }</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Start Time</div>
