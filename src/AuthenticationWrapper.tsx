@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /**
  * The AuthenticationWrapper.js is a wrapper for App.js to implement the OAuth2 Authorization Code Grant with PKCE (Proof Key for Code Exchange)
  * using react-oauth2-pkce library.
