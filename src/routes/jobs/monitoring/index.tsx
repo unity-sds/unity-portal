@@ -8,20 +8,33 @@ import Config from '../../../Config';
 
 import './index.css';
 import { IconClose, IconTrash, IconTimeline } from '@nasa-jpl/react-stellar';
+import { CellClickedEvent } from 'ag-grid-community';
+
+interface Job {
+   process:string;
+   jobID:string;
+   status:string;
+   submitter:string;
+   submitTime:string;
+   startTime:string;
+   stopTime:string;
+   duration:string;
+   inputs:[];
+}
 
 function JobMonitoring() {
 
-   const [rowData, setRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
-   const [selectedJob, setSelectedJob] = useState(null);
+   const [rowData, setRowData] = useState<Array<Job>>(); // Set rowData to Array of Objects, one Object per Row
+   const [selectedJob, setSelectedJob] = useState<Job>();
    const process_endpoint = Config['sps']['endpoint'] + 'processes';
    const navigate = useNavigate();
 
    const { jobid_param } = useParams();
 
    // Each Column Definition results in one Column.
-   const [columnDefs, setColumnDefs] = useState([
+   const [columnDefs] = useState([
       {field: 'process', headerName: 'Process', filter: true},
-      {field: 'jobId', headerName: 'Job ID', filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
+      {field: 'jobID', headerName: 'Job ID', filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
       {field: 'status', headerName: 'Status', filter: true},
       {field: 'submitter', headerName: 'Submitter', filter: true},
       {field: 'submitTime', headerName: 'Submit Time', filter: true},
@@ -36,7 +49,7 @@ function JobMonitoring() {
    }), []);
 
    const closeDetailPanel = () => {
-      setSelectedJob(null);
+      setSelectedJob(undefined);
       navigate("/jobs/monitoring");
    };
 
@@ -45,10 +58,10 @@ function JobMonitoring() {
    }, [jobid_param])
 
     // Example of consuming Grid Event
-   const cellClickedListener = useCallback( event => {
+   const cellClickedListener = useCallback( (event:CellClickedEvent) => {
 
-      if( event.colDef.field === 'jobId') {
-         navigate('/jobs/monitoring/' + event.data.jobId);
+      if( event.colDef.field === 'jobID') {
+         navigate('/jobs/monitoring/' + event.data.jobID);
          setSelectedJob(event.data)
       }
 
@@ -60,11 +73,11 @@ function JobMonitoring() {
          processes.map( async (process:any) => {
             const response = await fetch(process_endpoint + '/' + process.id + "/jobs", {signal: abortController.signal})
             const jobs_response = (await response.json()).jobs;
-            const jobs = [];
-            jobs_response.map(job => {
+            const jobs:Array<Job> = new Array<Job>();
+            jobs_response.map( (job:Job) => {
                jobs.push({
                   "process": process.id,
-                  "jobId": job.jobID,
+                  "jobID": job.jobID,
                   "submitter": job.submitter ? job.submitter : "-",
                   "submitTime": job.submitTime ? job.submitTime : "-",
                   "startTime": job.startTime ? job.startTime : "-",
@@ -95,8 +108,8 @@ function JobMonitoring() {
          return data
       });
       
-      let jobs = [];
-      jobsByProcess.map( (jobList) => {
+      let jobs:Array<Job> = [];
+      jobsByProcess.map( (jobList:Array<Job>) => {
          jobs = jobs.concat(jobList)
       });
 
@@ -108,12 +121,12 @@ function JobMonitoring() {
 
    useEffect( () => {
       if( jobid_param && rowData ) {
-         const selectedJob = rowData.find((element) => element.jobId == jobid_param);
+         const selectedJob = rowData.find((element) => element.jobID == jobid_param);
          setSelectedJob(selectedJob);
       }
    }, [rowData]);
 
-   const onGridReady = useCallback((params) => {
+   const onGridReady = useCallback( () => {
       const abortController = new AbortController();
       fetchData(abortController)
       return () => abortController.abort();
@@ -154,7 +167,7 @@ function JobMonitoring() {
                               <Button variant="icon" onClick={closeDetailPanel}><IconClose></IconClose></Button>
                            </div>
                         </div>
-                        <div className='st-typography-displayBody'>{selectedJob.jobId}</div>
+                        <div className='st-typography-displayBody'>{selectedJob.jobID}</div>
                         <br />
                         <Button variant="secondary" icon={<IconTimeline />}>Open Outputs</Button>
                         <br />
@@ -179,11 +192,11 @@ function JobMonitoring() {
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Start Time</div>
-                           <div className='st-typography-displayBody'>{selectedJob.startTime ? selectedJob.startTime : '-' }</div>
+                           <div className='st-typography-displayBody'>{selectedJob.startTime ? selectedJob.startTime.toString() : '-' }</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Stop Time</div>
-                           <div className='st-typography-displayBody'>{selectedJob.stopTime ? selectedJob.stopTime : '-' }</div>
+                           <div className='st-typography-displayBody'>{selectedJob.stopTime ? selectedJob.stopTime.toString() : '-' }</div>
                         </div>
                         <div className="job-detail-item">
                            <div className='st-typography-label'>Duration</div>
@@ -194,7 +207,7 @@ function JobMonitoring() {
                         <br />
                         <div>
                            {
-                              selectedJob.inputs.length > 0 ? selectedJob.inputs.map( (input, index) => {
+                              selectedJob.inputs.length > 0 ? selectedJob.inputs.map( (input:any, index) => {
                                  return <div className="job-detail-item" key={index + "_" + input.name}>
                                     <div className='st-typography-label'>{input.name}</div>
                                     <div className='st-typography-displayBody'>{input.value ? input.value : '-'}</div>

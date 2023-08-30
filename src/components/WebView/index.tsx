@@ -1,6 +1,10 @@
 import "./index.css"
 
-export default function WebView(props) {
+type WebViewProps = {
+   url:string
+}
+
+export default function WebView(props:WebViewProps) {
 
    const url = props.url;
 

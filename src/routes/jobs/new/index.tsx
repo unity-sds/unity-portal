@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@nasa-jpl/react-stellar";
 import Config from "../../../Config";
@@ -40,21 +40,24 @@ function NewJob() {
       version: "develop"
    }
    const [form, setForm] = useState(JOB_FORM_PAGE_LOAD_STATE);
-   const [newJobId, setNewJobId] = useState();
+   const [newJobId, setNewJobID] = useState<string>();
    const [submittingJob, setSubmittingJob] = useState(false);
 
    const handleChange = (e:Event) => {
+
+      const { target } = e;
+      
       setForm({
         ...form,
-        [e.target.id]: e.target.value,
+        [(target as HTMLInputElement).id]: (target as HTMLInputElement).value,
       });
    };
 
-   const handleReset = (e:Event) => {
+   const handleReset = () => {
       setForm(JOB_FORM_INITIAL_STATE);
    }
 
-   const setStopDate = (e:Event) => {
+   const setStopDate = () => {
 
       const endDate = addDays(new Date(form.input_cmr_search_start_time), 16);
       
@@ -70,12 +73,12 @@ function NewJob() {
 
    }
 
-   const addDays = function(date, days) {
+   const addDays = function(date:Date, days:number) {
       date.setDate(date.getDate() + days);
       return date;
     }
 
-   const handleSubmit = async (e:Event) => {
+   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
 
       e.preventDefault();
       setSubmittingJob(true);
@@ -133,7 +136,7 @@ function NewJob() {
          ]
       }
 
-      const response = await fetch(
+      await fetch(
          processEndpoint + "/" + process.id + ":" + process.version + "/jobs",
          {
             method: "POST",
@@ -146,19 +149,17 @@ function NewJob() {
 
          
          if( response.ok ) {
-            const jobId = response.headers.get("Location")?.replace("http://127.0.0.1:5000/processes/" + process.id + ":" + process.version + "/jobs/","")
-            setNewJobId(jobId);
+            const jobID:string | undefined = response.headers.get("Location")?.replace("http://127.0.0.1:5000/processes/" + process.id.toString() + ":" + process.version.toString() + "/jobs/","")
+            setNewJobID(jobID);
             setSubmittingJob(false);
          }
 
-      }).catch( (errpr:Error) => {
+      }).catch( (error:Error) => {
          console.debug("Error", error.message);
          setSubmittingJob(false);
       })
 
-
-
-      handleReset(e)
+      handleReset()
 
    }
 
