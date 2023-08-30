@@ -43,13 +43,10 @@ function NewJob() {
    const [newJobId, setNewJobID] = useState<string>();
    const [submittingJob, setSubmittingJob] = useState(false);
 
-   const handleChange = (e:Event) => {
-
-      const { target } = e;
-      
+   const handleChange = (e:Event & { target: HTMLInputElement}) => {
       setForm({
         ...form,
-        [(target as HTMLInputElement).id]: (target as HTMLInputElement).value,
+        [e.target.id]: e.target.value,
       });
    };
 
