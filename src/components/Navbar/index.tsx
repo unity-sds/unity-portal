@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
 import { logout, getUsername } from "../../AuthenticationWrapper";
+import UnityLogo from "../../assets/unity.svg"
 
 export default function Navbar() {
 
@@ -13,7 +14,7 @@ export default function Navbar() {
             <NavbarBreakpoint min={1100}>
                <NavbarBrand
                   link="/"
-                  logo={<img src="/unity.svg" alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
+                  logo={<img src={UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
                   version="1.0.0"
                />
