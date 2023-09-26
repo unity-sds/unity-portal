@@ -202,14 +202,8 @@ export default function Navbar() {
                   {' '}Data Catalog
                </NavbarLink>
                <MenuLabel>Processing</MenuLabel>
-               <NavbarLink href="/jobs/monitoring">
-                  {' '}Job Monitoring
-               </NavbarLink>
-               <NavbarLink href="/jobs/new">
-                  {' '}Create New Job
-               </NavbarLink>
-               <NavLink to="/jobs/monitoring">{' '}Job Monitoring</NavLink>
-               <NavLink to="/jobs/new">{' '}Create New Job</NavLink>
+               <NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
+               <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink>
                <MenuLabel>Infrastructure</MenuLabel>
                <NavbarLink href="/">
                   {' '}HySDS
