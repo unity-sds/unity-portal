@@ -2,19 +2,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@nasa-jpl/react-stellar";
 import Config from "../../../Config";
+import { getTokens } from '../../../AuthenticationWrapper';
 
 import "./index.css"
 
 const JOB_FORM_PAGE_LOAD_STATE = {
    input_processing_labels: "label1, label2",
    input_cmr_collection_name: "C2011289787-GES_DISC",
-   input_cmr_search_start_time: "2016-08-22",
-   input_cmr_search_stop_time: "2016-09-06",
+   input_cmr_search_start_time: "2016-08-22T00:10:00Z",
+   input_cmr_search_stop_time: "2016-08-22T01:10:00Z",
    input_cmr_edl_user: "cmr_user",
    input_cmr_edl_pass: "cmr_pass",
-   output_collection_id: "CHIRP_OUTPUT_COLLECTION",
-   output_data_bucket: "s3://unity-data-bucket",
-   input_daac_collection_shortname: "CHIRP_OUTPUT_COLLECTION",
+   output_collection_id: "urn:nasa:unity:uds_local_test:DEV1:CHRP_16_DAY_REBIN___1",
+   output_data_bucket: "uds-test-cumulus-sps",
+   input_daac_collection_shortname: "CHIRP_L1B",
    input_daac_collection_sns: "arn:://SNS-arn"
 }
 
@@ -27,7 +28,7 @@ const JOB_FORM_INITIAL_STATE = {
    input_cmr_edl_pass: "cmr_pass",
    output_collection_id: "",
    output_data_bucket: "",
-   input_daac_collection_shortname: "CHIRP_OUTPUT_COLLECTION",
+   input_daac_collection_shortname: "CHIRP_L1B",
    input_daac_collection_sns: "arn:://SNS-arn"
 }
 
@@ -42,6 +43,7 @@ function NewJob() {
    const [form, setForm] = useState(JOB_FORM_PAGE_LOAD_STATE);
    const [newJobId, setNewJobID] = useState<string>();
    const [submittingJob, setSubmittingJob] = useState(false);
+   const tokens = getTokens();
 
    const handleChange = (e:Event & { target: HTMLInputElement}) => {
       setForm({
@@ -138,8 +140,9 @@ function NewJob() {
          {
             method: "POST",
             headers: {
+               "Authorization": "Bearer " + tokens.accessToken,
                "Content-Type": "application/json",
-            },
+             },
             body: JSON.stringify(data)
          }
       ).then( (response:Response) => {
@@ -199,7 +202,7 @@ function NewJob() {
                label="CMR Data Search Start Time"
                labelPosition="top"
                placeholder=""
-               type="date"
+               type="string"
                value={form.input_cmr_search_start_time}
                onChange={handleChange}
             />
@@ -209,7 +212,7 @@ function NewJob() {
                label="CMR Data Search Stop Time"
                labelPosition="top"
                placeholder=""
-               type="date"
+               type="string"
                value={form.input_cmr_search_stop_time}
                onChange={handleChange}
             />
