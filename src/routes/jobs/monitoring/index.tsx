@@ -5,6 +5,7 @@ import { Button } from '@nasa-jpl/react-stellar';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import Config from '../../../Config';
+import { getTokens } from '../../../AuthenticationWrapper';
 
 import './index.css';
 import { IconClose, IconTrash, IconTimeline } from '@nasa-jpl/react-stellar';
@@ -28,6 +29,7 @@ function JobMonitoring() {
    const [selectedJob, setSelectedJob] = useState<Job>();
    const process_endpoint = Config['sps']['endpoint'] + 'processes';
    const navigate = useNavigate();
+   const tokens = getTokens();
 
    const { jobid_param } = useParams();
 
@@ -71,7 +73,13 @@ function JobMonitoring() {
       
       return Promise.all(
          processes.map( async (process:any) => {
-            const response = await fetch(process_endpoint + '/' + process.id + "/jobs", {signal: abortController.signal})
+            const response = await fetch(process_endpoint + '/' + process.id + "/jobs", {
+               signal: abortController.signal,
+               headers: {
+                  "Authorization": "Bearer " + tokens.accessToken,
+                  //"Content-Type": "application/json",
+                },
+            })
             const jobs_response = (await response.json()).jobs;
             const jobs:Array<Job> = new Array<Job>();
             jobs_response.map( (job:Job) => {
@@ -99,8 +107,13 @@ function JobMonitoring() {
        * at the moment we must fetch a list of processes, and then query each
        * process for their respective list of jobs and aggregate them.
        */
-
-      const response = await fetch(process_endpoint, {signal: abortController.signal})
+      const response = await fetch(process_endpoint, {
+         signal: abortController.signal,
+         headers: {
+            "Authorization": "Bearer " + tokens.accessToken,
+            //"Content-Type": "application/json",
+          },
+      });
       const processes = await response.json();
       
       const jobAbortController = new AbortController();
