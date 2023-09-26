@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Button } from '@nasa-jpl/react-stellar';
+import { DocumentMeta } from '../../../components/DocumentMeta/DocumentMeta';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import Config from '../../../Config';
@@ -147,6 +148,10 @@ function JobMonitoring() {
 
    return (
       <>
+         <DocumentMeta
+            title={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
+            description="Job Monitoring"
+         />
          <PanelGroup autoSaveId="conditional" direction="horizontal">
             <Panel order={1} className='mainView'>
                <>

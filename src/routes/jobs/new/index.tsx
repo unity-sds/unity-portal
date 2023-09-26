@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@nasa-jpl/react-stellar";
+import { DocumentMeta } from "../../../components/DocumentMeta/DocumentMeta";
 import Config from "../../../Config";
 import { getTokens } from '../../../AuthenticationWrapper';
 
@@ -164,88 +165,94 @@ function NewJob() {
    }
 
    return (
-      <div className="mainView">
-         <h1>Create New Job</h1>
-         <form onSubmit={handleSubmit}>
+      <>
+         <DocumentMeta
+            title="Create New Job"
+            description="Create a new Job"
+         />
+         <div className="mainView">
+            <h1>Create New Job</h1>
+            <form onSubmit={handleSubmit}>
 
-            <h2>{process.title}</h2>
-            { newJobId && 
-               <>
-                  <div>Your job request was submitted successfully!</div>
-                  <div>Your Job ID is <Link to={`/jobs/monitoring/${newJobId}`}>{newJobId}</Link></div>
-                  <br />
-               </> 
-            }
-            <TextField
-               id="input_processing_labels"
-               label="Execution Labels"
-               labelPosition="top"
-               placeholder=""
-               type="string"
-               helperText="Comma delimited set of labels"
-               value={form.input_processing_labels}
-               onChange={handleChange}
-            />
+               <h2>{process.title}</h2>
+               { newJobId && 
+                  <>
+                     <div>Your job request was submitted successfully!</div>
+                     <div>Your Job ID is <Link to={`/jobs/monitoring/${newJobId}`}>{newJobId}</Link></div>
+                     <br />
+                  </> 
+               }
+               <TextField
+                  id="input_processing_labels"
+                  label="Execution Labels"
+                  labelPosition="top"
+                  placeholder=""
+                  type="string"
+                  helperText="Comma delimited set of labels"
+                  value={form.input_processing_labels}
+                  onChange={handleChange}
+               />
 
-            <TextField
-               id="input_cmr_collection_name"
-               label="CMR Collection Concept ID"
-               labelPosition="top"
-               placeholder=""
-               type="string"
-               value={form.input_cmr_collection_name}
-               onChange={handleChange}
-            />
+               <TextField
+                  id="input_cmr_collection_name"
+                  label="CMR Collection Concept ID"
+                  labelPosition="top"
+                  placeholder=""
+                  type="string"
+                  value={form.input_cmr_collection_name}
+                  onChange={handleChange}
+               />
 
-            <TextField
-               id="input_cmr_search_start_time"
-               label="CMR Data Search Start Time"
-               labelPosition="top"
-               placeholder=""
-               type="string"
-               value={form.input_cmr_search_start_time}
-               onChange={handleChange}
-            />
+               <TextField
+                  id="input_cmr_search_start_time"
+                  label="CMR Data Search Start Time"
+                  labelPosition="top"
+                  placeholder=""
+                  type="string"
+                  value={form.input_cmr_search_start_time}
+                  onChange={handleChange}
+               />
 
-            <TextField
-               id="input_cmr_search_stop_time"
-               label="CMR Data Search Stop Time"
-               labelPosition="top"
-               placeholder=""
-               type="string"
-               value={form.input_cmr_search_stop_time}
-               onChange={handleChange}
-            />
-            <Button variant="secondary" onClick={setStopDate}>Set to Start + 16 days</Button>
-            <br /><br />
+               <TextField
+                  id="input_cmr_search_stop_time"
+                  label="CMR Data Search Stop Time"
+                  labelPosition="top"
+                  placeholder=""
+                  type="string"
+                  value={form.input_cmr_search_stop_time}
+                  onChange={handleChange}
+               />
+               <Button variant="secondary" onClick={setStopDate}>Set to Start + 16 days</Button>
+               <br /><br />
 
-            <TextField
-               id="output_collection_id"
-               label="Output Unity Collection"
-               labelPosition="top"
-               placeholder=""
-               type="string"
-               value={form.output_collection_id}
-               onChange={handleChange}
-            />
+               <TextField
+                  id="output_collection_id"
+                  label="Output Unity Collection"
+                  labelPosition="top"
+                  placeholder=""
+                  type="string"
+                  value={form.output_collection_id}
+                  onChange={handleChange}
+               />
 
-            <TextField
-               id="output_data_bucket"
-               label="Output Data"
-               labelPosition="top"
-               placeholder=""
-               type="string"
-               value={form.output_data_bucket}
-               onChange={handleChange}
-            />
+               <TextField
+                  id="output_data_bucket"
+                  label="Output Data"
+                  labelPosition="top"
+                  placeholder=""
+                  type="string"
+                  value={form.output_data_bucket}
+                  onChange={handleChange}
+               />
 
-            <div style={{display: "flex", gap: "8px"}}>
-               <Button type="submit" disabled={submittingJob}>Submit New Job</Button>
-               <Button variant="secondary" type="reset" onClick={handleReset}>Reset</Button>
-            </div>
+               <div style={{display: "flex", gap: "8px"}}>
+                  <Button type="submit" disabled={submittingJob}>Submit New Job</Button>
+                  <Button variant="secondary" type="reset" onClick={handleReset}>Reset</Button>
+               </div>
 
-         </form>
-      </div>
+            </form>
+         </div>
+      </>
    )
 }
 

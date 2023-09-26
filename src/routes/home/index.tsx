@@ -1,9 +1,17 @@
+import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta"
+
 function Home() {
 
    return (
-      <div className="mainView">
-         <h1>Home</h1>
-      </div>
+      <>
+         <DocumentMeta
+            title="Home"
+            description="Home"
+         />
+         <div className="mainView">
+            <h1>Home</h1>
+         </div>
+      </>
    )
 }
 
