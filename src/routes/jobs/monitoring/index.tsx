@@ -150,7 +150,7 @@ function JobMonitoring() {
       <>
          <DocumentMeta
             title={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
-            description="Job Monitoring"
+            description={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
          />
          <PanelGroup autoSaveId="conditional" direction="horizontal">
             <Panel order={1} className='mainView'>
