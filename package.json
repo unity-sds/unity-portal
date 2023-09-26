@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build-integration": "tsc && vite build --mode integration --base=/dev/dashboard/",
-    "build-staging": "tsc && vite build --mode staging",
+    "build-integration": "tsc && vite build --mode integration --base=/dashboard/",
+    "build-staging": "tsc && vite build --mode staging --base=/dashboard/",
     "build-prod": "tsc && vite build --mode production",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
