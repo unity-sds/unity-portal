@@ -49,7 +49,10 @@ export default function Navbar() {
                         <MenuItem>Data Catalog</MenuItem>
                         <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
-                           <NavLink to="/jobs/monitoring">Jobs</NavLink>
+                           <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
+                        </MenuItem>
+                        <MenuItem>
+                           <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
                         <MenuLabel>Infrastructure</MenuLabel>
                         <MenuItem>HySDS</MenuItem>
@@ -118,7 +121,10 @@ export default function Navbar() {
                         <MenuItem>Data Catalog</MenuItem>
                         <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
-                           <NavLink to="/jobs/monitoring">Jobs</NavLink>
+                           <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
+                        </MenuItem>
+                        <MenuItem>
+                           <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
                         <MenuLabel>Infrastructure</MenuLabel>
                         <MenuItem>HySDS</MenuItem>
@@ -197,8 +203,13 @@ export default function Navbar() {
                </NavbarLink>
                <MenuLabel>Processing</MenuLabel>
                <NavbarLink href="/jobs/monitoring">
-                  {' '}Jobs
+                  {' '}Job Monitoring
                </NavbarLink>
+               <NavbarLink href="/jobs/new">
+                  {' '}Create New Job
+               </NavbarLink>
+               <NavLink to="/jobs/monitoring">{' '}Job Monitoring</NavLink>
+               <NavLink to="/jobs/new">{' '}Create New Job</NavLink>
                <MenuLabel>Infrastructure</MenuLabel>
                <NavbarLink href="/">
                   {' '}HySDS
