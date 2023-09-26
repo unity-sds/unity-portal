@@ -87,7 +87,7 @@ export default function Navbar() {
                min={800}
             >
                <NavbarBrand
-                  logo={<img src="/unity.svg" alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
+                  logo={<img src={UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
                   version="1.0.0"
                />
