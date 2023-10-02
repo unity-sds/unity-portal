@@ -1,12 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
+import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
 import { logout, getUsername } from "../../AuthenticationWrapper";
-import UnityLogo from "../../assets/unity.svg"
+import UnityLogo from "../../assets/unity.svg";
+
+import Config from "../../Config";
 
 export default function Navbar() {
 
    const loggedInUsername = getUsername()
    const userInitials = loggedInUsername.substring(0,1).toUpperCase();
+   const uiVersion = Config['general']['version'];
 
    return (
       <>
@@ -16,7 +19,7 @@ export default function Navbar() {
                   link="/"
                   logo={<img src={UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
-                  version="1.0.0"
+                  version={uiVersion}
                />
                <NavbarContent
                   align="right"
@@ -89,7 +92,7 @@ export default function Navbar() {
                <NavbarBrand
                   logo={<img src={UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
-                  version="1.0.0"
+                  version={uiVersion}
                />
                <NavbarContent
                   align="right"

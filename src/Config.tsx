@@ -1,4 +1,8 @@
 const Config = {
+
+   ['general']: {
+      version: import.meta.env.VITE_UNITY_UI_VERSION,
+   },
    
    ['getGlobalConfig']: {
       oauth_client_id: import.meta.env.VITE_AUTH_OAUTH_CLIENT_ID,
