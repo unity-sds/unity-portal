@@ -1,8 +1,9 @@
+// @ts-nocheck
+
 /**
  * The AuthenticationWrapper.js is a wrapper for App.js to implement the OAuth2 Authorization Code Grant with PKCE (Proof Key for Code Exchange)
  * using react-oauth2-pkce library.
  */
-import React from 'react';
 import App from './App';
 import {AuthProvider, AuthService, useAuth} from 'react-oauth2-pkce'
 import jwt_decode from "jwt-decode";
@@ -53,14 +54,14 @@ const authService = new AuthService({
  */
 function hasUserGroup(accessToken, userGroup) {
 
-    let accessTokenDecoded = decodeToken(accessToken);
+    const accessTokenDecoded = decodeToken(accessToken);
 
     let cognitoGroups = "No User Groups";
     if (accessTokenDecoded["cognito:groups"] != null) {
         cognitoGroups = accessTokenDecoded["cognito:groups"].toString();
     }
 
-    let userGroupsArray = cognitoGroups.split(',').map(function(item) {
+    const userGroupsArray = cognitoGroups.split(',').map(function(item) {
         return item.trim();
     });
 
@@ -149,8 +150,8 @@ function AuthenticationWrapper() {
     }
 
     loggedInUserName = accessTokenDecoded.username;
-    let loggedInUserEmail = idTokenDecoded.email;
-    let logoutLabel = "Logout : " + loggedInUserName;
+    const loggedInUserEmail = idTokenDecoded.email;
+    //const logoutLabel = "Logout : " + loggedInUserName;
 
     let userGroups = "No User Groups";
     if (accessTokenDecoded["cognito:groups"] != null) {

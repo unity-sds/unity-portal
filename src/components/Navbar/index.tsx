@@ -1,11 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar"
+import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
 import { logout, getUsername } from "../../AuthenticationWrapper";
+import UnityLogo from "../../assets/unity.svg";
+
+import Config from "../../Config";
 
 export default function Navbar() {
 
    const loggedInUsername = getUsername()
    const userInitials = loggedInUsername.substring(0,1).toUpperCase();
+   const uiVersion = Config['general']['version'];
 
    return (
       <>
@@ -13,9 +17,9 @@ export default function Navbar() {
             <NavbarBreakpoint min={1100}>
                <NavbarBrand
                   link="/"
-                  logo={<img src="/unity.svg" alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
+                  logo={<img src={UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
-                  version="1.0.0"
+                  version={uiVersion}
                />
                <NavbarContent
                   align="right"
@@ -48,13 +52,19 @@ export default function Navbar() {
                         <MenuItem>Data Catalog</MenuItem>
                         <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
-                           <NavLink to="/jobs/monitoring">Jobs</NavLink>
+                           <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
+                        </MenuItem>
+                        <MenuItem>
+                           <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
                         <MenuLabel>Infrastructure</MenuLabel>
                         <MenuItem>HySDS</MenuItem>
                         <MenuItem>ADES Deployments</MenuItem>
                         <MenuItem>GitHub Actions</MenuItem>
                         <MenuLabel>Administration</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
+                        </MenuItem>
                         <MenuItem>Kion</MenuItem>
                      </Menu>
                      <Menu trigger={
@@ -83,9 +93,9 @@ export default function Navbar() {
                min={800}
             >
                <NavbarBrand
-                  logo={<img src="/unity.svg" alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
+                  logo={<img src={UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
-                  version="1.0.0"
+                  version={uiVersion}
                />
                <NavbarContent
                   align="right"
@@ -117,13 +127,19 @@ export default function Navbar() {
                         <MenuItem>Data Catalog</MenuItem>
                         <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
-                           <NavLink to="/jobs/monitoring">Jobs</NavLink>
+                           <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
+                        </MenuItem>
+                        <MenuItem>
+                           <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
                         <MenuLabel>Infrastructure</MenuLabel>
                         <MenuItem>HySDS</MenuItem>
                         <MenuItem>ADES Deployments</MenuItem>
                         <MenuItem>GitHub Actions</MenuItem>
                         <MenuLabel>Administration</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
+                        </MenuItem>
                         <MenuItem>Kion</MenuItem>
                      </Menu>
                      <Menu trigger={
@@ -195,9 +211,8 @@ export default function Navbar() {
                   {' '}Data Catalog
                </NavbarLink>
                <MenuLabel>Processing</MenuLabel>
-               <NavbarLink href="/jobs/monitoring">
-                  {' '}Jobs
-               </NavbarLink>
+               <NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
+               <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink>
                <MenuLabel>Infrastructure</MenuLabel>
                <NavbarLink href="/">
                   {' '}HySDS
@@ -209,6 +224,9 @@ export default function Navbar() {
                   {' '}GitHub Actions
                </NavbarLink>
                <MenuLabel>Administration</MenuLabel>
+               <NavbarLink href="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">
+                  {' '}Documentation (Gitbook)
+               </NavbarLink>
                <NavbarLink href="/">
                   {' '}Kion
                </NavbarLink>

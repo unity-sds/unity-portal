@@ -33,3 +33,11 @@
 .st-react-navbar-content button span.st-react-avatar {
    color: var(--st-button-tertiary-color);
 }
+
+.st-react-navbar.st-react-navbar--mobile .st-button.icon {
+   color: var(--st-gray-10);
+}
+
+.st-react-navbar.st-react-navbar--mobile .st-button:hover.icon {
+   color: var(--st-button-tertiary-color);
+}
