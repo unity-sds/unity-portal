@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2023-10-02
+
+- Updated Job Monitoring Dashboard, data is fetched from WPS-T Endpoint
+- Added placeholder "Submit Time" column to Job Monitoring Dashboard
+- Added "Create New Job" form that submits a request to execute a job, currently using hard-coded inputs for the CHIRP Rebinning process.
+- Added display of input parameters to Job Detail view.
+- Updated routing to allow deep linking to a specific job.
+- Added environment configurations to allow for local development and deployments to our various MCP environments.
+- Updated "base" parameter to account for deployments that utilize our CloudFront/API GW configurations on AWS.
+- Added ability to modify document meta information, like title and description as user navigates to different views.
+- Updated display of app version in navbar so that version information from package.json is used.
+- Fixed styling of navlinks in mobile platforms.
+- Fixed broken Unity logo in mobile view.
+- Miscellaneous performance, css styling enhancements, and resolution of typescript and linting errors.
+
 ## [0.1.0] - 2023-06-28
 
 ### Added 
