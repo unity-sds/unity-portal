@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build-integration": "tsc && vite build --mode integration --base=/dashboard/",
-    "build-staging": "tsc && vite build --mode staging --base=/dashboard/",
+    "build-test": "tsc && vite build --mode test --base=/dashboard/",
+    "build-sips-test": "tsc && vite build --mode sips-test --base=/unity-sips-test/dashboard/",
     "build-prod": "tsc && vite build --mode production",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
