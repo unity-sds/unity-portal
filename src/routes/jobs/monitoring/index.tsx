@@ -152,7 +152,6 @@ function JobMonitoring() {
             title={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
             description={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
          />
-         <PanelGroup autoSaveId="conditional" direction="horizontal">
             <Panel order={1} className='mainView'>
                <>
                   <h1>Job Monitoring</h1>
@@ -173,6 +172,7 @@ function JobMonitoring() {
                      </div>
                   </div>
                </>
+         <PanelGroup autoSaveId="job-monitoring-ui" direction="horizontal">
             </Panel>
             {
                selectedJob && (
