@@ -153,7 +153,7 @@ function JobMonitoring() {
             description={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
          />
          <PanelGroup autoSaveId="job-monitoring-ui" direction="horizontal">
-            <Panel order={1} className='mainView' style={{overflow: "auto"}}>
+            <Panel order={1} className='main-view' style={{overflow: "auto"}}>
                <h1>Job Monitoring</h1>
                <Button onClick={() => navigate("/jobs/new")}>Run New Job or Batch</Button>
                <div className="ag-theme-stellar data-grid-container">
@@ -174,7 +174,7 @@ function JobMonitoring() {
                selectedJob && (
                   <>
                      <PanelResizeHandle style={{ backgroundColor: "#969696", display: 'flex', padding: 3}} />
-                     <Panel order={2} defaultSize={20} maxSize={40} className="detailView" style={{overflow: "auto"}}>
+                     <Panel order={2} defaultSize={20} maxSize={40} className="detail-view" style={{overflow: "auto"}}>
                         <div style={{ display: 'flex'}}>
                            <div className="st-typography-header st-typography-bold" style={{flexGrow:1}}>Job Details</div>
                            <div>

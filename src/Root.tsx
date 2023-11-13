@@ -13,7 +13,7 @@ import Config from "./Config";
 
 function Root() {
    return (
-      <>
+      <div className="viewWrapper">
          <Navbar />
          <div className="view">
             <Routes>
@@ -24,7 +24,7 @@ function Root() {
                <Route path="*" element={<Home />} />
             </Routes>
          </div>
-      </>
+      </div>
    )
 }
 
