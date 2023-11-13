@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0] - 2023-11-13
 
 - Updated environment configurations to account for SIPS-TEST deployments
+- Updated scrolling behavior for all UIs so they can be scrolled independtly from the navbar. And in the case of the Job Monitoring UI, the detail view scrolls independently from the main view.
 
 ## [0.2.0] - 2023-10-02
 
