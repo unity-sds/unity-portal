@@ -152,33 +152,29 @@ function JobMonitoring() {
             title={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
             description={ !jobid_param ? "Job Monitoring" : "Job Monitoring — " + jobid_param }
          />
-         <PanelGroup autoSaveId="conditional" direction="horizontal">
-            <Panel order={1} className='mainView'>
-               <>
-                  <h1>Job Monitoring</h1>
-                  <Button onClick={() => navigate("/jobs/new")}>Run New Job or Batch</Button>
-                  <div style={{ width: '100%', height: '100%' }}>
-                     <div className="ag-theme-stellar data-grid-container">
-                        <AgGridReact
-                           rowData={rowData} // Row Data for Rows
-                           columnDefs={columnDefs} // Column Defs for Columns
-                           defaultColDef={defaultColDef} // Default Column Properties
-                           animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-                           rowSelection='multiple' // Options - allows click selection of rows 
-                           onCellClicked={cellClickedListener} // Optional - registering for Grid Event
-                           paginationPageSize={20}
-                           pagination={true}
-                           onGridReady={onGridReady}
-                        />
-                     </div>
-                  </div>
-               </>
+         <PanelGroup autoSaveId="job-monitoring-ui" direction="horizontal">
+            <Panel order={1} className='main-view' style={{overflow: "auto"}}>
+               <h1>Job Monitoring</h1>
+               <Button onClick={() => navigate("/jobs/new")}>Run New Job or Batch</Button>
+               <div className="ag-theme-stellar data-grid-container">
+                  <AgGridReact
+                     rowData={rowData} // Row Data for Rows
+                     columnDefs={columnDefs} // Column Defs for Columns
+                     defaultColDef={defaultColDef} // Default Column Properties
+                     animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                     rowSelection='multiple' // Options - allows click selection of rows 
+                     onCellClicked={cellClickedListener} // Optional - registering for Grid Event
+                     paginationPageSize={20}
+                     pagination={true}
+                     onGridReady={onGridReady}
+                  />
+               </div>
             </Panel>
             {
                selectedJob && (
                   <>
                      <PanelResizeHandle style={{ backgroundColor: "#969696", display: 'flex', padding: 3}} />
-                     <Panel order={2} defaultSize={20} maxSize={40} className='detailView'>
+                     <Panel order={2} defaultSize={20} maxSize={40} className="detail-view" style={{overflow: "auto"}}>
                         <div style={{ display: 'flex'}}>
                            <div className="st-typography-header st-typography-bold" style={{flexGrow:1}}>Job Details</div>
                            <div>

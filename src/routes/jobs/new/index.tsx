@@ -170,7 +170,7 @@ function NewJob() {
             title="Create New Job"
             description="Create a new Job"
          />
-         <div className="mainView">
+         <div className="main-view" style={{overflow: "auto"}}>
             <h1>Create New Job</h1>
             <form onSubmit={handleSubmit}>
 
