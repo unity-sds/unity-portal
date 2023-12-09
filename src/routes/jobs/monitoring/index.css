@@ -9,3 +9,11 @@
    padding-bottom: 8px;
    word-wrap: break-word;
 }
+
+.button-bar button {
+   margin-right: 10px;
+}
+
+.button-bar button:last-child {
+   margin-right: 0px;
+}

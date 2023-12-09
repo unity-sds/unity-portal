@@ -155,7 +155,9 @@ function JobMonitoring() {
          <PanelGroup autoSaveId="job-monitoring-ui" direction="horizontal">
             <Panel order={1} className='main-view' style={{overflow: "auto"}}>
                <h1>Job Monitoring</h1>
-               <Button onClick={() => navigate("/jobs/new")}>Run New Job or Batch</Button>
+               <div className='button-bar'>
+                  <Button onClick={() => navigate("/jobs/new")}>Run New Job</Button>
+               </div>
                <div className="ag-theme-stellar data-grid-container">
                   <AgGridReact
                      rowData={rowData} // Row Data for Rows
