@@ -4,6 +4,7 @@ import { Button, TextField } from "@nasa-jpl/react-stellar";
 import { DocumentMeta } from "../../../../components/DocumentMeta/DocumentMeta";
 import Config from "../../../../Config";
 import { getTokens } from "../../../../AuthenticationWrapper";
+import { BackLink } from "../../../../components/BackLink";
 
 import "./index.css"
 
@@ -189,7 +190,7 @@ function NewJobChirpRebinning() {
          />
          <div className="main-view" style={{overflow: "auto"}}>
             <h1>{meta["title"]}</h1>
-            <Link to="/jobs/new">Back to application selection</Link>
+            <BackLink label="Back to application selection" path={'/jobs/new'} />
             <form className="job-form" onSubmit={handleSubmit}>
                <h2>Job Parameters</h2>
                { newJobId && 
