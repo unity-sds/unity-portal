@@ -6,16 +6,19 @@ import {
 import Home from "./routes/home"
 import JobMonitoring from "./routes/jobs/monitoring";
 import NewJob from "./routes/jobs/new";
-import NewJobChirpRebinning from "./routes/jobs/new/chirp-rebinning";
-import NewJobL1A from "./routes/jobs/new/l1a";
-import NewJobL1B from "./routes/jobs/new/l1b";
+
 import Navbar from "./components/Navbar"
 import WebView from "./components/WebView";
 
 import Config from "./Config";
 
+import { getProcesses, getProcessRoute } from "./utils/processes";
 import NotFound from "./routes/errors/not-found";
+
 function Root() {
+
+   const processes = getProcesses();
+
    return (
       <div className="viewWrapper">
          <Navbar />
@@ -25,9 +28,18 @@ function Root() {
                <Route path="/jobs/monitoring" element={<JobMonitoring />} />
                <Route path="/jobs/monitoring/:jobid_param" element={<JobMonitoring />} />
                <Route path="/jobs/new" element={<NewJob />} />
-               <Route path="/jobs/new/chirp-rebinning" element={<NewJobChirpRebinning />} />
-               <Route path="/jobs/new/l1a" element={<NewJobL1A />} />
-               <Route path="/jobs/new/l1b" element={<NewJobL1B />} />
+
+               {
+                  /* Add routes for job execution forms */
+                  processes.map( (item) => {
+                     let path = "/jobs/new/" + item['id'];
+                     let route:JSX.Element | null = getProcessRoute(item['id']);
+                     return (
+                        <Route path={path} element={ (route) ? route : <NotFound />} key={"route_" + item['id']}/>
+                     )
+                  })
+               }
+
                <Route path="/" element={<Home />} />
                <Route path="*" element={<NotFound />} />
             </Routes>

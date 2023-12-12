@@ -47,21 +47,21 @@ const JOB_FORM_INITIAL_STATE = {
    input_daac_collection_sns: "arn:://SNS-arn"
 }
 
-function NewJobChirpRebinning() {
+type NewJobChirpRebinningProps = {
+   process:Process
+};
+
+function NewJobChirpRebinning(props:NewJobChirpRebinningProps) {
 
    const processEndpoint = Config['sps']['endpoint'] + 'processes';
-   const process:{ id:string, title:string, version:string} = {
-      id: "chirp",
-      title: "Chirp Rebinning Workflow",
-      version: "develop"
-   }
+   const {process} = props;
    const [form, setForm] = useState(JOB_FORM_PAGE_LOAD_STATE);
    const [newJobId, setNewJobID] = useState<string>();
    const [submittingJob, setSubmittingJob] = useState(false);
    const tokens = getTokens();
    const meta:{ [key: string]: string} = {
-      "description": "Create New Chirp Rebinning Job",
-      "title": "Create New Chirp Rebinning Job",
+      "description": "Create New " + process.title + " Job",
+      "title": "Create New " + process.title + " Job",
    }
 
    const handleChange = (e:Event & { target: HTMLInputElement}) => {

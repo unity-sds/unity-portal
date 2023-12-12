@@ -34,21 +34,21 @@ const JOB_FORM_INITIAL_STATE = {
    input_daac_collection_sns: "arn:://SNS-arn"
 }
 
-function NewJobL1A() {
+type NewJobL1AProps = {
+   process:Process
+};
+
+function NewJobL1A(props:NewJobL1AProps) {
 
    const processEndpoint = Config['sps']['endpoint'] + 'processes';
-   const process:{ id:string, title:string, version:string} = {
-      id: "chirp",
-      title: "L1A Job",
-      version: "develop"
-   }
+   const {process} = props;
    const [form, setForm] = useState(JOB_FORM_PAGE_LOAD_STATE);
    const [newJobId, setNewJobID] = useState<string>();
    const [submittingJob, setSubmittingJob] = useState(false);
    const tokens = getTokens();
    const meta:{ [key: string]: string} = {
-      "description": "Create New L1A Job",
-      "title": "Create New L1A Job",
+      "description": "Create New " + process.title + " Job",
+      "title": "Create New " + process.title + " Job",
    }
 
    const handleChange = (e:Event & { target: HTMLInputElement}) => {
