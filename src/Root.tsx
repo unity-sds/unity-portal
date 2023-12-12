@@ -14,6 +14,7 @@ import WebView from "./components/WebView";
 
 import Config from "./Config";
 
+import NotFound from "./routes/errors/not-found";
 function Root() {
    return (
       <div className="viewWrapper">
@@ -27,7 +28,8 @@ function Root() {
                <Route path="/jobs/new/chirp-rebinning" element={<NewJobChirpRebinning />} />
                <Route path="/jobs/new/l1a" element={<NewJobL1A />} />
                <Route path="/jobs/new/l1b" element={<NewJobL1B />} />
-               <Route path="*" element={<Home />} />
+               <Route path="/" element={<Home />} />
+               <Route path="*" element={<NotFound />} />
             </Routes>
          </div>
       </div>
