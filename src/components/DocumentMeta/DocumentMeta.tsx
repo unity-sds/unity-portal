@@ -7,7 +7,7 @@ export type DocumentMetaProps = {
 
 export const DocumentMeta = (props:DocumentMetaProps) => {
 
-  let {title, description} = props;
+  const {title, description} = props;
 
   return (
     <Helmet>

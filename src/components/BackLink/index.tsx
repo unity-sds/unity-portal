@@ -8,7 +8,7 @@ type BackLinkProps = {
 
 export const BackLink = (props:BackLinkProps) => {
 
-   let {label, path} = props;
+   const {label, path} = props;
 
    return(
       <>
