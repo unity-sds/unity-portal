@@ -38,11 +38,12 @@ const getProcessRoute = (processID:string):JSX.Element | null => {
       "chirp": <NewJobChirpRebinning process={process}/>,
       "l1a": <NewJobL1A process={process}/>,
       "l1b": <NewJobL1B process={process}/>,
-   }
+   }  
 
    return (
       (process) ? processRoutes[processID] : null
    )
+
 };
 
 export { getProcesses, getProcess, getProcessRoute };

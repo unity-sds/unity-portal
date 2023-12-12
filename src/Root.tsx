@@ -32,8 +32,8 @@ function Root() {
                {
                   /* Add routes for job execution forms */
                   processes.map( (item) => {
-                     let path = "/jobs/new/" + item['id'];
-                     let route:JSX.Element | null = getProcessRoute(item['id']);
+                     const path = "/jobs/new/" + item['id'];
+                     const route:JSX.Element | null = getProcessRoute(item['id']);
                      return (
                         <Route path={path} element={ (route) ? route : <NotFound />} key={"route_" + item['id']}/>
                      )
