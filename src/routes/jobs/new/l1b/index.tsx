@@ -7,29 +7,17 @@ import { getTokens } from "../../../../AuthenticationWrapper";
 import { BackLink } from "../../../../components/BackLink";
 
 const JOB_FORM_PAGE_LOAD_STATE = {
-   input_processing_labels: "",
-   input_cmr_collection_name: "",
-   input_cmr_search_start_time: "",
-   input_cmr_search_stop_time: "",
-   input_cmr_edl_user: "cmr_user",
-   input_cmr_edl_pass: "cmr_pass",
+   input_collection_id: "",
+   start_datetime: "",
+   stop_datetime: "",
    output_collection_id: "",
-   output_data_bucket: "",
-   input_daac_collection_shortname: "CHIRP_L1B",
-   input_daac_collection_sns: "arn:://SNS-arn"
 }
 
 const JOB_FORM_INITIAL_STATE = {
-   input_processing_labels: "",
-   input_cmr_collection_name: "",
-   input_cmr_search_start_time: "",
-   input_cmr_search_stop_time: "",
-   input_cmr_edl_user: "cmr_user",
-   input_cmr_edl_pass: "cmr_pass",
+   input_collection_id: "",
+   start_datetime: "",
+   stop_datetime: "",
    output_collection_id: "",
-   output_data_bucket: "",
-   input_daac_collection_shortname: "CHIRP_L1B",
-   input_daac_collection_sns: "arn:://SNS-arn"
 }
 
 type NewJobL1BProps = {
@@ -60,27 +48,6 @@ function NewJobL1B(props:NewJobL1BProps) {
       setForm(JOB_FORM_INITIAL_STATE);
    }
 
-   const setStopDate = () => {
-
-      const endDate = addDays(new Date(form.input_cmr_search_start_time), 16);
-      
-      const year = endDate.toLocaleString("default", { year: "numeric" });
-      const month = endDate.toLocaleString("default", { month: "2-digit" });
-      const day = endDate.toLocaleString("default", { day: "2-digit" });
-      const formattedEndDate = year + "-" + month + "-" + day;
-
-      setForm({
-         ...form,
-         ["input_cmr_search_stop_time"]: formattedEndDate
-      })
-
-   }
-
-   const addDays = function(date:Date, days:number) {
-      date.setDate(date.getDate() + days);
-      return date;
-    }
-
    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
 
       e.preventDefault();
@@ -91,45 +58,21 @@ function NewJobL1B(props:NewJobL1BProps) {
          "response": "document",
          "inputs": [
             {
-               "id": "input_processing_labels",
-               "data": form.input_processing_labels.split(",")
+               "id": "input_collection_id",
+               "data": form.input_collection_id
             },
             {
-               "id": "input_cmr_collection_name",
-               "data": form.input_cmr_collection_name
+               "id": "start_datetime",
+               "data": form.start_datetime
             },
             {
-               "id": "input_cmr_search_start_time",
-               "data": form.input_cmr_search_start_time
-            },
-            {
-               "id": "input_cmr_search_stop_time",
-               "data": form.input_cmr_search_stop_time
-            },
-            {
-               "id": "input_cmr_edl_user",
-               "data": form.input_cmr_edl_user
-            },
-            {
-               "id": "input_cmr_edl_pass",
-               "data": form.input_cmr_edl_pass
+               "id": "stop_datetime",
+               "data": form.stop_datetime
             },
             {
                "id": "output_collection_id",
                "data": form.output_collection_id
             },
-            {
-               "id": "output_data_bucket",
-               "data": form.output_data_bucket
-            },
-            {
-               "id": "input_daac_collection_shortname",
-               "data": form.input_daac_collection_shortname
-           },
-           {
-               "id": "input_daac_collection_sns",
-               "data": form.input_daac_collection_sns
-           }
          ],
          "outputs": [
             {
@@ -185,48 +128,36 @@ function NewJobL1B(props:NewJobL1BProps) {
                      <br />
                   </> 
                }
+
                <TextField
-                  id="input_processing_labels"
-                  label="Execution Labels"
+                  id="input_collection_id"
+                  label="Collection ID"
                   labelPosition="top"
                   placeholder=""
                   type="string"
-                  helperText="Comma delimited set of labels"
-                  value={form.input_processing_labels}
+                  value={form.input_collection_id}
                   onChange={handleChange}
                />
 
                <TextField
-                  id="input_cmr_collection_name"
-                  label="CMR Collection Concept ID"
+                  id="start_datetime"
+                  label="Start Date and Time"
                   labelPosition="top"
                   placeholder=""
                   type="string"
-                  value={form.input_cmr_collection_name}
+                  value={form.start_datetime}
                   onChange={handleChange}
                />
 
                <TextField
-                  id="input_cmr_search_start_time"
-                  label="CMR Data Search Start Time"
+                  id="stop_datetime"
+                  label="Stop Date and Time"
                   labelPosition="top"
                   placeholder=""
                   type="string"
-                  value={form.input_cmr_search_start_time}
+                  value={form.stop_datetime}
                   onChange={handleChange}
                />
-
-               <TextField
-                  id="input_cmr_search_stop_time"
-                  label="CMR Data Search Stop Time"
-                  labelPosition="top"
-                  placeholder=""
-                  type="string"
-                  value={form.input_cmr_search_stop_time}
-                  onChange={handleChange}
-               />
-               <Button variant="secondary" onClick={setStopDate}>Set to Start + 16 days</Button>
-               <br /><br />
 
                <TextField
                   id="output_collection_id"
@@ -235,16 +166,6 @@ function NewJobL1B(props:NewJobL1BProps) {
                   placeholder=""
                   type="string"
                   value={form.output_collection_id}
-                  onChange={handleChange}
-               />
-
-               <TextField
-                  id="output_data_bucket"
-                  label="Output Data"
-                  labelPosition="top"
-                  placeholder=""
-                  type="string"
-                  value={form.output_data_bucket}
                   onChange={handleChange}
                />
 
