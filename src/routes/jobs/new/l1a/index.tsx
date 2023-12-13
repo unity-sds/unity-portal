@@ -200,8 +200,6 @@ function NewJobL1A(props:NewJobL1AProps) {
                   onChange={handleChange}
                />
 
-               <input aria-label="Date and time" type="datetime-local" />
-
                <div style={{display: "flex", gap: "8px"}}>
                   <Button type="submit" disabled={submittingJob}>Submit New Job</Button>
                   <Button variant="secondary" type="reset" onClick={handleReset}>Reset</Button>
