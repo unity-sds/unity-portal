@@ -6,8 +6,6 @@ import Config from "../../../../Config";
 import { getTokens } from "../../../../AuthenticationWrapper";
 import { BackLink } from "../../../../components/BackLink";
 
-import "./index.css"
-
 const JOB_FORM_PAGE_LOAD_STATE = {
    input_processing_labels: "",
    input_cmr_collection_name: "",
