@@ -8,8 +8,43 @@
 
 /* Menu */
 
-.st-react-menu-label {
-   text-transform: uppercase;
+.st-react-menu-content {
+  background: var(--st-gray-80);
+  border: 0;
+  padding: 0;
+}
+
+.st-react-menu-content .st-react-menu-label {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--st-gray-10);
+  text-transform: uppercase;
+  padding: 10px 16px;
+  word-wrap: break-word;
+}
+
+.st-react-menu-content .st-react-menu-item {
+  background-color: var(--st-gray-70);
+  border-radius: 0;
+  color: var(--st-gray-10);
+  font-weight: 400;
+  letter-spacing: 0.48px;
+  line-height: 1em;
+  padding: 10px 16px;
+  word-wrap: break-word;
+}
+
+.st-react-menu-content .st-react-menu-item:hover, .st-react-menu-content .st-react-menu-item:hover a {
+  background: var(--st-primary-20);
+  font-weight: 700;
+  color: var(--st-black);
+  cursor: pointer;
+}
+
+.st-react-menu-content .st-react-menu-item > a {
+  color: var(--st-gray-10);
+  text-decoration: none;
+  word-wrap: break-word;
 }
 
 /* Navbar */
@@ -40,4 +75,38 @@
 
 .st-react-navbar.st-react-navbar--mobile .st-button:hover.icon {
    color: var(--st-button-tertiary-color);
+}
+
+.st-react-navbar-mobile-menu {
+  background: var(--st-gray-80);
+  border: 0;
+  padding: 0;
+}
+
+.st-react-navbar-mobile-menu .st-react-menu-label {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--st-gray-10);
+  text-transform: uppercase;
+  padding: 10px 16px;
+  word-wrap: break-word;
+}
+
+.st-react-navbar-mobile-menu .st-react-navbar-link {
+  background-color: var(--st-gray-70);
+  border-radius: 0;
+  color: var(--st-gray-10);
+  font-weight: 400;
+  letter-spacing: 0.48px;
+  line-height: 1em;
+  padding: 10px 16px;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+.st-react-navbar-mobile-menu .st-react-navbar-link:hover {
+  background: var(--st-primary-20);
+  font-weight: 700;
+  color: var(--st-black);
+  cursor: pointer;
 }
