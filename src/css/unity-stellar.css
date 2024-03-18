@@ -10,8 +10,15 @@
 
 .st-react-menu-content {
   background: var(--st-gray-80);
-  border: 0;
+  border: 1px solid var(--st-white);
+  border-radius: 0;
   padding: 0;
+}
+
+.st-react-menu-content .st-react-menu-arrow {
+  fill: var(--st-white);
+  stroke: var(--st-white);
+  filter: none;
 }
 
 .st-react-menu-content .st-react-menu-label {
