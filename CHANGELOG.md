@@ -6,8 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5.0] (unreleased)
-- Added CI/CD workflow to build application as a docker image.
-- Updated application build configuration. Stateful information has been removed from project configuration. Instead we now allow environment variables to be supplied to the container at startup which in turn get injected into the Unity UI Codebase. This is in support of moving to dynamic configuration of the application via Unity Marketplace.
+- Updated Navbar CSS styling to match Figma designs [#5](https://github.com/unity-sds/unity-ui/issues/5)
+- Added CI/CD workflow to build application as a docker image. [#21](https://github.com/unity-sds/unity-ui/issues/21)
+- Updated application build configuration. Stateful information has been removed from project configuration. Instead we now allow environment variables to be supplied to the container at startup which in turn get injected into the Unity UI Codebase. This is in support of moving to dynamic configuration of the application via Unity Marketplace. Related to [#21](https://github.com/unity-sds/unity-ui/issues/21)
 
 ## [0.4.0] - 2023-12-13
 - Updated /job/new endpoint so it lists the applications for which jobs may be executed.
