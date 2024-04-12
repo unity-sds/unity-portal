@@ -4,7 +4,6 @@
 
 FROM node:lts-hydrogen as builder
 
-# Add git
 RUN apt-get update
 
 # Create app directory
@@ -17,15 +16,17 @@ COPY . .
 RUN npm clean-install
 
 # Build distribution
-RUN npm run build-integration
-
+RUN npm run build
 
 ############################################################
 ############################################################
 # Build Image Stage
 
 FROM ubuntu:18.04
-LABEL version="0.0.1"
+LABEL version="0.1.0"
+
+ENV UNITY_WWW_ROOT=/var/www/unity-ui
+ENV ENTRYPOINT_FOLDER=/entrypoint.d
 
 RUN apt-get update \
       && apt-get install -y apache2 \
@@ -33,7 +34,7 @@ RUN apt-get update \
       && apt-get clean
 
 # Create app directory and copy distribution code from builder stage
-WORKDIR /var/www/unity-ui
+WORKDIR ${UNITY_WWW_ROOT}
 COPY --from=builder /usr/src/app/dist ./
 
 # Configure apache2
@@ -42,7 +43,14 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN a2dissite 000-default.conf
 RUN a2ensite unity-ui.conf
 
+# Copy and set up files needed for container startup
+COPY ./entrypoint.d/* ${ENTRYPOINT_FOLDER}/
+RUN chmod 777 -R ${ENTRYPOINT_FOLDER}/* && chmod +x -R ${ENTRYPOINT_FOLDER}/*
+
 EXPOSE 80
 
-# Default command to run container
-CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND", "-k", "start"]
+# Default process to run on container startup
+ENTRYPOINT ["/entrypoint.d/docker-entrypoint.sh"]
+
+# Default options to pass to apache when starting container in docker-entrypoint.sh
+CMD ["-k", "start"]
