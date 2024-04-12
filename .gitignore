@@ -12,6 +12,7 @@ pnpm-debug.log*
 lerna-debug.log*
 .env
 !.env/.env
+!.env/.env.docker.example
 
 node_modules
 dist
