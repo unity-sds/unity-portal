@@ -6,5 +6,6 @@ source ${ENTRYPOINT_FOLDER}/env.sh
 
 rm -f /var/run/apache2/apache2.pid
 
-# Run the main container process (from the Dockerfile CMD)
+# Run the main container process
+# (Arguments for Apache supplied from the Dockerfile CMD)
 exec /usr/sbin/apachectl -D FOREGROUND "$@"
