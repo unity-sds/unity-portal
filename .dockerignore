@@ -1,0 +1,9 @@
+.git
+*/.git
+node_modules
+*/node_modules
+npm-debug.log
+dist
+.swc
+.env
+!.env/.env

@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] 2024-04-15
+- Updated Navbar CSS styling to match Figma designs [#5](https://github.com/unity-sds/unity-ui/issues/5)
+- Added CI/CD workflow to build application as a docker image. [#21](https://github.com/unity-sds/unity-ui/issues/21)
+- Updated application build configuration. Stateful information has been removed from project configuration. Instead we now allow environment variables to be supplied to the container at startup which in turn get injected into the Unity UI Codebase. This is in support of moving to dynamic configuration of the application via Unity Marketplace. Related to [#3](https://github.com/unity-sds/unity-sds-portal/issues/3)
+
+## [0.4.0] - 2023-12-13
+- Updated /job/new endpoint so it lists the applications for which jobs may be executed.
+- Moved chirp rebinning job form to /jobs/new/chirp
+- Added job submission forms for L1A and L1B PGEs
+- Added process utility to help facilitate changes listed above.
+
+## [0.3.1] - 2023-12-12
+- Fixed link associated with logo on mobile platforms
+
+## [0.3.0] - 2023-11-13
+
+- Updated environment configurations to account for SIPS-TEST deployments
+- Updated scrolling behavior for all UIs so they can be scrolled independently from the navbar. And in the case of the Job Monitoring UI, the detail view scrolls independently from the main view.
+
 ## [0.2.0] - 2023-10-02
 
 - Updated Job Monitoring Dashboard, data is fetched from WPS-T Endpoint

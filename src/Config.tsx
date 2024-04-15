@@ -24,4 +24,9 @@ const Config = {
 
 }
 
+if( import.meta.env.DEV ) {
+  // Output Configuration on every call to help with debugging only in DEV mode
+  console.log(Config)
+}
+
 export default Config;

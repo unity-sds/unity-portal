@@ -8,7 +8,7 @@ function Home() {
             title="Home"
             description="Home"
          />
-         <div className="mainView">
+         <div className="main-view">
             <h1>Home</h1>
          </div>
       </>

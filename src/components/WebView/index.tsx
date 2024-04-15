@@ -9,8 +9,8 @@ export default function WebView(props:WebViewProps) {
    const url = props.url;
 
    return (
-      <>
-         <iframe title="Dockstore" src={url} className='unity-webview' />
-      </>
+      <div className='unity-webview'>
+         <iframe title="Dockstore" src={url} />
+      </div>
    )
 }
