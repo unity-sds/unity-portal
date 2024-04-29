@@ -58,6 +58,9 @@ export default function Navbar() {
                            <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
                         <MenuLabel>Infrastructure</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="/health">Health</NavLink>
+                        </MenuItem>
                         <MenuItem>HySDS</MenuItem>
                         <MenuItem>ADES Deployments</MenuItem>
                         <MenuItem>GitHub Actions</MenuItem>
@@ -134,6 +137,9 @@ export default function Navbar() {
                            <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
                         <MenuLabel>Infrastructure</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="/health">Health</NavLink>
+                        </MenuItem>
                         <MenuItem>HySDS</MenuItem>
                         <MenuItem>ADES Deployments</MenuItem>
                         <MenuItem>GitHub Actions</MenuItem>
@@ -215,6 +221,7 @@ export default function Navbar() {
                <NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
                <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink>
                <MenuLabel>Infrastructure</MenuLabel>
+               <NavLink to="/health" className="st-react-navbar-link">{' '}Health</NavLink>
                <NavbarLink href="/">
                   {' '}HySDS
                </NavbarLink>
