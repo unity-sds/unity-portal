@@ -2,7 +2,6 @@ import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 import { CellClickedEvent } from 'ag-grid-community';
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
 import { useCallback, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface HealthCheck {
   status:string;
@@ -16,8 +15,6 @@ interface Service {
 }
 
 function HealthDashboard() {
-
-  const navigate = useNavigate();
 
   const [rowData, setRowData] = useState<Array<Service>>([
     {
