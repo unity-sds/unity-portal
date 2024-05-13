@@ -52,7 +52,22 @@ function HealthDashboard() {
   // Each Column Definition results in one Column.
   const [columnDefs] = useState([
     { field: "service", headerName: "Service", filter: true },
-    { field: "status", valueGetter: "data.healthChecks[0].status", headerName: "Status", filter: true },
+    {
+      cellRenderer: params => {
+      
+        let icon;
+        if( params.value.toString().toUpperCase() === "UNHEALTHY" ) {
+          icon = <IconWarning className="unity-icon-warning"/>
+        }
+
+        return <React.Fragment>{params.value} {icon}</React.Fragment>
+
+      },
+      field: "status", 
+      filter: true,
+      headerName: "Status",
+      valueGetter: "data.healthChecks[0].status",
+    },
     { field: "landingPage", headerName: "Landing Page", filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
     { field: "date", valueGetter: "data.healthChecks[0].date", headerName: "Date", filter: true },
   ]);
