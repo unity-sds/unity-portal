@@ -59,6 +59,9 @@ function HealthDashboard() {
         if( params.value.toString().toUpperCase() === "UNHEALTHY" ) {
           icon = <IconWarning className="unity-icon-warning"/>
         }
+        if( params.value.toString().toUpperCase() === "UNAVAILABLE" ) {
+          icon = <IconWarning className="unity-icon-error"/>
+        }
 
         return <React.Fragment>{params.value} {icon}</React.Fragment>
 
