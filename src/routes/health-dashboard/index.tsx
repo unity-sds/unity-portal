@@ -20,17 +20,20 @@ function HealthDashboard() {
   const [columnDefs] = useState([
     { field: "service", headerName: "Service", filter: true },
     {
+      cellClass: 'unity-aggrid-health-status',
       cellRenderer: params => {
-      
-        let icon;
-        if( params.value.toString().toUpperCase() === "UNHEALTHY" ) {
-          icon = <IconWarning className="unity-icon-warning"/>
-        }
-        if( params.value.toString().toUpperCase() === "UNAVAILABLE" ) {
-          icon = <IconWarning className="unity-icon-error"/>
-        }
 
-        return <React.Fragment>{params.value} {icon}</React.Fragment>
+        if( params.value ) {
+          let icon;
+          if( params.value.toString().toUpperCase() === "UNHEALTHY" ) {
+            icon = <IconWarning className="unity-icon-warning"/>
+          }
+          if( params.value.toString().toUpperCase() === "UNAVAILABLE" ) {
+            icon = <IconWarning className="unity-icon-error"/>
+          }
+  
+          return <React.Fragment>{params.value} {icon}</React.Fragment>
+        }
 
       },
       field: "status", 

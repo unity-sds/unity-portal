@@ -5,21 +5,10 @@ enum HEALTH_ACTIONS {
   GET_HEALTH = "health/getHealth",
 }
 
-type HealthCheckResponse = {
-  status:string;
-  date:string;
-};
-
 type HealthCheck = {
   status:string;
-  date:number;
+  date:string | number;
 }
-
-type ServiceResponse = {
-  service:string;
-  landingPage:string;
-  healthChecks: Array<HealthCheckResponse>
-};
 
 export type Service = {
   service:string;
@@ -27,10 +16,9 @@ export type Service = {
   healthChecks: Array<HealthCheck>
 };
 
-
 export type HealthState = {
   error: string | null | undefined
-  items: ServiceResponse[]
+  items: Service[]
   lastUpdated: number | undefined,
   status: 'idle' | 'pending' | 'succeeded' | 'failed'
 };
@@ -87,28 +75,6 @@ const healthSlice = createSlice({
 
       // Parse and store the fetched data into the state
       const data = action.payload;
-
-      const compiledServices:Service[] = [];
-      data.forEach( (item:ServiceResponse) => {
-
-        const healthChecks:Array<HealthCheck> = [];
-        item.healthChecks.forEach( (healthCheckItem) => {
-          healthChecks.push({
-            status: healthCheckItem.status,
-            date: Date.parse(healthCheckItem.date)
-          });
-        })
-
-        const service:Service = {
-          service: item.service,
-          landingPage: item.landingPage,
-          healthChecks: healthChecks
-        }
-
-        compiledServices.push(service);
-
-      });
-
       state.items = data;
 
     });
