@@ -1,7 +1,7 @@
 [
   {
     "service": "airflow",
-    "landingPage":"unity.jpl.nasa.gov/project/venue/processing/ui",
+    "landingPage":"https://unity.jpl.nasa.gov/project/venue/processing/ui",
     "healthChecks": [
       {
         "status": "HEALTHY",
@@ -11,7 +11,7 @@
   },
   {
     "service": "jupyter",
-    "landingPage":"unity.jpl.nasa.gov/project/venue/ads/jupyter",
+    "landingPage":"https://unity.jpl.nasa.gov/project/venue/ads/jupyter",
     "healthChecks": [
       {
         "status": "HEALTHY",
@@ -21,7 +21,7 @@
   },
   {
     "service": "other_service",
-    "landingPage":"unity.jpl.nasa.gov/project/venue/other_service",
+    "landingPage":"https://unity.jpl.nasa.gov/project/venue/other_service",
     "healthChecks": [
       {
         "status": "UNHEALTHY",
