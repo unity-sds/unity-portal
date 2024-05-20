@@ -74,7 +74,7 @@ function HealthDashboard() {
   }, [dispatch, healthState]);
 
   useEffect(() => {
-    let isMounted = true;
+    //let isMounted = true;
 
     if (healthState.status === "pending") {
       // Do something to inform user that investigation data is being fetched
@@ -87,7 +87,7 @@ function HealthDashboard() {
 
     // Cleanup function
     return () => {
-      isMounted = false;
+      //isMounted = false;
     };
   }, [healthState, dispatch]);
 

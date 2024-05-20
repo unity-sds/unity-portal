@@ -29,7 +29,7 @@ function Root() {
   
   useEffect(() => {
     
-    let isMounted = true;
+    //let isMounted = true;
     
     // Check if data manager status is 'idle', then fetch the investigations data from the API
     if (healthDataRequiresFetchOrUpdate(healthState)) {
@@ -47,7 +47,7 @@ function Root() {
     
     // Cleanup function
     return () => {
-      isMounted = false;
+      //isMounted = false;
     };
     
   }, [healthState, dispatch]);
