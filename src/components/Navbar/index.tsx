@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu, IconExternalLink } from "@nasa-jpl/react-stellar";
+import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
 import { getHealthData } from "../../state/slices/healthSlice";
 import { healthDataRequiresFetchOrUpdate } from "../../state/selectors/healthSelectors";
 import { logout, getUsername } from "../../AuthenticationWrapper";

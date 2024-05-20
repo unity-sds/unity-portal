@@ -11,8 +11,6 @@ import NewJob from "./routes/jobs/new";
 import Navbar from "./components/Navbar"
 import WebView from "./components/WebView";
 
-import Config from "./Config";
-
 import { getProcesses, getProcessRoute } from "./utils/processes";
 import NotFound from "./routes/errors/not-found";
 import { healthDataRequiresFetchOrUpdate } from "./state/selectors/healthSelectors";
