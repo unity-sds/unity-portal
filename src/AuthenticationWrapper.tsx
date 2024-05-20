@@ -8,6 +8,8 @@ import App from './App';
 import {AuthProvider, AuthService, useAuth} from 'react-oauth2-pkce'
 import jwt_decode from "jwt-decode";
 import styled from 'styled-components';
+import { Provider } from 'react-redux';
+import { store } from './state/store.ts';
 
 import Config from './Config';
 
@@ -178,7 +180,9 @@ function AuthenticationWrapper() {
     refreshToken = "";
 
     return (
+      <Provider store={store}>
         <App />
+      </Provider>
     );
 }
 

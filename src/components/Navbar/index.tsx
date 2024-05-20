@@ -1,15 +1,64 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarLink, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
+import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
+import { getHealthData } from "../../state/slices/healthSlice";
+import { healthDataRequiresFetchOrUpdate } from "../../state/selectors/healthSelectors";
 import { logout, getUsername } from "../../AuthenticationWrapper";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
+import { useEffect, } from "react";
 import UnityLogo from "../../assets/unity.svg";
 
 import Config from "../../Config";
 
 export default function Navbar() {
+  
+  const dispatch = useAppDispatch();
 
-   const loggedInUsername = getUsername()
-   const userInitials = loggedInUsername.substring(0,1).toUpperCase();
-   const uiVersion = Config['general']['version'];
+  const loggedInUsername = getUsername()
+  const userInitials = loggedInUsername.substring(0,1).toUpperCase();
+  const uiVersion = Config['general']['version'];
+
+  const healthState = useAppSelector((state) => {
+    return state.health;
+  });
+
+  const formatTitle = (title:string) => {
+
+    let cleanedTitle = title;
+    const charReplacements = {
+      "_": " "
+    }
+
+    for( const [key, value] of Object.entries(charReplacements) ) {
+      cleanedTitle = cleanedTitle.replace(key,value);
+    }
+
+    return cleanedTitle;
+  }
+
+  useEffect(() => {
+
+    //let isMounted = true;
+
+    // Check if data manager status is 'idle', then fetch the investigations data from the API
+    if (healthDataRequiresFetchOrUpdate(healthState)) {
+      dispatch(getHealthData());
+    }
+
+    if (healthState.status === "pending") {
+      // Do something to inform user that investigation data is being fetched
+    } else if (healthState.status === "succeeded") {
+      // Do something to handle the successful fetching of data
+    } else if (healthState.error != null || healthState.error != undefined) {
+      // Do something to handle the error
+      console.log(healthState.error);
+    }
+
+    // Cleanup function
+    return () => {
+      //isMounted = false;
+    };
+
+  }, [healthState, dispatch]);
 
    return (
       <>
@@ -42,30 +91,25 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="/">Home</NavLink>
                         </MenuItem>
-                        <MenuLabel>Development</MenuLabel>
-                        <MenuItem>Jupyter</MenuItem>
-                        <MenuItem>GitHub</MenuItem>
-                        <MenuLabel>Catalogs</MenuLabel>
-                        <MenuItem>
-                           <NavLink to="/applications/catalog">Application Catalog</NavLink>
-                        </MenuItem>
-                        <MenuItem>Data Catalog</MenuItem>
-                        <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
                            <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
                         </MenuItem>
                         <MenuItem>
                            <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
-                        <MenuLabel>Infrastructure</MenuLabel>
-                        <MenuItem>HySDS</MenuItem>
-                        <MenuItem>ADES Deployments</MenuItem>
-                        <MenuItem>GitHub Actions</MenuItem>
-                        <MenuLabel>Administration</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="/health-dashboard">Health Dashboard</NavLink>
+                        </MenuItem>
                         <MenuItem>
                            <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
                         </MenuItem>
-                        <MenuItem>Kion</MenuItem>
+                        {
+                          healthState.items.map( (service, index) => {
+                            return <MenuItem key={index}>
+                              <NavLink to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                            </MenuItem>
+                          })
+                        }
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
@@ -118,30 +162,28 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="/">Home</NavLink>
                         </MenuItem>
-                        <MenuLabel>Development</MenuLabel>
-                        <MenuItem>Jupyter</MenuItem>
-                        <MenuItem>GitHub</MenuItem>
-                        <MenuLabel>Catalogs</MenuLabel>
                         <MenuItem>
                            <NavLink to="/applications/catalog">Application Catalog</NavLink>
                         </MenuItem>
-                        <MenuItem>Data Catalog</MenuItem>
-                        <MenuLabel>Processing</MenuLabel>
                         <MenuItem>
                            <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
                         </MenuItem>
                         <MenuItem>
                            <NavLink to="/jobs/new">Create New Job</NavLink>
                         </MenuItem>
-                        <MenuLabel>Infrastructure</MenuLabel>
-                        <MenuItem>HySDS</MenuItem>
-                        <MenuItem>ADES Deployments</MenuItem>
-                        <MenuItem>GitHub Actions</MenuItem>
-                        <MenuLabel>Administration</MenuLabel>
+                        <MenuItem>
+                           <NavLink to="/health-dashboard">Health Dashboard</NavLink>
+                        </MenuItem>
                         <MenuItem>
                            <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
                         </MenuItem>
-                        <MenuItem>Kion</MenuItem>
+                        {
+                          healthState.items.map( (service, index) => {
+                            return <MenuItem key={index}>
+                              <NavLink to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                            </MenuItem>
+                          })
+                        }
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
@@ -193,44 +235,17 @@ export default function Navbar() {
                </NavbarContent>
             </NavbarBreakpoint>
             <NavbarMobileMenu>
-               <NavbarLink href="/">
-                  <IconHome />
-                  {' '}Home
-               </NavbarLink>
-               <MenuLabel>Development</MenuLabel>
-               <NavbarLink href="/">
-                  {' '}Jupyter
-               </NavbarLink>
-               <NavbarLink href="/">
-                  {' '}GitHub
-               </NavbarLink>
-               <MenuLabel>Catalogs</MenuLabel>
-               <NavbarLink href="/applications/catalog">
-                  {' '}Application Catalog
-               </NavbarLink>
-               <NavbarLink href="/">
-                  {' '}Data Catalog
-               </NavbarLink>
-               <MenuLabel>Processing</MenuLabel>
+               <NavLink to="/" className="st-react-navbar-link"><IconHome />{' '}Home</NavLink>
+               <NavLink to="/applications/catalog" className="st-react-navbar-link">{' '}Application Catalog</NavLink>
                <NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
                <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink>
-               <MenuLabel>Infrastructure</MenuLabel>
-               <NavbarLink href="/">
-                  {' '}HySDS
-               </NavbarLink>
-               <NavbarLink href="/">
-                  {' '}ADES Deployments
-               </NavbarLink>
-               <NavbarLink href="/">
-                  {' '}GitHub Actions
-               </NavbarLink>
-               <MenuLabel>Administration</MenuLabel>
-               <NavbarLink href="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">
-                  {' '}Documentation (Gitbook)
-               </NavbarLink>
-               <NavbarLink href="/">
-                  {' '}Kion
-               </NavbarLink>
+               <NavLink to="/health-dashboard" className="st-react-navbar-link">{' '}Health Dashboard</NavLink>
+               <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
+               {
+                  healthState.items.map( (service, index) => {
+                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                  })
+               }
             </NavbarMobileMenu>
          </StellarNavbar>
       </>

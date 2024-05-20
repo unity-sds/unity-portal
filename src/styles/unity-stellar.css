@@ -1,3 +1,11 @@
+#root {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
 :root {
 
    /* Navbar */
@@ -40,6 +48,7 @@
   line-height: 1em;
   margin-bottom: 1px;
   padding: 16px 16px;
+  text-transform: capitalize;
   word-wrap: break-word;
 }
 
@@ -110,6 +119,7 @@
   line-height: 1em;
   padding: 10px 16px;
   text-decoration: none;
+  text-transform: capitalize;
   word-wrap: break-word;
 }
 
