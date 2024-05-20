@@ -243,7 +243,7 @@ export default function Navbar() {
                <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
                {
                   healthState.items.map( (service, index) => {
-                    return <NavLink className="st-react-navbar-link" to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
                   })
                }
             </NavbarMobileMenu>

@@ -1,11 +1,11 @@
 import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
-import { CellClickedEvent } from 'ag-grid-community';
+import { CellClickedEvent, ICellRendererParams } from 'ag-grid-community';
 import { getHealthData } from "../../state/slices/healthSlice";
 import { healthDataRequiresFetchOrUpdate } from "../../state/selectors/healthSelectors";
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { IconWarning, Warning } from "@nasa-jpl/react-stellar";
+import { IconWarning } from "@nasa-jpl/react-stellar";
 import React from "react";
 
 function HealthDashboard() {
@@ -21,7 +21,7 @@ function HealthDashboard() {
     { field: "service", headerName: "Service", filter: true },
     {
       cellClass: 'unity-aggrid-health-status',
-      cellRenderer: params => {
+      cellRenderer: (params:ICellRendererParams) => {
 
         if( params.value ) {
           let icon;
