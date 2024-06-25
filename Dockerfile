@@ -40,6 +40,7 @@ COPY --from=builder /usr/src/app/dist ./
 # Configure apache2
 COPY ./etc/apache2/sites-available/unity-ui.conf /etc/apache2/sites-available/
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN sed -i "s/Listen 80/Listen 8080/g" /etc/apache2/ports.conf
 RUN a2dissite 000-default.conf
 RUN a2ensite unity-ui.conf
 
@@ -47,7 +48,7 @@ RUN a2ensite unity-ui.conf
 COPY ./entrypoint.d/* ${ENTRYPOINT_FOLDER}/
 RUN chmod 777 -R ${ENTRYPOINT_FOLDER}/* && chmod +x -R ${ENTRYPOINT_FOLDER}/*
 
-EXPOSE 80
+EXPOSE 8080
 
 # Default process to run on container startup
 ENTRYPOINT ["/entrypoint.d/docker-entrypoint.sh"]

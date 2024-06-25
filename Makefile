@@ -18,7 +18,7 @@ kill:
 	docker kill ${CONTAINER_NAME}
 
 run:
-	docker run --env-file=./.env/.env.docker -t -i --rm -p 8080:80 --name ${CONTAINER_NAME} ${IMAGE_NAME} 
+	docker run --env-file=./.env/.env.docker -t -i --rm -p 8080:8080 --name ${CONTAINER_NAME} ${IMAGE_NAME} 
 
 start:
 	docker start ${CONTAINER_NAME}
