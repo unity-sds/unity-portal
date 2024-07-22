@@ -62,7 +62,7 @@ const healthSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    
+
     builder.addCase(getHealthData.pending, (state, _action) => {
       // When data is being fetched
       state.status = "pending";

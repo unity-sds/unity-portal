@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
 import { getHealthData } from "../../state/slices/healthSlice";
-import { healthDataRequiresFetchOrUpdate } from "../../state/selectors/healthSelectors";
-import { logout, getUsername } from "../../AuthenticationWrapper";
+import { GetUsername, logout } from "../../utils/auth";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { useEffect, } from "react";
 import UnityLogo from "../../assets/unity.svg";
@@ -13,7 +12,7 @@ export default function Navbar() {
   
   const dispatch = useAppDispatch();
 
-  const loggedInUsername = getUsername()
+  const loggedInUsername = GetUsername();
   const userInitials = loggedInUsername.substring(0,1).toUpperCase();
   const uiVersion = Config['general']['version'];
 
@@ -39,16 +38,14 @@ export default function Navbar() {
 
     //let isMounted = true;
 
-    // Check if data manager status is 'idle', then fetch the investigations data from the API
-    if (healthDataRequiresFetchOrUpdate(healthState)) {
+    if (healthState.status === "idle") {
+      // Fetch the health data
       dispatch(getHealthData());
-    }
-
-    if (healthState.status === "pending") {
-      // Do something to inform user that investigation data is being fetched
+    } else if ( healthState.status === "pending" ) {
+      // Do something to inform the user that the health data is being fetched
     } else if (healthState.status === "succeeded") {
       // Do something to handle the successful fetching of data
-    } else if (healthState.error != null || healthState.error != undefined) {
+    } else if (healthState.status === "failed") {
       // Do something to handle the error
       console.log(healthState.error);
     }
@@ -58,7 +55,7 @@ export default function Navbar() {
       //isMounted = false;
     };
 
-  }, [healthState, dispatch]);
+  }, [dispatch, healthState]);
 
    return (
       <>

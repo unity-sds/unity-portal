@@ -6,11 +6,10 @@ import { DocumentMeta } from '../../../components/DocumentMeta/DocumentMeta';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import Config from '../../../Config';
-import { getTokens } from '../../../AuthenticationWrapper';
-
-import './index.css';
 import { IconClose, IconTrash, IconTimeline } from '@nasa-jpl/react-stellar';
 import { CellClickedEvent } from 'ag-grid-community';
+import { GetToken } from '../../../utils/auth';
+import './index.css';
 
 interface Job {
    process:string;
@@ -30,7 +29,7 @@ function JobMonitoring() {
    const [selectedJob, setSelectedJob] = useState<Job>();
    const process_endpoint = Config['sps']['endpoint'] + 'processes';
    const navigate = useNavigate();
-   const tokens = getTokens();
+   const tokens = GetToken();
 
    const { jobid_param } = useParams();
 

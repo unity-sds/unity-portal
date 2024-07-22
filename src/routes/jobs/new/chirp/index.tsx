@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, TextField } from "@nasa-jpl/react-stellar";
 import { DocumentMeta } from "../../../../components/DocumentMeta/DocumentMeta";
 import Config from "../../../../Config";
-import { getTokens } from "../../../../AuthenticationWrapper";
 import { BackLink } from "../../../../components/BackLink";
+import { GetToken } from "../../../../utils/auth";
 
 /*const JOB_FORM_PAGE_LOAD_STATE = {
    input_processing_labels: "label1, label2",
@@ -56,7 +56,7 @@ function NewJobChirpRebinning(props:NewJobChirpRebinningProps) {
    const [form, setForm] = useState(JOB_FORM_PAGE_LOAD_STATE);
    const [newJobId, setNewJobID] = useState<string>();
    const [submittingJob, setSubmittingJob] = useState(false);
-   const tokens = getTokens();
+   const tokens = GetToken();
    const meta:{ [key: string]: string} = {
       "description": "Create New " + process.title + " Job",
       "title": "Create New " + process.title + " Job",
