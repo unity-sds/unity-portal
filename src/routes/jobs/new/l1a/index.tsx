@@ -4,7 +4,7 @@ import { Button, TextField } from "@nasa-jpl/react-stellar";
 import { DocumentMeta } from "../../../../components/DocumentMeta/DocumentMeta";
 import Config from "../../../../Config";
 import { BackLink } from "../../../../components/BackLink";
-import { GetToken } from "../../../../utils/auth";
+import { GetToken } from "../../../../AuthorizationWrapper";
 
 const JOB_FORM_PAGE_LOAD_STATE = {
    input_ephatt_collection_id: "",

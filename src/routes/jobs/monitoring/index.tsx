@@ -8,7 +8,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import Config from '../../../Config';
 import { IconClose, IconTrash, IconTimeline } from '@nasa-jpl/react-stellar';
 import { CellClickedEvent } from 'ag-grid-community';
-import { GetToken } from '../../../utils/auth';
+import { GetToken } from '../../../AuthorizationWrapper';
 import './index.css';
 
 interface Job {

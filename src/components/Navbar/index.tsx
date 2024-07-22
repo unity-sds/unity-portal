@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
 import { getHealthData } from "../../state/slices/healthSlice";
-import { GetUsername, logout } from "../../utils/auth";
+import { GetUsername } from "../../AuthorizationWrapper";
+import { logout } from "../../utils/auth";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { useEffect, } from "react";
 import UnityLogo from "../../assets/unity.svg";
