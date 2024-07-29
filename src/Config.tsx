@@ -2,6 +2,7 @@ const Config = {
 
    ['general']: {
       version: import.meta.env.VITE_UNITY_UI_VERSION,
+      base_path: import.meta.env.VITE_UNITY_UI_BASE_URL
    },
    
    ['getGlobalConfig']: {
