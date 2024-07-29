@@ -2,7 +2,7 @@
 ############################################################
 # Code Building Stage
 
-FROM node:lts-hydrogen as builder
+FROM node:lts-hydrogen AS builder
 
 RUN apt-get update
 
