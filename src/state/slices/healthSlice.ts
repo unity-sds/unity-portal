@@ -39,7 +39,8 @@ export const getHealthData = createAsyncThunk(
     
     // todo: fill in URL in the future when an API is available to fetch
     // health JSON
-    const url = "/data/health.json"
+    const basePath = Config['general']['base_path'];
+    const url = basePath + "/data/health.json"
     
     const config:AxiosRequestConfig = {
       headers: {
