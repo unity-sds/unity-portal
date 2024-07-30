@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-//import Config from "../../Config";
+import Config from "../../Config";
 
 enum HEALTH_ACTIONS {
   GET_HEALTH = "health/getHealth",
