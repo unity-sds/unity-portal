@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+//import Config from "../../Config";
 
 enum HEALTH_ACTIONS {
   GET_HEALTH = "health/getHealth",
@@ -41,6 +42,7 @@ export const getHealthData = createAsyncThunk(
     // health JSON
     const basePath = Config['general']['base_path'];
     const url = basePath + "/data/health.json"
+    //const url = Config['cs']['health_endpoint'];
     
     const config:AxiosRequestConfig = {
       headers: {
