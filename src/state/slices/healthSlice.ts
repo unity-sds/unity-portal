@@ -12,8 +12,8 @@ type HealthCheck = {
 }
 
 export type Service = {
-  service:string;
-  landingPage:string;
+  componentName:string;  // previously 'service'
+  landingPageUrl:string;  // previously 'landingPage'
   healthChecks: Array<HealthCheck>
 };
 
@@ -52,7 +52,7 @@ export const getHealthData = createAsyncThunk(
     
     try {
       const response = await axios.get(url, config);
-      return response.data;
+      return response.data.services;
     } catch (err:any) {
       return thunkAPI.rejectWithValue({ error: err.message });
     }

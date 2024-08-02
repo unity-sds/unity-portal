@@ -17,7 +17,7 @@ function HealthDashboard() {
 
   // Each Column Definition results in one Column.
   const [columnDefs] = useState([
-    { field: "service", headerName: "Service", filter: true },
+    { field: "componentName", headerName: "Service", filter: true },
     {
       cellClass: 'unity-aggrid-health-status',
       cellRenderer: (params:ICellRendererParams) => {
@@ -40,7 +40,7 @@ function HealthDashboard() {
       headerName: "Status",
       valueGetter: "data.healthChecks[0].status",
     },
-    { field: "landingPage", headerName: "Landing Page", filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
+    { field: "landingPageUrl", headerName: "Landing Page", filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
     { field: "date", valueGetter: "data.healthChecks[0].date", headerName: "Date", filter: true },
   ]);
 
@@ -55,8 +55,8 @@ function HealthDashboard() {
   // Example of consuming Grid Event
   const cellClickedListener = useCallback( (event:CellClickedEvent) => {
 
-    if( event.colDef.field === 'landingPage') {
-      window.location.href = "https://" + event.data.landingPage;
+    if( event.colDef.field === 'landingPageUrl') {
+      window.location.href = "https://" + event.data.landingPageUrl;
     }
 
  }, []);

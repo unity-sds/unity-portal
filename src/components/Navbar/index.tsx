@@ -8,6 +8,7 @@ import { useEffect, } from "react";
 import UnityLogo from "../../assets/unity.svg";
 
 import Config from "../../Config";
+import { formatRoute } from "../../utils/strings";
 
 export default function Navbar() {
   
@@ -21,20 +22,6 @@ export default function Navbar() {
   const healthState = useAppSelector((state) => {
     return state.health;
   });
-
-  const formatTitle = (title:string) => {
-
-    let cleanedTitle = title;
-    const charReplacements = {
-      "_": " "
-    }
-
-    for( const [key, value] of Object.entries(charReplacements) ) {
-      cleanedTitle = cleanedTitle.replace(key,value);
-    }
-
-    return cleanedTitle;
-  }
 
   useEffect(() => {
 
@@ -105,7 +92,7 @@ export default function Navbar() {
                         {
                           healthState.items.map( (service, index) => {
                             return <MenuItem key={index}>
-                              <NavLink to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                              <NavLink to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
                             </MenuItem>
                           })
                         }
@@ -179,7 +166,7 @@ export default function Navbar() {
                         {
                           healthState.items.map( (service, index) => {
                             return <MenuItem key={index}>
-                              <NavLink to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                              <NavLink to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
                             </MenuItem>
                           })
                         }
@@ -242,7 +229,7 @@ export default function Navbar() {
                <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
                {
                   healthState.items.map( (service, index) => {
-                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + service.service}>{formatTitle(service.service)}</NavLink>
+                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
                   })
                }
             </NavbarMobileMenu>
