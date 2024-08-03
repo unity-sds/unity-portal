@@ -51,7 +51,7 @@ export default function Navbar() {
          <StellarNavbar mobileBreakpoint={800}>
             <NavbarBreakpoint min={1100}>
                <NavbarBrand
-                  link="/"
+                  link={basePath}
                   logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
                   version={uiVersion}
@@ -123,7 +123,7 @@ export default function Navbar() {
                min={800}
             >
                <NavbarBrand
-                  link="/"
+                  link={basePath}
                   logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
                   title="Unity"
                   version={uiVersion}
