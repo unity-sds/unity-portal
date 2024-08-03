@@ -12,8 +12,8 @@ type HealthCheck = {
 }
 
 export type Service = {
-  componentName:string;  // previously 'service'
-  landingPageUrl:string;  // previously 'landingPage'
+  componentName:string;
+  landingPageUrl:string;
   healthChecks: Array<HealthCheck>
 };
 
@@ -38,11 +38,7 @@ export const getHealthData = createAsyncThunk(
   HEALTH_ACTIONS.GET_HEALTH,
   async (_:void, thunkAPI) => {
     
-    // todo: fill in URL in the future when an API is available to fetch
-    // health JSON
-    const basePath = Config['general']['base_path'];
-    const url = basePath + "/data/health.json"
-    //const url = Config['cs']['health_endpoint'];
+    const url = Config['cs']['health_endpoint'];
     
     const config:AxiosRequestConfig = {
       headers: {
