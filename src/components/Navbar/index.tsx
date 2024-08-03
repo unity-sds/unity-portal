@@ -149,9 +149,6 @@ export default function Navbar() {
                            <NavLink to="/">Home</NavLink>
                         </MenuItem>
                         <MenuItem>
-                           <NavLink to="/applications/catalog">Application Catalog</NavLink>
-                        </MenuItem>
-                        <MenuItem>
                            <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
                         </MenuItem>
                         <MenuItem>
@@ -222,7 +219,6 @@ export default function Navbar() {
             </NavbarBreakpoint>
             <NavbarMobileMenu>
                <NavLink to="/" className="st-react-navbar-link"><IconHome />{' '}Home</NavLink>
-               <NavLink to="/applications/catalog" className="st-react-navbar-link">{' '}Application Catalog</NavLink>
                <NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
                <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink>
                <NavLink to="/health-dashboard" className="st-react-navbar-link">{' '}Health Dashboard</NavLink>
