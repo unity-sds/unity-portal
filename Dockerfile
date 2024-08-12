@@ -2,7 +2,7 @@
 ############################################################
 # Code Building Stage
 
-FROM node:lts-hydrogen AS builder
+FROM node:lts-iron AS builder
 
 RUN apt-get update
 
