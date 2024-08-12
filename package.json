@@ -31,7 +31,7 @@
     "util": "^0.12.5"
   },
   "devDependencies": {
-    "@nasa-jpl/react-stellar": "^1.1.10",
+    "@nasa-jpl/react-stellar": "^1.1.11",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "@types/styled-components": "^5.1.26",
