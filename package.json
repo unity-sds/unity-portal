@@ -16,7 +16,6 @@
     "axios": "^1.7.3",
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
-    "jwt-decode": "^3.1.2",
     "process": "^0.11.10",
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
@@ -27,14 +26,12 @@
     "react-resizable-panels": "^0.0.51",
     "react-router-dom": "^6.11.2",
     "stream-browserify": "^3.0.0",
-    "styled-components": "^5.3.10",
     "util": "^0.12.5"
   },
   "devDependencies": {
     "@nasa-jpl/react-stellar": "^1.1.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "@vitejs/plugin-react-swc": "^3.3.1",
