@@ -5,7 +5,7 @@ import {
 
 import Home from "./routes/home";
 import HealthDashboard from "./routes/health-dashboard";
-import JobMonitoring from "./routes/jobs/monitoring";
+//import JobMonitoring from "./routes/jobs/monitoring";
 //import NewJob from "./routes/jobs/new";
 
 import Navbar from "./components/Navbar"
@@ -71,9 +71,9 @@ function Root() {
               }
               {/*<Route path="/applications/catalog" element={<WebView url={Config.ads.url} />} />*/}
               <Route path="/health-dashboard" element={<HealthDashboard />} />
-              <Route path="/jobs/monitoring" element={<JobMonitoring />} />
+              {/*<Route path="/jobs/monitoring" element={<JobMonitoring />} />
               <Route path="/jobs/monitoring/:jobid_param" element={<JobMonitoring />} />
-              {/*<Route path="/jobs/new" element={<NewJob />} />*/}
+              <Route path="/jobs/new" element={<NewJob />} />*/}
               {
                 /* Add routes for job execution forms */
                 processes.map( (item) => {

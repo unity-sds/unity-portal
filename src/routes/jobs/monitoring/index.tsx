@@ -157,7 +157,7 @@ function JobMonitoring() {
                <div className='button-bar'>
                   <Button onClick={() => navigate("/jobs/new")}>Run New Job</Button>
                </div>
-               <div className="ag-theme-stellar data-grid-container">
+               <div className="ag-theme-stellar unity-aggrid-container">
                   <AgGridReact
                      rowData={rowData} // Row Data for Rows
                      columnDefs={columnDefs} // Column Defs for Columns

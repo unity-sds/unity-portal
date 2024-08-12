@@ -97,7 +97,7 @@ function HealthDashboard() {
       <DocumentMeta title="Health Dashboard" description="Health Dashboard" />
       <div className="main-view">
         <h1>Health Dashboard</h1>
-        <div className="ag-theme-stellar data-grid-container">
+        <div className="ag-theme-stellar unity-aggrid-container">
           <AgGridReact
             rowData={healthState.items} // Row Data for Rows
             columnDefs={columnDefs} // Column Defs for Columns
