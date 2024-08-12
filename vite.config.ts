@@ -7,13 +7,6 @@ export default defineConfig({
   plugins: [
     react()
   ],
-  resolve: {
-    alias: {
-      crypto: 'crypto-browserify',
-      stream: "stream-browserify",
-      util: 'util/'
-    }
-  },
   server: {
     port: 8080
   }
