@@ -86,9 +86,6 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="/health-dashboard">Health Dashboard</NavLink>
                         </MenuItem>
-                        <MenuItem>
-                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
-                        </MenuItem>
                         {
                           healthState.items.map( (service, index) => {
                             return <MenuItem key={index}>
@@ -96,6 +93,9 @@ export default function Navbar() {
                             </MenuItem>
                           })
                         }
+                        <MenuItem>
+                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
+                        </MenuItem>
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
@@ -157,9 +157,6 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="/health-dashboard">Health Dashboard</NavLink>
                         </MenuItem>
-                        <MenuItem>
-                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
-                        </MenuItem>
                         {
                           healthState.items.map( (service, index) => {
                             return <MenuItem key={index}>
@@ -167,6 +164,9 @@ export default function Navbar() {
                             </MenuItem>
                           })
                         }
+                        <MenuItem>
+                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
+                        </MenuItem>
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
@@ -222,12 +222,12 @@ export default function Navbar() {
                <NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
                <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink>
                <NavLink to="/health-dashboard" className="st-react-navbar-link">{' '}Health Dashboard</NavLink>
-               <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
                {
-                  healthState.items.map( (service, index) => {
-                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
-                  })
+                 healthState.items.map( (service, index) => {
+                   return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
+                 })
                }
+               <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
             </NavbarMobileMenu>
          </StellarNavbar>
       </>
