@@ -56,7 +56,7 @@ function HealthDashboard() {
   const cellClickedListener = useCallback( (event:CellClickedEvent) => {
 
     if( event.colDef.field === 'landingPageUrl') {
-      window.location.href = "https://" + event.data.landingPageUrl;
+      window.location.href = event.data.landingPageUrl;
     }
 
  }, []);
