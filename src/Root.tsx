@@ -5,13 +5,10 @@ import {
 
 import Home from "./routes/home";
 import HealthDashboard from "./routes/health-dashboard";
-//import JobMonitoring from "./routes/jobs/monitoring";
-//import NewJob from "./routes/jobs/new";
 
 import Navbar from "./components/Navbar"
 import WebView from "./components/WebView";
 
-import { getProcesses, getProcessRoute } from "./utils/processes";
 import NotFound from "./routes/errors/not-found";
 import { useAppDispatch, useAppSelector } from "./state/hooks";
 import { useEffect, useState } from "react";
@@ -21,7 +18,6 @@ import { formatRoute } from "./utils/strings";
 function Root() {
   
   const dispatch = useAppDispatch();
-  const processes = getProcesses();
   
   const healthState = useAppSelector((state) => {
     return state.health;
@@ -71,19 +67,6 @@ function Root() {
               }
               {/*<Route path="/applications/catalog" element={<WebView url={Config.ads.url} />} />*/}
               <Route path="/health-dashboard" element={<HealthDashboard />} />
-              {/*<Route path="/jobs/monitoring" element={<JobMonitoring />} />
-              <Route path="/jobs/monitoring/:jobid_param" element={<JobMonitoring />} />
-              <Route path="/jobs/new" element={<NewJob />} />*/}
-              {
-                /* Add routes for job execution forms */
-                processes.map( (item) => {
-                  const path = "/jobs/new/" + item['id'];
-                  const route:JSX.Element | null = getProcessRoute(item['id']);
-                  return (
-                    <Route path={path} element={ (route) ? route : <NotFound />} key={"route_" + item['id']}/>
-                  )
-                })
-              }
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

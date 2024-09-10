@@ -77,12 +77,6 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="/">Home</NavLink>
                         </MenuItem>
-                        {/* <MenuItem>
-                        <MenuItem>
-                           <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
-                        </MenuItem>
-                           <NavLink to="/jobs/new">Create New Job</NavLink>
-                        </MenuItem> */}
                         <MenuItem>
                            <NavLink to="/health-dashboard">Health Dashboard</NavLink>
                         </MenuItem>
@@ -148,12 +142,6 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="/">Home</NavLink>
                         </MenuItem>
-                        {/* <MenuItem>
-                        <MenuItem>
-                           <NavLink to="/jobs/monitoring">Job Monitoring</NavLink>
-                        </MenuItem>
-                           <NavLink to="/jobs/new">Create New Job</NavLink>
-                        </MenuItem> */}
                         <MenuItem>
                            <NavLink to="/health-dashboard">Health Dashboard</NavLink>
                         </MenuItem>
@@ -219,8 +207,6 @@ export default function Navbar() {
             </NavbarBreakpoint>
             <NavbarMobileMenu>
                <NavLink to="/" className="st-react-navbar-link"><IconHome />{' '}Home</NavLink>
-               {/*<NavLink to="/jobs/monitoring" className="st-react-navbar-link">{' '}Job Monitoring</NavLink>
-                <NavLink to="/jobs/new" className="st-react-navbar-link">{' '}Create New Job</NavLink> */}
                <NavLink to="/health-dashboard" className="st-react-navbar-link">{' '}Health Dashboard</NavLink>
                {
                  healthState.items.map( (service, index) => {
