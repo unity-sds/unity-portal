@@ -11,6 +11,7 @@
    /* Navbar */
    --st-react-navbar-brand-title-color: var(--unity-white);
    --st-react-navbar-brand-version-color: #BEC0C2;
+   --st-react-progress-indicator-background: var(--unity-brand);
 
 }
 
@@ -128,4 +129,10 @@
   font-weight: 700;
   color: var(--st-black);
   cursor: pointer;
+}
+
+/* Progress Bar */
+
+.st-react-progress .st-react-progress--indeterminate--line {
+  background: var(--unity-brand);
 }

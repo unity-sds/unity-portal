@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "./state/hooks";
 import { useEffect, useState } from "react";
 import { getHealthData } from "./state/slices/healthSlice";
 import { formatRoute } from "./utils/strings";
+import { Progress } from "@nasa-jpl/react-stellar";
 
 function Root() {
   
@@ -50,30 +51,35 @@ function Root() {
   }, [healthState, dispatch]);
 
   return (
-    <>
+    <div className="unity-view-wrapper">
       {
-        loading && <>Loading Health Data</>
-      }
-      { 
-        !loading && 
-          <div className="viewWrapper">
-            <Navbar />
-            <div className="view">
-            <Routes>
-              {
-                healthState.items.map( (item, index) => {
-                  return <Route key={index} path={"/applications/" + formatRoute(item.componentName)} element={<WebView url={item.landingPageUrl} />} />
-                })
-              }
-              {/*<Route path="/applications/catalog" element={<WebView url={Config.ads.url} />} />*/}
-              <Route path="/health-dashboard" element={<HealthDashboard />} />
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+        loading && 
+          <div className="unity-view unity-view-with-progress-bar">
+            <div>
+              <h2>Loading Unity UI Application</h2>
+              <Progress />
             </div>
           </div>
       }
-    </>
+      { 
+        !loading && <>
+          <Navbar />
+          <div className="unity-view unity-view-with-navbar">
+          <Routes>
+            {
+              healthState.items.map( (item, index) => {
+                return <Route key={index} path={"/applications/" + formatRoute(item.componentName)} element={<WebView url={item.landingPageUrl} />} />
+              })
+            }
+            {/*<Route path="/applications/catalog" element={<WebView url={Config.ads.url} />} />*/}
+            <Route path="/health-dashboard" element={<HealthDashboard />} />
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          </div>
+        </>
+      }
+    </div>
   )
 }
 
