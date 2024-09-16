@@ -5,22 +5,30 @@ import App from './App';
 
 import { useCookies } from 'react-cookie';
 
+let token:string;
+let email:string;
+let username:string;
+
 export const GetUsername = () => {
-  const [cookies] = useCookies(['oidc_claim_username']);
-  return cookies['oidc_claim_username'];
+  return username;
 };
 
 export const GetEmail = () => {
-  const [cookies] = useCookies(['oidc_claim_email']);
-  return cookies['oidc_claim_email'];
+  return email;
 };
 
 export const GetToken = () => {
-  const [cookies] = useCookies(['oidc_access_token']);
-  return cookies['oidc_access_token'];
+  return token;
 };
 
 const AuthorizationWrapper = () => {
+
+  const [cookies] = useCookies(["oidc_access_token", "oidc_claim_username", "oidc_claim_email"]);
+
+  token = cookies.oidc_access_token;
+  username = cookies.oidc_claim_username;
+  email = cookies.oidc_claim_email;
+
   return (
     <CookiesProvider>
       <Provider store={store}>

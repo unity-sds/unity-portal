@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Config from "../../Config";
+import { GetToken } from '../../AuthorizationWrapper';
 
 enum HEALTH_ACTIONS {
   GET_HEALTH = "health/getHealth",
@@ -39,12 +40,15 @@ export const getHealthData = createAsyncThunk(
   async (_:void, thunkAPI) => {
     
     const url = Config['cs']['health_endpoint'];
+    const token = GetToken();
     
     const config:AxiosRequestConfig = {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
       }
     }
+    
     
     try {
       const response = await axios.get(url, config);
