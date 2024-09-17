@@ -1,11 +1,32 @@
-import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
-import { CellClickedEvent, ICellRendererParams } from 'ag-grid-community';
+import { AgGridReact, CustomCellRendererProps } from "ag-grid-react"; // the AG Grid React Component
+import { CellClickedEvent } from 'ag-grid-community';
 import { getHealthData } from "../../state/slices/healthSlice";
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { IconWarning } from "@nasa-jpl/react-stellar";
 import React from "react";
+import { Link } from "react-router-dom";
+
+ const LinkCellRenderer = (props:CustomCellRendererProps) => {
+  return <Link to={props.value} target="_blank">{props.value}</Link>
+}
+
+const StatusCellRenderer = (props:CustomCellRendererProps) => {
+
+  if( props.value ) {
+    let icon;
+    if( props.value.toString().toUpperCase() === "UNHEALTHY" ) {
+      icon = <IconWarning className="unity-icon-warning"/>
+    }
+    if( props.value.toString().toUpperCase() === "UNAVAILABLE" ) {
+      icon = <IconWarning className="unity-icon-error"/>
+    }
+
+    return <React.Fragment>{props.value} {icon}</React.Fragment>
+  }
+
+}
 
 function HealthDashboard() {
 
@@ -20,27 +41,15 @@ function HealthDashboard() {
     { field: "componentName", headerName: "Service", filter: true },
     {
       cellClass: 'unity-aggrid-health-status',
-      cellRenderer: (params:ICellRendererParams) => {
-
-        if( params.value ) {
-          let icon;
-          if( params.value.toString().toUpperCase() === "UNHEALTHY" ) {
-            icon = <IconWarning className="unity-icon-warning"/>
-          }
-          if( params.value.toString().toUpperCase() === "UNAVAILABLE" ) {
-            icon = <IconWarning className="unity-icon-error"/>
-          }
-  
-          return <React.Fragment>{params.value} {icon}</React.Fragment>
-        }
-
-      },
+      cellRenderer: StatusCellRenderer,
       field: "status", 
       filter: true,
       headerName: "Status",
       valueGetter: "data.healthChecks[0].status",
     },
-    { field: "landingPageUrl", headerName: "Landing Page", filter: true, cellStyle: { cursor: 'pointer', color: '#0000FF', textDecoration: 'underline' }},
+    { field: "landingPageUrl", 
+      cellRenderer: LinkCellRenderer,
+      headerName: "Landing Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }},
     { field: "date", valueGetter: "data.healthChecks[0].date", headerName: "Date", filter: true },
   ]);
 
@@ -55,9 +64,15 @@ function HealthDashboard() {
   // Example of consuming Grid Event
   const cellClickedListener = useCallback( (event:CellClickedEvent) => {
 
-    if( event.colDef.field === 'landingPageUrl') {
-      window.location.href = event.data.landingPageUrl;
+    if( import.meta.env.DEV ) {
+      // Output information to help with debugging only in DEV mode
+      console.info(`The field ${event.colDef.field} containing the data, ${event.data} was clicked.`);
     }
+
+    // Example of how to 
+    /*if( event.colDef.field === 'landingPageUrl') {
+      window.location.href = event.data.landingPageUrl;
+    }*/
 
  }, []);
 

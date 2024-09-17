@@ -14,8 +14,10 @@ type HealthCheck = {
 
 export type Service = {
   componentName:string;
+  healthCheckUrl:string;
   landingPageUrl:string;
-  healthChecks: Array<HealthCheck>
+  healthChecks: Array<HealthCheck>;
+  ssmKey:string;
 };
 
 export type HealthState = {
