@@ -60,6 +60,10 @@
   cursor: pointer;
 }
 
+.st-react-menu-content a {
+  text-decoration: none;
+}
+
 .st-react-menu-content .st-react-menu-item > a {
   color: var(--st-gray-10);
   text-decoration: none;
@@ -135,16 +139,16 @@
 
 .st-react-menu-content .st-react-menu-message, .st-react-navbar-mobile-menu .st-react-menu-message {
   align-items: center;
-  background-color: var(--st-white);
+  background-color: var(--st-black);
   border: 1px solid var(--st-error-red);
-  color: var(--st-error-red);
+  color: var(--st-white);
   display: flex;
   flex-direction: row;
   font-family: var(--st-react-navbar-link-font-family);
   font-size: var(--st-react-navbar-link-font-size);
   font-weight: 700;
   gap: 4px;
-  margin-top: 4px;
+  margin: 4px;
   padding: 8px 16px 8px 16px;
 }
 

@@ -36,7 +36,7 @@ const MenuErrorMessage = ({message}:{message:string}) => {
 export default function Navbar() {
 
   const [healthApiError, setHealthApiError] = useState(false);
-  const healthApiErrorMessage = "Unity health status unavailable.";
+  const healthApiErrorMessage = "Application List Unavailable";
   
   const dispatch = useAppDispatch();
 
