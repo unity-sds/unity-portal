@@ -4,7 +4,7 @@ import { getHealthData } from "../../state/slices/healthSlice";
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { IconWarning } from "@nasa-jpl/react-stellar";
+import { IconWarning, Error } from "@nasa-jpl/react-stellar";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -29,6 +29,9 @@ const StatusCellRenderer = (props:CustomCellRendererProps) => {
 }
 
 function HealthDashboard() {
+
+  const [healthApiError, setHealthApiError] = useState(false);
+  const healthApiErrorMessage = "Application List Unavailable";
 
   const dispatch = useAppDispatch();
 
@@ -98,6 +101,7 @@ function HealthDashboard() {
       // Do something to handle the successful fetching of data
     } else if (healthState.status === "failed") {
       // Do something to handle the error
+      setHealthApiError(true);
       console.log(healthState.error);
     }
 
@@ -112,6 +116,7 @@ function HealthDashboard() {
       <DocumentMeta title="Health Dashboard" description="Health Dashboard" />
       <div className="main-view">
         <h1>Health Dashboard</h1>
+        { healthApiError && <Error><IconWarning />{healthApiErrorMessage}</Error> }
         <div className="ag-theme-stellar unity-aggrid-container">
           <AgGridReact
             rowData={healthState.items} // Row Data for Rows
