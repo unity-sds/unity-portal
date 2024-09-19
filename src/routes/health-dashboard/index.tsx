@@ -31,7 +31,7 @@ const StatusCellRenderer = (props:CustomCellRendererProps) => {
 function HealthDashboard() {
 
   const [healthApiError, setHealthApiError] = useState(false);
-  const healthApiErrorMessage = "Application List Unavailable";
+  const healthApiErrorMessage = "Health Endpoint is Not Available";
 
   const dispatch = useAppDispatch();
 
