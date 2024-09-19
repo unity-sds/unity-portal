@@ -11,7 +11,7 @@
   background-color: #F1F2F3;
   flex-grow: 1;
 
-  &.unity-view-with-progress-bar {
+  &.unity-view-with-status {
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -26,12 +26,21 @@
       text-align: center;
       width: 40%;
 
-      > h2 {
+      &.progressStatus {
         color: var(--unity-brand);
         font-weight: 800;
       }
+    
+      &.errorStatus {
+        color: var(--st-error-red);
+        font-weight: 800;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
     }
   }
+
 
   &.unity-view-with-navbar {
     height: calc(100vh - 48px);

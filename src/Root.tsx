@@ -25,10 +25,9 @@ function Root() {
   });
 
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
 
-    //let isMounted = true;
 
     if (healthState.status === "idle") {
       // Fetch the health data
@@ -40,26 +39,28 @@ function Root() {
       setLoading(false);
     } else if (healthState.status === "failed") {
       // Do something to handle the error
-      console.log(healthState.error);
+      
+      setLoading(false);
+
+      if( import.meta.env.DEV ) {
+        console.error("Health API Request Error:", healthState.error);
+      }
+
     }
-    
-    // Cleanup function
-    return () => {
-      //isMounted = false;
-    };
-    
+
   }, [healthState, dispatch]);
 
   return (
     <div className="unity-view-wrapper">
       {
-        loading && 
-          <div className="unity-view unity-view-with-progress-bar">
-            <div>
-              <h2>Loading Unity UI Application</h2>
+        loading && <>
+          <div className="unity-view unity-view-with-status">
+            <div className="progressStatus">
+              <h2>Setting up Unity UI Application</h2>
               <Progress />
             </div>
           </div>
+        </>
       }
       { 
         !loading && <>

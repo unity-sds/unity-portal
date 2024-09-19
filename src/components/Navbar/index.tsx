@@ -1,16 +1,42 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, IconArrowRight, IconChevronDown, IconHome, IconThreeDot, Menu, MenuItem, MenuLabel, MenuRightSlot, Navbar as StellarNavbar, NavbarBrand, NavbarBreakpoint, NavbarContent, NavbarMobileMenu } from "@nasa-jpl/react-stellar";
+import { 
+  Avatar, 
+  Button, 
+  IconArrowRight, 
+  IconChevronDown, 
+  IconHome, 
+  IconThreeDot, 
+  IconWarning, 
+  Menu, 
+  MenuItem, 
+  MenuLabel, 
+  MenuRightSlot, 
+  Navbar as StellarNavbar, 
+  NavbarBrand, 
+  NavbarBreakpoint, 
+  NavbarContent, 
+  NavbarMobileMenu
+} from "@nasa-jpl/react-stellar";
 import { getHealthData } from "../../state/slices/healthSlice";
 import { GetUsername } from "../../AuthorizationWrapper";
 import { logout } from "../../utils/auth";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { useEffect, } from "react";
+import { useEffect, useState, } from "react";
 import UnityLogo from "../../assets/unity.svg";
 
 import Config from "../../Config";
 import { formatRoute } from "../../utils/strings";
 
+const MenuErrorMessage = ({message}:{message:string}) => {
+  return <>
+    <div className="st-react-menu-message"><IconWarning />{message}</div>
+  </>
+}
+
 export default function Navbar() {
+
+  const [healthApiError, setHealthApiError] = useState(false);
+  const healthApiErrorMessage = "Unity health status unavailable.";
   
   const dispatch = useAppDispatch();
 
@@ -25,8 +51,6 @@ export default function Navbar() {
 
   useEffect(() => {
 
-    //let isMounted = true;
-
     if (healthState.status === "idle") {
       // Fetch the health data
       dispatch(getHealthData());
@@ -36,13 +60,8 @@ export default function Navbar() {
       // Do something to handle the successful fetching of data
     } else if (healthState.status === "failed") {
       // Do something to handle the error
-      console.log(healthState.error);
+      setHealthApiError(true);
     }
-
-    // Cleanup function
-    return () => {
-      //isMounted = false;
-    };
 
   }, [dispatch, healthState]);
 
@@ -90,6 +109,9 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
                         </MenuItem>
+                        {
+                          healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
+                        }
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
@@ -155,6 +177,9 @@ export default function Navbar() {
                         <MenuItem>
                            <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
                         </MenuItem>
+                        {
+                          healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
+                        }
                      </Menu>
                      <Menu trigger={
                         <Button size="large" style={{ gap: '4px', padding: '0 var(--st-grid-unit)' }} variant="tertiary">
@@ -214,6 +239,9 @@ export default function Navbar() {
                  })
                }
                <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
+               {
+                healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
+               }
             </NavbarMobileMenu>
          </StellarNavbar>
       </>

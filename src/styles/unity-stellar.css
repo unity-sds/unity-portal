@@ -131,6 +131,23 @@
   cursor: pointer;
 }
 
+/* Menu and Navbar Error Message */
+
+.st-react-menu-content .st-react-menu-message, .st-react-navbar-mobile-menu .st-react-menu-message {
+  align-items: center;
+  background-color: var(--st-white);
+  border: 1px solid var(--st-error-red);
+  color: var(--st-error-red);
+  display: flex;
+  flex-direction: row;
+  font-family: var(--st-react-navbar-link-font-family);
+  font-size: var(--st-react-navbar-link-font-size);
+  font-weight: 700;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 8px 16px 8px 16px;
+}
+
 /* Progress Bar */
 
 .st-react-progress .st-react-progress--indeterminate--line {
