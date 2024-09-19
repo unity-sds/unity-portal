@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   envDir: ".env",
   build: {
-    minify: true
+    minify: false
   },
   plugins: [
     react()
