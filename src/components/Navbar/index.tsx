@@ -93,22 +93,18 @@ export default function Navbar() {
                            <IconChevronDown />
                         </Button>
                      }>
-                        <MenuItem>
-                           <NavLink to="/">Home</NavLink>
-                        </MenuItem>
-                        <MenuItem>
-                           <NavLink to="/health-dashboard">Health Dashboard</NavLink>
-                        </MenuItem>
+                        <NavLink to="/"><MenuItem>Home</MenuItem></NavLink>
+                        <NavLink to="/health-dashboard"><MenuItem>Health Dashboard</MenuItem></NavLink>
                         {
                           healthState.items.map( (service, index) => {
-                            return <MenuItem key={index}>
-                              <NavLink to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
-                            </MenuItem>
+                            return <NavLink to={"/applications/" + formatRoute(service.componentName)} key={index}>
+                              <MenuItem>{service.componentName}</MenuItem>
+                            </NavLink>
                           })
                         }
-                        <MenuItem>
-                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
-                        </MenuItem>
+                        <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" target="_blank">
+                          <MenuItem>Documentation (Gitbook)</MenuItem>
+                        </NavLink>
                         {
                           healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
                         }
@@ -161,22 +157,18 @@ export default function Navbar() {
                            <IconChevronDown />
                         </Button>
                      }>
-                        <MenuItem>
-                           <NavLink to="/">Home</NavLink>
-                        </MenuItem>
-                        <MenuItem>
-                           <NavLink to="/health-dashboard">Health Dashboard</NavLink>
-                        </MenuItem>
+                        <NavLink to="/"><MenuItem>Home</MenuItem></NavLink>
+                        <NavLink to="/health-dashboard"><MenuItem>Health Dashboard</MenuItem></NavLink>
                         {
                           healthState.items.map( (service, index) => {
-                            return <MenuItem key={index}>
-                              <NavLink to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
-                            </MenuItem>
+                            return <NavLink to={"/applications/" + formatRoute(service.componentName)} key={index}>
+                              <MenuItem>{service.componentName}</MenuItem>
+                            </NavLink>
                           })
                         }
-                        <MenuItem>
-                           <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started">Documentation (Gitbook)</NavLink>
-                        </MenuItem>
+                        <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" target="_blank">
+                          <MenuItem>Documentation (Gitbook)</MenuItem>
+                        </NavLink>
                         {
                           healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
                         }
@@ -238,7 +230,7 @@ export default function Navbar() {
                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
                  })
                }
-               <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
+               <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" target="_blank" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
                {
                 healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
                }
