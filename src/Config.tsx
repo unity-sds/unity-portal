@@ -5,6 +5,8 @@ const Config = {
       unity_admin_email: import.meta.env.VITE_ADMIN_EMAIL,
       www_domain: import.meta.env.VITE_WWW_DOMAIN,
       base_path: import.meta.env.VITE_BASE_PATH,
+      project: import.meta.env.VITE_PROJECT,
+      venue: import.meta.env.VITE_VENUE
    },
    
    ['auth']: {

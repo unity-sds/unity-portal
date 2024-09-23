@@ -9,6 +9,7 @@ enum HEALTH_ACTIONS {
 
 type HealthCheck = {
   status:string;
+  httpResponseCode:string;
   date:string | number;
 }
 
@@ -34,6 +35,64 @@ const initialState:HealthState = {
   status: 'idle',
 };
 
+const getItems = () => {
+
+  // Get additional links that should be added for the given project and venue
+
+  const project = Config['general']['project'];
+  const venue = Config['general']['venue'];
+
+  let serviceItems:Service[] = Array<Service>();
+
+  if( project.toUpperCase() === 'EMIT' && venue.toUpperCase() === 'DEV' ) {
+
+    serviceItems = [
+      {
+        componentName: "Jupyterhub",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/emit/dev/jupyter/",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      },
+      {
+        componentName: "Airflow",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "http://k8s-sps-airflowi-3b3c3cafcc-31473296.us-west-2.elb.amazonaws.com:5000/home",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      },
+      {
+        componentName: "Airflow-ogc",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "http://k8s-sps-ogcproce-927cdf8d63-717063809.us-west-2.elb.amazonaws.com:5001/",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      },
+    ];
+  }
+
+  return serviceItems;
+
+}
+
 /**
  * Get all the instruments from the PDS OpenSearch API
  */ 
@@ -50,7 +109,6 @@ export const getHealthData = createAsyncThunk(
         "Authorization": "Bearer " + token
       }
     }
-    
     
     try {
       const response = await axios.get(url, config);
@@ -80,14 +138,15 @@ const healthSlice = createSlice({
 
       // Parse and store the fetched data into the state
       const data = action.payload;
-      state.items = data;
+      state.items = data.concat(getItems());
 
     });
     
     builder.addCase(getHealthData.rejected, (state, action) => {
       // When data is fetched unsuccessfully
       state.status = "failed";
-      
+
+      state.items = getItems();
       // Update the error message for proper error handling
       state.error = action.error.message;
     });
