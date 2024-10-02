@@ -39,12 +39,31 @@ const getItems = () => {
 
   // Get additional links that should be added for the given project and venue
 
-  const project = Config['general']['project'];
-  const venue = Config['general']['venue'];
+  const project = Config['general']['project'].toUpperCase();
+  const venue = Config['general']['venue'].toUpperCase();
 
   let serviceItems:Service[] = Array<Service>();
 
-  if( project.toUpperCase() === 'EMIT' && venue.toUpperCase() === 'DEV' ) {
+  if( project === "UNITY" && venue === 'OPS') {
+
+    serviceItems = [
+      {
+        componentName: "STAC Browser",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/data/stac_browser/",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      }
+    ];
+  }
+
+  if( project === "EMIT" && venue === "DEV" ) {
 
     serviceItems = [
       {
@@ -86,6 +105,19 @@ const getItems = () => {
           }
         ]
       },
+      {
+        componentName: "STAC Browser",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/data/stac_browser/",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      }
     ];
   }
 
