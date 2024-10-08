@@ -83,7 +83,7 @@ const getItems = () => {
         componentName: "Airflow",
         ssmKey: "",
         healthCheckUrl: "",
-        landingPageUrl: "http://k8s-sps-airflowi-3b3c3cafcc-31473296.us-west-2.elb.amazonaws.com:5000/home",
+        landingPageUrl: "http://k8s-sps-airflowi-9a4fb23ed9-117303406.us-west-2.elb.amazonaws.com:5000/",
         healthChecks: [
           {
             status: "UNKNOWN",
