@@ -52,7 +52,12 @@ function HealthDashboard() {
     },
     { field: "landingPageUrl", 
       cellRenderer: LinkCellRenderer,
-      headerName: "Landing Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }},
+      headerName: "Landing Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }
+    },
+    { field: "healthCheckUrl", 
+      cellRenderer: LinkCellRenderer,
+      headerName: "Health Check Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }
+    },
     { field: "date", valueGetter: "data.healthChecks[0].date", headerName: "Date", filter: true },
   ]);
 
