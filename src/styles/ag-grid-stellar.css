@@ -479,3 +479,7 @@
 .ag-theme-stellar .ag-cell-value {
   letter-spacing: var(--st-table-th-letter-spacing);
 }
+
+.ag-theme-stellar .ag-header-cell-resize, .ag-theme-stellar .ag-header-cell-resize::after {
+  z-index: auto;
+}
