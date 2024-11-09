@@ -12,7 +12,7 @@ function Home() {
             title="Home"
             description="Home"
          />
-         <div className="main-view">
+         <div className="unity-main-view">
             <h1>Home</h1>
             <div>Project: <strong>{project}</strong></div>
             <div>Venue: <strong>{venue}</strong></div>
