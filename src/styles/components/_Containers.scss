@@ -24,6 +24,22 @@
     padding: 8px;
   }
 
+  .unity-card-container {
+    
+    margin-top: 24px;
+    margin-bottom: 24px;
+    align-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    > a {
+      text-decoration: none;
+    }
+
+  }
+
   &.unity-view-with-status {
     justify-content: center;
     align-items: center;
