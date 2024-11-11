@@ -102,7 +102,7 @@ export default function Navbar() {
                             </NavLink>
                           })
                         }
-                        <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" target="_blank">
+                        <NavLink to="https://unity-sds.gitbook.io/docs" target="_blank">
                           <MenuItem>Documentation (Gitbook)</MenuItem>
                         </NavLink>
                         {
@@ -166,7 +166,7 @@ export default function Navbar() {
                             </NavLink>
                           })
                         }
-                        <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" target="_blank">
+                        <NavLink to="https://unity-sds.gitbook.io/docs" target="_blank">
                           <MenuItem>Documentation (Gitbook)</MenuItem>
                         </NavLink>
                         {
@@ -230,7 +230,7 @@ export default function Navbar() {
                    return <NavLink key={index} className="st-react-navbar-link" to={"/applications/" + formatRoute(service.componentName)}>{service.componentName}</NavLink>
                  })
                }
-               <NavLink to="https://unity-sds.gitbook.io/docs/user-docs/unity-cloud/getting-started" target="_blank" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
+               <NavLink to="https://unity-sds.gitbook.io/docs" target="_blank" className="st-react-navbar-link">{' '}Documentation (Gitbook)</NavLink>
                {
                 healthApiError && <MenuErrorMessage message={healthApiErrorMessage} />
                }
