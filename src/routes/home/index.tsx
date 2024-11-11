@@ -41,6 +41,16 @@ function Home() {
     />
   );
 
+  appCards = appCards.sort( (a, b) => {
+    if( a.props.title < b.props.title ) {
+      return -1;
+    }
+    if( a.props.title > b.props.title ) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <>
       <DocumentMeta
