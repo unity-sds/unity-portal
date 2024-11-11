@@ -1,0 +1,72 @@
+.unity-card {
+
+  background-color: var(--unity-white);
+  border-color: var(--st-gray-20);
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 324px;
+  padding: 8px 16px 16px 16px;
+
+  &:hover {
+    border-color: var(--unity-brand);
+    transition: border-color 0.2s linear;
+
+    > .header > .icons {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.2s linear;
+    }
+  }
+
+  > .header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    > .title {
+      color: var(--unity-black);
+      font-size: 1.5em;
+      font-weight: 600;
+      line-height: 32px;
+      word-wrap: break-word;
+    }
+
+    > .icons {
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      padding-top: 8px;
+      visibility: hidden;
+    }
+
+  }
+
+  > .footer {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+
+  a {
+    color: var(--unity-primary-80);
+    font-size: 0.75em;
+    font-weight: 400;
+    line-height: 1em;
+    letter-spacing: 0.48;
+    text-decoration: underline;
+    word-wrap: break-word;
+  }
+
+  .description {
+    color: var(--unity-black);
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: 0.16;
+    word-wrap: break-word;
+  }
+}

@@ -6,11 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased (0.8.0)
-- Added support to report on when health API endpoint is not avaialble in navbar and on health dashboard
+- Added support to report on when health API endpoint is not available in navbar and on health dashboard
 - Fixed clickable area of navbar menu items
 - Added support to hard code links for projects/venues
-- Added health check URL to health dashboard
+- Added health check URL to health dashboard [#40](https://github.com/unity-sds/unity-ui/issues/40)
 - Fixed health dashboard column resizer element z-index
+- Added cards to homepage [#38](https://github.com/unity-sds/unity-ui/issues/38)
 
 ## [0.7.0] 2024-09-27
 - Updated node version lts/iron

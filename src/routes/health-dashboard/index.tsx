@@ -119,7 +119,7 @@ function HealthDashboard() {
   return (
     <>
       <DocumentMeta title="Health Dashboard" description="Health Dashboard" />
-      <div className="main-view">
+      <div className="unity-main-view">
         <h1>Health Dashboard</h1>
         { healthApiError && <Error><IconWarning />{healthApiErrorMessage}</Error> }
         <div className="ag-theme-stellar unity-aggrid-container">
