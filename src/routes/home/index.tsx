@@ -32,12 +32,14 @@ function Home() {
       route={"/health-dashboard"}
       title="Health Dashboard"
       type={"web"}
+      url={"/health-dashboard"}
     />,
     <Card
       description="Documentation to help become familiar with the Unity platform."
       route={"https://unity-sds.gitbook.io/docs"}
       title="Documentation (Gitbook)"
       type={"web"}
+      url={"https://unity-sds.gitbook.io/docs"}
     />
   );
 
