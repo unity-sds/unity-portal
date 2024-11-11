@@ -1,9 +1,9 @@
 import Config from "../../Config";
 import { Card } from "../../components/Card";
 
-
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
 import { useAppSelector } from "../../state/hooks";
+import { formatRoute } from "../../utils/strings";
 
 function Home() {
 
@@ -13,6 +13,33 @@ function Home() {
   const healthState = useAppSelector((state) => {
     return state.health;
   });
+
+  let appCards = healthState.items.map( (item) => {
+    return (
+      <Card
+        description={"Vivamus consequat, tellus vel faucibus dictum, ante nisi."}
+        route={"/applications/" + formatRoute(item.componentName)}
+        title={item.componentName}
+        type={"web"}
+        url={item.landingPageUrl}
+      />
+    )
+  })
+
+  appCards.push(
+    <Card
+      description="Check the health status of Unity Services."
+      route={"/health-dashboard"}
+      title="Health Dashboard"
+      type={"web"}
+    />,
+    <Card
+      description="Documentation to help become familiar with the Unity platform."
+      route={"https://unity-sds.gitbook.io/docs"}
+      title="Documentation (Gitbook)"
+      type={"web"}
+    />
+  );
 
   return (
     <>
@@ -24,24 +51,9 @@ function Home() {
         <h1>Home</h1>
         <div>Project: <strong>{project}</strong></div>
         <div>Venue: <strong>{venue}</strong></div>
-
-          <div className="unity-card-container">
-
-            {
-              healthState.items.map((item) => {
-                return (
-                  <Card
-                    description={"Vivamus consequat, tellus vel faucibus dictum, ante nisi."}
-                    title={item.componentName}
-                    type={"web"}
-                    url={item.landingPageUrl}
-                  />
-                )
-              })
-            }
-
-          </div>
-
+        <div className="unity-card-container">
+          {appCards}
+        </div>
       </div>
     </>
   )
