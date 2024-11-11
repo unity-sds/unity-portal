@@ -17,8 +17,11 @@ destroy-image:
 kill:
 	docker kill ${CONTAINER_NAME}
 
+login:
+	docker exec -it $(CONTAINER_NAME) /bin/bash
+
 run:
-	docker run --env-file=./.env/.env.docker -t -i --rm -p 8080:80 --name ${CONTAINER_NAME} ${IMAGE_NAME} 
+	docker run --env-file=./.env/.env.docker -t -i --rm -p 8080:8080 --name ${CONTAINER_NAME} ${IMAGE_NAME} 
 
 start:
 	docker start ${CONTAINER_NAME}

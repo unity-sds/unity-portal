@@ -2,7 +2,7 @@
 ############################################################
 # Code Building Stage
 
-FROM node:lts-hydrogen as builder
+FROM node:lts-iron AS builder
 
 RUN apt-get update
 
@@ -29,7 +29,7 @@ ENV UNITY_WWW_ROOT=/var/www/unity-ui
 ENV ENTRYPOINT_FOLDER=/entrypoint.d
 
 RUN apt-get update \
-      && apt-get install -y apache2 \
+      && apt-get install -y apache2 libapache2-mod-auth-openidc\
       && rm -rf /var/lib/apt/lists/* \
       && apt-get clean
 
@@ -38,8 +38,13 @@ WORKDIR ${UNITY_WWW_ROOT}
 COPY --from=builder /usr/src/app/dist ./
 
 # Configure apache2
-COPY ./etc/apache2/sites-available/unity-ui.conf /etc/apache2/sites-available/
+RUN a2enmod headers \
+      && a2enmod rewrite \
+      && a2enmod setenvif \
+      && a2enmod auth_openidc
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN sed -i "s/Listen 80/Listen 8080/g" /etc/apache2/ports.conf
+COPY ./etc/apache2/sites-available/unity-ui.conf /etc/apache2/sites-available/
 RUN a2dissite 000-default.conf
 RUN a2ensite unity-ui.conf
 
@@ -47,7 +52,7 @@ RUN a2ensite unity-ui.conf
 COPY ./entrypoint.d/* ${ENTRYPOINT_FOLDER}/
 RUN chmod 777 -R ${ENTRYPOINT_FOLDER}/* && chmod +x -R ${ENTRYPOINT_FOLDER}/*
 
-EXPOSE 80
+EXPOSE 8080
 
 # Default process to run on container startup
 ENTRYPOINT ["/entrypoint.d/docker-entrypoint.sh"]

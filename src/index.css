@@ -16,19 +16,8 @@ body {
   min-height: 100vh;
 }
 
-.viewWrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.view {
-  height: calc(100vh - 48px);
-  padding: 0px;
-  background-color: #F1F2F3;
-  flex-grow: 1;
-}
-
 .main-view {
+  width: 100%;
   height: 100%;
   padding: 20px;
 }
