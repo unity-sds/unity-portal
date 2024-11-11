@@ -1,8 +1,17 @@
+#root {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
 :root {
 
    /* Navbar */
    --st-react-navbar-brand-title-color: var(--unity-white);
    --st-react-navbar-brand-version-color: #BEC0C2;
+   --st-react-progress-indicator-background: var(--unity-brand);
 
 }
 
@@ -40,6 +49,7 @@
   line-height: 1em;
   margin-bottom: 1px;
   padding: 16px 16px;
+  text-transform: capitalize;
   word-wrap: break-word;
 }
 
@@ -48,6 +58,10 @@
   font-weight: 700;
   color: var(--st-black);
   cursor: pointer;
+}
+
+.st-react-menu-content a {
+  text-decoration: none;
 }
 
 .st-react-menu-content .st-react-menu-item > a {
@@ -110,6 +124,7 @@
   line-height: 1em;
   padding: 10px 16px;
   text-decoration: none;
+  text-transform: capitalize;
   word-wrap: break-word;
 }
 
@@ -118,4 +133,27 @@
   font-weight: 700;
   color: var(--st-black);
   cursor: pointer;
+}
+
+/* Menu and Navbar Error Message */
+
+.st-react-menu-content .st-react-menu-message, .st-react-navbar-mobile-menu .st-react-menu-message {
+  align-items: center;
+  background-color: var(--st-black);
+  border: 1px solid var(--st-error-red);
+  color: var(--st-white);
+  display: flex;
+  flex-direction: row;
+  font-family: var(--st-react-navbar-link-font-family);
+  font-size: var(--st-react-navbar-link-font-size);
+  font-weight: 700;
+  gap: 4px;
+  margin: 4px;
+  padding: 8px 16px 8px 16px;
+}
+
+/* Progress Bar */
+
+.st-react-progress .st-react-progress--indeterminate--line {
+  background: var(--unity-brand);
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import AuthenticationWrapper from './AuthenticationWrapper'
+import AuthorizationWrapper from './AuthorizationWrapper'
 
 import './index.css'
 
@@ -11,9 +11,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <HelmetProvider>
       <HashRouter>
         <Routes>
-          <Route path="*" Component={AuthenticationWrapper}/>
+          <Route path="*" Component={AuthorizationWrapper}/>
         </Routes>
       </HashRouter>
     </HelmetProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
