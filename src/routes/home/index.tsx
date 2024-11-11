@@ -28,7 +28,7 @@ function Home() {
 
   appCards.push(
     <Card
-      description="Check the health status of Unity Services."
+      description={`Check the health status of services running in this venue.`}
       route={"/health-dashboard"}
       title="Health Dashboard"
       type={"web"}
