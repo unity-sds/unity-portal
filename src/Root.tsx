@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Route,
   Routes,
 } from "react-router-dom"
@@ -27,7 +28,6 @@ function Root() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
 
     if (healthState.status === "idle") {
       // Fetch the health data
@@ -72,9 +72,9 @@ function Root() {
                 return <Route key={index} path={"/applications/" + formatRoute(item.componentName)} element={<WebView url={item.landingPageUrl} />} />
               })
             }
-            {/*<Route path="/applications/catalog" element={<WebView url={Config.ads.url} />} />*/}
+            <Route path="/" element={<Navigate to="/home" replace={true} />} />
             <Route path="/health-dashboard" element={<HealthDashboard />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           </div>
