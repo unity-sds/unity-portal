@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added health check URL to health dashboard [#40](https://github.com/unity-sds/unity-ui/issues/40)
 - Fixed health dashboard column resizer element z-index
 - Added cards to homepage [#38](https://github.com/unity-sds/unity-ui/issues/38)
+- Updated router configuration to improve URL readability.  URLs no longer contain router information using a hash (#39). [#39](https://github.com/unity-sds/unity-ui/issues/39
+- Updated home page route to be located at `/home` and the route `/` redirects to it. [#39](https://github.com/unity-sds/unity-ui/issues/39)
+- Updated application basename configuration to use the proxy name `ui` instead of `dashboard` [#45](https://github.com/unity-sds/unity-ui/issues/45)
 
 ## [0.7.0] 2024-09-27
 - Updated node version lts/iron
