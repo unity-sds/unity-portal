@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated router configuration to improve URL readability.  URLs no longer contain router information using a hash (#39). [#39](https://github.com/unity-sds/unity-ui/issues/39
 - Updated home page route to be located at `/home` and the route `/` redirects to it. [#39](https://github.com/unity-sds/unity-ui/issues/39)
 - Updated application basename configuration to use the proxy name `ui` instead of `dashboard` [#45](https://github.com/unity-sds/unity-ui/issues/45)
+- Added hard-coded links for STAC Browser for the unity/dev and unity/test venues [#47](https://github.com/unity-sds/unity-ui/issues/47)
 
 ## [0.7.0] 2024-09-27
 - Updated node version lts/iron
