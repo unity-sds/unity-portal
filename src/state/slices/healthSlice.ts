@@ -44,6 +44,46 @@ const getItems = () => {
 
   let serviceItems:Service[] = Array<Service>();
 
+  if( project === "UNITY" && venue === 'DEV') {
+
+    serviceItems = [
+      {
+        componentName: "STAC Browser",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "https://www.dev.mdps.mcp.nasa.gov:4443/data/stac_browser/",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      }
+    ];
+
+  }
+
+  if( project === "UNITY" && venue === 'TEST') {
+
+    serviceItems = [
+      {
+        componentName: "STAC Browser",
+        ssmKey: "",
+        healthCheckUrl: "",
+        landingPageUrl: "https://www.test.mdps.mcp.nasa.gov:4443/data/stac_browser/",
+        healthChecks: [
+          {
+            status: "UNKNOWN",
+            httpResponseCode: "",
+            date: ""
+          }
+        ]
+      }
+    ];
+
+  }
+
   if( project === "UNITY" && venue === 'OPS') {
 
     serviceItems = [
@@ -61,6 +101,7 @@ const getItems = () => {
         ]
       }
     ];
+
   }
 
   if( project === "EMIT" && venue === "DEV" ) {
