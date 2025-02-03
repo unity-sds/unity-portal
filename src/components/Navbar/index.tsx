@@ -43,7 +43,7 @@ export default function Navbar() {
   const loggedInUsername = GetUsername();
   const userInitials = loggedInUsername.substring(0,1).toUpperCase();
   const uiVersion = Config['general']['version'];
-  const basePath = Config['general']['base_path'];
+  const basePath = Config['general']['basePath'];
   const appTitle = Config['general']['appTitle'];
 
   const healthState = useAppSelector((state) => {
