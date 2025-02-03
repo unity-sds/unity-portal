@@ -26,7 +26,7 @@ export const Card = ({
 
   return (
     <Link to={route}>
-      <span className="unity-card">
+      <span className="mdps-card">
         <span className="header">
           <span className="title">{title}</span>
           <span className="icons">

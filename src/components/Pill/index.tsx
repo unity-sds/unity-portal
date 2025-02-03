@@ -6,6 +6,6 @@ export const Pill = ({
   label
 }:PillProps) => {
   return (
-    <span className="unity-pill">{label}</span>
+    <span className="mdps-pill">{label}</span>
   )
 }
