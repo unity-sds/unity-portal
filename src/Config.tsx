@@ -1,6 +1,7 @@
 const Config = {
 
    ['general']: {
+      appTitle: "MDPS",
       version: import.meta.env.VITE_UNITY_UI_VERSION,
       unity_admin_email: import.meta.env.VITE_ADMIN_EMAIL,
       www_domain: import.meta.env.VITE_WWW_DOMAIN,

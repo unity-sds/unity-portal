@@ -44,6 +44,7 @@ export default function Navbar() {
   const userInitials = loggedInUsername.substring(0,1).toUpperCase();
   const uiVersion = Config['general']['version'];
   const basePath = Config['general']['base_path'];
+  const appTitle = Config['general']['appTitle'];
 
   const healthState = useAppSelector((state) => {
     return state.health;
@@ -72,7 +73,7 @@ export default function Navbar() {
                <NavbarBrand
                   link={basePath}
                   logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
-                  title="Unity"
+                  title={appTitle}
                   version={uiVersion}
                />
                <NavbarContent
@@ -137,7 +138,7 @@ export default function Navbar() {
                <NavbarBrand
                   link={basePath}
                   logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
-                  title="Unity"
+                  title={appTitle}
                   version={uiVersion}
                />
                <NavbarContent
@@ -199,7 +200,7 @@ export default function Navbar() {
                   align="center"
                   full
                >
-                  <NavbarBrand title="Unity" />
+                  <NavbarBrand title={appTitle} />
                </NavbarContent>
                <NavbarContent align="right">
                   <Menu trigger={
