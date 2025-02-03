@@ -22,7 +22,7 @@ import { GetUsername } from "../../AuthorizationWrapper";
 import { logout } from "../../utils/auth";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { useEffect, useState, } from "react";
-import UnityLogo from "../../assets/unity.svg";
+import MdpsLogo from "../../assets/images/mdps-logo.svg";
 
 import Config from "../../Config";
 import { formatRoute } from "../../utils/strings";
@@ -72,7 +72,7 @@ export default function Navbar() {
             <NavbarBreakpoint min={1100}>
                <NavbarBrand
                   link={basePath}
-                  logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
+                  logo={<img src={basePath + MdpsLogo} alt={appTitle + " logo"} style={{ height: '24px', width: '24px' }}/>}
                   title={appTitle}
                   version={uiVersion}
                />
@@ -137,7 +137,7 @@ export default function Navbar() {
             >
                <NavbarBrand
                   link={basePath}
-                  logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
+                  logo={<img src={basePath + MdpsLogo} alt={appTitle + " logo"} style={{ height: '24px', width: '24px' }}/>}
                   title={appTitle}
                   version={uiVersion}
                />
