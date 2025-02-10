@@ -56,7 +56,7 @@ function Root() {
         loading && <>
           <div className="mdps-view mdps-view-with-status">
             <div className="progressStatus">
-              <h2>Setting up Unity UI Application</h2>
+              <h2>Setting up Multi-Mission Data Processing System Portal Application</h2>
               <Progress />
             </div>
           </div>
