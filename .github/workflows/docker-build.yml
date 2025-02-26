@@ -1,10 +1,12 @@
 name: Docker Build and Push
 
 on:
+  release:
+    types:
+      - published
   push:
-    branches: 
-      - "chore/*"
-    tags: ["[0-9]+.[0-9]+.[0-9]+(-stable|-unstable)*"]
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
 
 env:
   REGISTRY: ghcr.io
