@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push tagged Docker image
-        id: build-tag-push-latest
+        id: build-tag-push-image
         uses: docker/build-push-action@v6
         with:
           context: .
