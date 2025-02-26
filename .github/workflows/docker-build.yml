@@ -4,7 +4,7 @@ on:
   push:
     branches: 
       - "chore/*"
-    tags: ["[0-9]+.[0-9]+.[0-9]+(-(stable|unstable)+)*"]
+    tags: ["[0-9]+.[0-9]+.[0-9]+(-stable|-unstable)*"]
 
 env:
   REGISTRY: ghcr.io
