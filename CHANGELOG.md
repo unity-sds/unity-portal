@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] (Unreleased)
+- Changed Docker image build workflow is triggered when a tag is created and no longer triggered when code is merged to `main` or `features/*` branches [#51](https://github.com/unity-sds/unity-ui/issues/51)
+- Changed Docker image build workflow so that it uses the image name `unity-portal-application` instead of `unity-ui-application`
+
 ## [0.8.0] 2025-01-14
 - Added support to report on when health API endpoint is not available in navbar and on health dashboard
 - Fixed clickable area of navbar menu items
