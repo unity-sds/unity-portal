@@ -59,11 +59,11 @@ function Home() {
         title="Home"
         description="Home"
       />
-      <div className="unity-main-view">
+      <div className="mdps-main-view">
         <h1>Home</h1>
         <div>Project: <strong>{project}</strong></div>
         <div>Venue: <strong>{venue}</strong></div>
-        <div className="unity-card-container">
+        <div className="mdps-card-container">
           {appCards}
         </div>
       </div>

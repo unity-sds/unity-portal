@@ -51,12 +51,12 @@ function Root() {
   }, [healthState, dispatch]);
 
   return (
-    <div className="unity-view-wrapper">
+    <div className="mdps-view-wrapper">
       {
         loading && <>
-          <div className="unity-view unity-view-with-status">
+          <div className="mdps-view mdps-view-with-status">
             <div className="progressStatus">
-              <h2>Setting up Unity UI Application</h2>
+              <h2>Setting up Multi-Mission Data Processing System Portal Application</h2>
               <Progress />
             </div>
           </div>
@@ -65,7 +65,7 @@ function Root() {
       { 
         !loading && <>
           <Navbar />
-          <div className="unity-view unity-view-with-navbar">
+          <div className="mdps-view mdps-view-with-navbar">
           <Routes>
             {
               healthState.items.map( (item, index) => {

@@ -2,8 +2,8 @@ import Config from '../Config';
 
 // OAuth2 configs
 //const OAUTH2_CLIENT_ID = Config['auth'].oauth_client_id;
-const OAUTH2_REDIRECT_URI = Config['auth'].oauth_redirect_uri;
-const OAUTH2_LOGOUT_ENDPOINT = Config['auth'].oauth_logout_endpoint;
+const OAUTH2_REDIRECT_URI = Config['auth']['oauthRedirectUri'];
+const OAUTH2_LOGOUT_ENDPOINT = Config['auth']['oauthLogoutEndpoint'];
 
 /**
  * Invokes logout for the the user and clears all the tokens
