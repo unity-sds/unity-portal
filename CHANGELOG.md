@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed Docker image build workflow so that it uses the image name `unity-portal-application` instead of `unity-ui-application`
 - Rebranded the application's project references so that they state "MDPS" instead of "Unity" [#55](https://github.com/unity-sds/unity-portal/issues/55)
 - Rebranded the application and repo so that the "ui" is now known as the "portal" [#61](https://github.com/unity-sds/unity-portal/issues/61), [#64](https://github.com/unity-sds/unity-portal/issues/64)
+- Removed hard-coded links for all project's venues [#58](https://github.com/unity-sds/unity-portal/issues/58)
 
 ## [0.8.0] 2025-01-14
 - Added support to report on when health API endpoint is not available in navbar and on health dashboard

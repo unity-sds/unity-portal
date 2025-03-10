@@ -35,137 +35,6 @@ const initialState:HealthState = {
   status: 'idle',
 };
 
-const getItems = () => {
-
-  // Get additional links that should be added for the given project and venue
-
-  const project = Config['general']['project'].toUpperCase();
-  const venue = Config['general']['venue'].toUpperCase();
-
-  let serviceItems:Service[] = Array<Service>();
-
-  if( project === "UNITY" && venue === 'DEV') {
-
-    serviceItems = [
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.dev.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-
-  }
-
-  if( project === "UNITY" && venue === 'TEST') {
-
-    serviceItems = [
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.test.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-
-  }
-
-  if( project === "UNITY" && venue === 'OPS') {
-
-    serviceItems = [
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-
-  }
-
-  if( project === "EMIT" && venue === "DEV" ) {
-
-    serviceItems = [
-      {
-        componentName: "Jupyterhub",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/emit/dev/jupyter/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      },
-      {
-        componentName: "Airflow",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "http://k8s-sps-airflowi-9a4fb23ed9-117303406.us-west-2.elb.amazonaws.com:5000/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      },
-      {
-        componentName: "Airflow-ogc",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "http://k8s-sps-ogcproce-927cdf8d63-717063809.us-west-2.elb.amazonaws.com:5001/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      },
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-  }
-
-  return serviceItems;
-
-}
-
 /**
  * Get all the instruments from the PDS OpenSearch API
  */ 
@@ -211,7 +80,7 @@ const healthSlice = createSlice({
 
       // Parse and store the fetched data into the state
       const data = action.payload;
-      state.items = data.concat(getItems());
+      state.items = data;
 
     });
     
@@ -219,7 +88,7 @@ const healthSlice = createSlice({
       // When data is fetched unsuccessfully
       state.status = "failed";
 
-      state.items = getItems();
+      state.items = Array<Service>();
       // Update the error message for proper error handling
       state.error = action.error.message;
     });
