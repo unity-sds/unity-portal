@@ -42,7 +42,7 @@ export const getHealthData = createAsyncThunk(
   HEALTH_ACTIONS.GET_HEALTH,
   async (_:void, thunkAPI) => {
     
-    const url = Config['cs']['health_endpoint'];
+    const url = Config['cs']['healthEndpointUrl'];
     const token = GetToken();
     
     const config:AxiosRequestConfig = {

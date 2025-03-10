@@ -22,7 +22,7 @@ import { GetUsername } from "../../AuthorizationWrapper";
 import { logout } from "../../utils/auth";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { useEffect, useState, } from "react";
-import UnityLogo from "../../assets/unity.svg";
+import MdpsLogo from "../../assets/images/mdps-logo.svg";
 
 import Config from "../../Config";
 import { formatRoute } from "../../utils/strings";
@@ -43,7 +43,8 @@ export default function Navbar() {
   const loggedInUsername = GetUsername();
   const userInitials = loggedInUsername.substring(0,1).toUpperCase();
   const uiVersion = Config['general']['version'];
-  const basePath = Config['general']['base_path'];
+  const basePath = Config['general']['basePath'];
+  const appTitle = Config['general']['appTitle'];
 
   const healthState = useAppSelector((state) => {
     return state.health;
@@ -71,8 +72,8 @@ export default function Navbar() {
             <NavbarBreakpoint min={1100}>
                <NavbarBrand
                   link={basePath}
-                  logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
-                  title="Unity"
+                  logo={<img src={basePath + MdpsLogo} alt={appTitle + " logo"} style={{ height: '24px', width: '24px' }}/>}
+                  title={appTitle}
                   version={uiVersion}
                />
                <NavbarContent
@@ -136,8 +137,8 @@ export default function Navbar() {
             >
                <NavbarBrand
                   link={basePath}
-                  logo={<img src={basePath + UnityLogo} alt="Unity Logo" style={{ height: '24px', width: '24px' }}/>}
-                  title="Unity"
+                  logo={<img src={basePath + MdpsLogo} alt={appTitle + " logo"} style={{ height: '24px', width: '24px' }}/>}
+                  title={appTitle}
                   version={uiVersion}
                />
                <NavbarContent
@@ -199,7 +200,7 @@ export default function Navbar() {
                   align="center"
                   full
                >
-                  <NavbarBrand title="Unity" />
+                  <NavbarBrand title={appTitle} />
                </NavbarContent>
                <NavbarContent align="right">
                   <Menu trigger={

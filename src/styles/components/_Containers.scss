@@ -1,9 +1,9 @@
-.unity-view-wrapper {
+.mdps-view-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.unity-view {
+.mdps-view {
 
   display: flex;
   height: 100vh;
@@ -11,20 +11,20 @@
   background-color: var(--st-gray-15);
   flex-grow: 1;
 
-  .unity-main-view {
+  .mdps-main-view {
     width: 100%;
     height: 100%;
     padding: 20px;
   }
 
-  .unity-detail-view {
+  .mdps-detail-view {
     height: 100%;
     min-width: 250px;
-    background-color: var(--unity-white);
+    background-color: var(--mdps-white);
     padding: 8px;
   }
 
-  .unity-card-container {
+  .mdps-card-container {
     
     margin-top: 24px;
     margin-bottom: 24px;
@@ -40,7 +40,7 @@
 
   }
 
-  &.unity-view-with-status {
+  &.mdps-view-with-status {
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -56,7 +56,7 @@
       width: 40%;
 
       &.progressStatus {
-        color: var(--unity-brand);
+        color: var(--mdps-brand);
         font-weight: 800;
       }
     
@@ -71,7 +71,7 @@
   }
 
 
-  &.unity-view-with-navbar {
+  &.mdps-view-with-navbar {
     height: calc(100vh - 48px);
   }
 
@@ -84,7 +84,7 @@
   &.detail {
     height: 100%;
     min-width: 250px;
-    background-color: var(--unity-white);
+    background-color: var(--mdps-white);
     padding: 8px;
   }
 

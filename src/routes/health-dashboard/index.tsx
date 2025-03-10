@@ -17,10 +17,10 @@ const StatusCellRenderer = (props:CustomCellRendererProps) => {
   if( props.value ) {
     let icon;
     if( props.value.toString().toUpperCase() === "UNHEALTHY" ) {
-      icon = <IconWarning className="unity-icon-warning"/>
+      icon = <IconWarning className="mdps-icon-warning"/>
     }
     if( props.value.toString().toUpperCase() === "UNAVAILABLE" ) {
-      icon = <IconWarning className="unity-icon-error"/>
+      icon = <IconWarning className="mdps-icon-error"/>
     }
 
     return <React.Fragment>{props.value} {icon}</React.Fragment>
@@ -43,7 +43,7 @@ function HealthDashboard() {
   const [columnDefs] = useState([
     { field: "componentName", headerName: "Service", filter: true },
     {
-      cellClass: 'unity-aggrid-health-status',
+      cellClass: 'mdps-aggrid-health-status',
       cellRenderer: StatusCellRenderer,
       field: "status", 
       filter: true,
@@ -119,10 +119,10 @@ function HealthDashboard() {
   return (
     <>
       <DocumentMeta title="Health Dashboard" description="Health Dashboard" />
-      <div className="unity-main-view">
+      <div className="mdps-main-view">
         <h1>Health Dashboard</h1>
         { healthApiError && <Error><IconWarning />{healthApiErrorMessage}</Error> }
-        <div className="ag-theme-stellar unity-aggrid-container">
+        <div className="ag-theme-stellar mdps-aggrid-container">
           <AgGridReact
             rowData={healthState.items} // Row Data for Rows
             columnDefs={columnDefs} // Column Defs for Columns
