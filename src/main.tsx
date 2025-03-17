@@ -10,7 +10,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <HelmetProvider>
-      <BrowserRouter basename={`${Config['general']['project']}/${Config['general']['venue']}/ui`}>
+      <BrowserRouter basename={`${Config['general']['basePath']}`}>
         <Routes>
           <Route path="*" Component={AuthorizationWrapper}/>
         </Routes>
