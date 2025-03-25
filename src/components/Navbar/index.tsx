@@ -43,6 +43,8 @@ export default function Navbar() {
   const uiVersion = Config['general']['version'];
   const basePath = Config['general']['basePath'];
   const appTitle = Config['general']['appTitle'];
+  const project = Config['general']['project'];
+  const venue = Config['general']['venue'];
 
   const healthState = useAppSelector((state) => {
     return state.health;
@@ -73,6 +75,8 @@ export default function Navbar() {
           title={appTitle}
           version={uiVersion}
         />
+        <div className="st-react-navbar-label">Project: {project}</div>
+        <div className="st-react-navbar-label">Venue: {venue}</div>
         <NavbarContent
           align="right"
           full
@@ -138,6 +142,8 @@ export default function Navbar() {
           title={appTitle}
           version={uiVersion}
         />
+        <div className="st-react-navbar-label">Project: {project}</div>
+        <div className="st-react-navbar-label">Venue: {venue}</div>
         <NavbarContent
           align="right"
           full
@@ -214,8 +220,17 @@ export default function Navbar() {
             <MenuItem onClick={logout}>
               Logout
               <MenuRightSlot>
-                  <IconArrowRight />
+                <IconArrowRight />
               </MenuRightSlot>
+            </MenuItem>
+            <MenuLabel>
+              MDPS Environment
+            </MenuLabel>
+            <MenuItem disabled className="text-transform-none">
+              Project: {project}
+            </MenuItem>
+            <MenuItem disabled className="text-transform-none">
+              Venue: {venue}
             </MenuItem>
           </Menu>
         </NavbarContent>

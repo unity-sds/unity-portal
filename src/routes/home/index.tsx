@@ -1,4 +1,3 @@
-import Config from "../../Config";
 import { Card } from "../../components/Card";
 
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
@@ -6,9 +5,6 @@ import { useAppSelector } from "../../state/hooks";
 import { formatRoute } from "../../utils/strings";
 
 function Home() {
-
-  const project = Config['general']['project'];
-  const venue = Config['general']['venue'];
 
   const healthState = useAppSelector((state) => {
     return state.health;
@@ -61,8 +57,6 @@ function Home() {
       />
       <div className="mdps-main-view">
         <h1>Home</h1>
-        <div>Project: <strong>{project}</strong></div>
-        <div>Venue: <strong>{venue}</strong></div>
         <div className="mdps-card-container">
           {appCards}
         </div>
