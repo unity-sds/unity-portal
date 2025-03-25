@@ -70,6 +70,10 @@
   word-wrap: break-word;
 }
 
+.st-react-menu-content .st-react-menu-item.text-transform-none {
+  text-transform: none;
+}
+
 /* Navbar */
 
 .st-react-navbar {
