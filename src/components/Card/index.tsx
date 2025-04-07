@@ -33,7 +33,7 @@ export const Card = ({
             <Link to={url} target={"_blank"} onClick={ (e) => {onClickExternalHandler(e)}}><IconExternalLink /></Link>
           </span>
         </span>
-        <div className="description">{description}</div>
+       { description && <div className="description">{description}</div> }
         <div className="footer">
           <Pill label={type}/>
         </div>
