@@ -2,21 +2,23 @@ import { Card } from "../../components/Card";
 
 import { DocumentMeta } from "../../components/DocumentMeta/DocumentMeta";
 import { useAppSelector } from "../../state/hooks";
+import { getUiItems } from "../../state/selectors/healthSelectors";
+import { Service } from "../../state/slices/healthSlice";
 import { formatRoute } from "../../utils/strings";
 
 function Home() {
 
-  const healthState = useAppSelector((state) => {
-    return state.health;
+  const uiItems:Service[] = useAppSelector((state) => { 
+    return getUiItems(state.health);
   });
 
-  let appCards = healthState.items.map( (item) => {
+  let appCards = uiItems.map( (item) => {
     return (
       <Card
-        description={"Vivamus consequat, tellus vel faucibus dictum, ante nisi."}
+        description={item.description}
         route={"/applications/" + formatRoute(item.componentName)}
         title={item.componentName}
-        type={"web"}
+        type={item.componentType}
         url={item.landingPageUrl}
       />
     )
@@ -27,14 +29,14 @@ function Home() {
       description={`Check the health status of services running in this venue.`}
       route={"/health-dashboard"}
       title="Health Dashboard"
-      type={"web"}
+      type={"ui"}
       url={"/health-dashboard"}
     />,
     <Card
       description="Documentation to help become familiar with the Unity platform."
       route={"https://unity-sds.gitbook.io/docs"}
       title="Documentation (Gitbook)"
-      type={"web"}
+      type={"ui"}
       url={"https://unity-sds.gitbook.io/docs"}
     />
   );

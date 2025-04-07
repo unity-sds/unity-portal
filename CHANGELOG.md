@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rebranded the application and repo so that the "ui" is now known as the "portal" [#61](https://github.com/unity-sds/unity-portal/issues/61), [#64](https://github.com/unity-sds/unity-portal/issues/64)
 - Removed hard-coded links for all project's venues [#58](https://github.com/unity-sds/unity-portal/issues/58)
 - Fixed issue with basepath not set correctly after proxy label was updated from `ui` to `portal` [#68](https://github.com/unity-sds/unity-portal/issues/68)
+- Changed consumption of Health API endpoint so that it now captures information for three new fields, `componentCategory`, `componentType`, and `description` [#71](https://github.com/unity-sds/unity-portal/issues/71)
+- Updated home page view so that it only lists items that have a `componentType` of `ui` [#71](https://github.com/unity-sds/unity-portal/issues/71)
 
 ## [0.8.0] 2025-01-14
 - Added support to report on when health API endpoint is not available in navbar and on health dashboard
