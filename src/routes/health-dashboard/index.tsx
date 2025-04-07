@@ -42,6 +42,9 @@ function HealthDashboard() {
   // Each Column Definition results in one Column.
   const [columnDefs] = useState([
     { field: "componentName", headerName: "Service", filter: true },
+    { field: "description", headerName: "Description", filter: true },
+    { field: "componentCategory", headerName: "Category", filter: true },
+    { field: "componentType", headerName: "Type", filter: true },
     {
       cellClass: 'mdps-aggrid-health-status',
       cellRenderer: StatusCellRenderer,
@@ -50,11 +53,13 @@ function HealthDashboard() {
       headerName: "Status",
       valueGetter: "data.healthChecks[0].status",
     },
-    { field: "landingPageUrl", 
+    {
+      field: "landingPageUrl", 
       cellRenderer: LinkCellRenderer,
       headerName: "Landing Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }
     },
-    { field: "healthCheckUrl", 
+    {
+      field: "healthCheckUrl", 
       cellRenderer: LinkCellRenderer,
       headerName: "Health Check Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }
     },
