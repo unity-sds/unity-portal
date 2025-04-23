@@ -9,9 +9,9 @@
 :root {
 
    /* Navbar */
-   --st-react-navbar-brand-title-color: var(--unity-white);
+   --st-react-navbar-brand-title-color: var(--mdps-white);
    --st-react-navbar-brand-version-color: #BEC0C2;
-   --st-react-progress-indicator-background: var(--unity-brand);
+   --st-react-progress-indicator-background: var(--mdps-brand);
 
 }
 
@@ -68,6 +68,10 @@
   color: var(--st-gray-10);
   text-decoration: none;
   word-wrap: break-word;
+}
+
+.st-react-menu-content .st-react-menu-item.text-transform-none {
+  text-transform: none;
 }
 
 /* Navbar */
@@ -155,5 +159,5 @@
 /* Progress Bar */
 
 .st-react-progress .st-react-progress--indeterminate--line {
-  background: var(--unity-brand);
+  background: var(--mdps-brand);
 }

@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { IconWarning, Error } from "@nasa-jpl/react-stellar";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Service } from "../../state/slices/healthSlice";
 
  const LinkCellRenderer = (props:CustomCellRendererProps) => {
   return <Link to={props.value} target="_blank">{props.value}</Link>
@@ -17,10 +18,10 @@ const StatusCellRenderer = (props:CustomCellRendererProps) => {
   if( props.value ) {
     let icon;
     if( props.value.toString().toUpperCase() === "UNHEALTHY" ) {
-      icon = <IconWarning className="unity-icon-warning"/>
+      icon = <IconWarning className="mdps-icon-warning"/>
     }
     if( props.value.toString().toUpperCase() === "UNAVAILABLE" ) {
-      icon = <IconWarning className="unity-icon-error"/>
+      icon = <IconWarning className="mdps-icon-error"/>
     }
 
     return <React.Fragment>{props.value} {icon}</React.Fragment>
@@ -42,19 +43,24 @@ function HealthDashboard() {
   // Each Column Definition results in one Column.
   const [columnDefs] = useState([
     { field: "componentName", headerName: "Service", filter: true },
+    { field: "description", headerName: "Description", filter: true },
+    { field: "componentCategory", headerName: "Category", filter: true },
+    { field: "componentType", headerName: "Type", filter: true },
     {
-      cellClass: 'unity-aggrid-health-status',
+      cellClass: 'mdps-aggrid-health-status',
       cellRenderer: StatusCellRenderer,
       field: "status", 
       filter: true,
       headerName: "Status",
       valueGetter: "data.healthChecks[0].status",
     },
-    { field: "landingPageUrl", 
+    {
+      field: "landingPageUrl", 
       cellRenderer: LinkCellRenderer,
       headerName: "Landing Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }
     },
-    { field: "healthCheckUrl", 
+    {
+      field: "healthCheckUrl", 
       cellRenderer: LinkCellRenderer,
       headerName: "Health Check Page", filter: true, cellStyle: { color: '#0000FF', textDecoration: 'underline' }
     },
@@ -68,6 +74,12 @@ function HealthDashboard() {
     }),
     []
   );
+
+  const getHealthDashboardData = () => {
+    return healthState.items.filter( (service:Service) => {
+      return service.reportHealthStatus ? true : false;
+    })
+  }
 
   // Example of consuming Grid Event
   const cellClickedListener = useCallback( (event:CellClickedEvent) => {
@@ -119,12 +131,12 @@ function HealthDashboard() {
   return (
     <>
       <DocumentMeta title="Health Dashboard" description="Health Dashboard" />
-      <div className="unity-main-view">
+      <div className="mdps-main-view">
         <h1>Health Dashboard</h1>
         { healthApiError && <Error><IconWarning />{healthApiErrorMessage}</Error> }
-        <div className="ag-theme-stellar unity-aggrid-container">
+        <div className="ag-theme-stellar mdps-aggrid-container">
           <AgGridReact
-            rowData={healthState.items} // Row Data for Rows
+            rowData={getHealthDashboardData()} // Row Data for Rows
             columnDefs={columnDefs} // Column Defs for Columns
             defaultColDef={defaultColDef} // Default Column Properties
             animateRows={true} // Optional - set to 'true' to have rows animate when sorted

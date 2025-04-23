@@ -14,7 +14,6 @@ import NotFound from "./routes/errors/not-found";
 import { useAppDispatch, useAppSelector } from "./state/hooks";
 import { useEffect, useState } from "react";
 import { getHealthData } from "./state/slices/healthSlice";
-import { formatRoute } from "./utils/strings";
 import { Progress } from "@nasa-jpl/react-stellar";
 
 function Root() {
@@ -51,12 +50,12 @@ function Root() {
   }, [healthState, dispatch]);
 
   return (
-    <div className="unity-view-wrapper">
+    <div className="mdps-view-wrapper">
       {
         loading && <>
-          <div className="unity-view unity-view-with-status">
+          <div className="mdps-view mdps-view-with-status">
             <div className="progressStatus">
-              <h2>Setting up Unity UI Application</h2>
+              <h2>Setting up Multi-Mission Data Processing System Portal Application</h2>
               <Progress />
             </div>
           </div>
@@ -65,11 +64,12 @@ function Root() {
       { 
         !loading && <>
           <Navbar />
-          <div className="unity-view unity-view-with-navbar">
+          <div className="mdps-view mdps-view-with-navbar">
           <Routes>
             {
               healthState.items.map( (item, index) => {
-                return <Route key={index} path={"/applications/" + formatRoute(item.componentName)} element={<WebView url={item.landingPageUrl} />} />
+                if( !item.nativeRoute )
+                  return <Route key={index} path={item.route} element={<WebView url={item.landingPageUrl} />} />
               })
             }
             <Route path="/" element={<Navigate to="/home" replace={true} />} />

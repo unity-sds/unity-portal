@@ -9,7 +9,7 @@ export default function WebView(props:WebViewProps) {
    const url = props.url;
 
    return (
-      <div className='unity-webview'>
+      <div className='mdps-webview'>
          <iframe title="Dockstore" src={url} />
       </div>
    )

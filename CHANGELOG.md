@@ -5,21 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.9.0] (Unreleased)
+## [0.9.0] 2025-04-23
+- Changed project and venue information location. This information is now available in the navbar instead of on the homepage of the application [#59](https://github.com/unity-sds/unity-portal/issues/59)
 - Changed Docker image build workflow is triggered when a tag is created and no longer triggered when code is merged to `main` or `features/*` branches [#51](https://github.com/unity-sds/unity-ui/issues/51)
 - Changed Docker image build workflow so that it uses the image name `unity-portal-application` instead of `unity-ui-application`
+- Rebranded the application's project references so that they state "MDPS" instead of "Unity" [#55](https://github.com/unity-sds/unity-portal/issues/55)
+- Rebranded the application and repo so that the "ui" is now known as the "portal" [#61](https://github.com/unity-sds/unity-portal/issues/61), [#64](https://github.com/unity-sds/unity-portal/issues/64)
+- Removed hard-coded links for all project's venues [#58](https://github.com/unity-sds/unity-portal/issues/58)
+- Fixed issue with basepath not set correctly after proxy label was updated from `ui` to `portal` [#68](https://github.com/unity-sds/unity-portal/issues/68)
+- Changed consumption of Health API endpoint so that it now captures information for three new fields, `componentCategory`, `componentType`, and `description` [#71](https://github.com/unity-sds/unity-portal/issues/71)
+- Updated home page view so that it only lists items that have a `componentType` of `ui` [#71](https://github.com/unity-sds/unity-portal/issues/71)
+- Fixed inconsistent routes being displayed when comparing the home page cards with what was shown in the main navigations application's menu [#75](https://github.com/unity-sds/unity-portal/issues/75)
 
 ## [0.8.0] 2025-01-14
 - Added support to report on when health API endpoint is not available in navbar and on health dashboard
 - Fixed clickable area of navbar menu items
 - Added support to hard code links for projects/venues
-- Added health check URL to health dashboard [#40](https://github.com/unity-sds/unity-ui/issues/40)
+- Added health check URL to health dashboard [#40](https://github.com/unity-sds/unity-portal/issues/40)
 - Fixed health dashboard column resizer element z-index
-- Added cards to homepage [#38](https://github.com/unity-sds/unity-ui/issues/38)
-- Updated router configuration to improve URL readability.  URLs no longer contain router information using a hash (#39). [#39](https://github.com/unity-sds/unity-ui/issues/39
-- Updated home page route to be located at `/home` and the route `/` redirects to it. [#39](https://github.com/unity-sds/unity-ui/issues/39)
-- Updated application basename configuration to use the proxy name `ui` instead of `dashboard` [#45](https://github.com/unity-sds/unity-ui/issues/45)
-- Added hard-coded links for STAC Browser for the unity/dev and unity/test venues [#47](https://github.com/unity-sds/unity-ui/issues/47)
+- Added cards to homepage [#38](https://github.com/unity-sds/unity-portal/issues/38)
+- Updated router configuration to improve URL readability.  URLs no longer contain router information using a hash (#39). [#39](https://github.com/unity-sds/unity-portal/issues/39
+- Updated home page route to be located at `/home` and the route `/` redirects to it. [#39](https://github.com/unity-sds/unity-portal/issues/39)
+- Updated application basename configuration to use the proxy name `ui` instead of `dashboard` [#45](https://github.com/unity-sds/unity-portal/issues/45)
+- Added hard-coded links for STAC Browser for the unity/dev and unity/test venues [#47](https://github.com/unity-sds/unity-portal/issues/47)
 
 ## [0.7.0] 2024-09-27
 - Updated node version lts/iron
@@ -32,12 +40,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Various code cleanup and optimization activities
 
 ## [0.6.0] (unreleased)
-- Added Health Dashboard using static JSON file containing example health information. [#29](https://github.com/unity-sds/unity-ui/issues/29)
-- Updated navbar menu so that it is (partially) dynamic. External UI information is loaded via the Health JSON file. [#20](https://github.com/unity-sds/unity-ui/issues/20)
+- Added Health Dashboard using static JSON file containing example health information. [#29](https://github.com/unity-sds/unity-portal/issues/29)
+- Updated navbar menu so that it is (partially) dynamic. External UI information is loaded via the Health JSON file. [#20](https://github.com/unity-sds/unity-portal/issues/20)
 
 ## [0.5.0] 2024-04-15
-- Updated Navbar CSS styling to match Figma designs [#5](https://github.com/unity-sds/unity-ui/issues/5)
-- Added CI/CD workflow to build application as a docker image. [#21](https://github.com/unity-sds/unity-ui/issues/21)
+- Updated Navbar CSS styling to match Figma designs [#5](https://github.com/unity-sds/unity-portal/issues/5)
+- Added CI/CD workflow to build application as a docker image. [#21](https://github.com/unity-sds/unity-portal/issues/21)
 - Updated application build configuration. Stateful information has been removed from project configuration. Instead we now allow environment variables to be supplied to the container at startup which in turn get injected into the Unity UI Codebase. This is in support of moving to dynamic configuration of the application via Unity Marketplace. Related to [#3](https://github.com/unity-sds/unity-sds-portal/issues/3)
 
 ## [0.4.0] - 2023-12-13

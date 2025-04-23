@@ -26,14 +26,14 @@ export const Card = ({
 
   return (
     <Link to={route}>
-      <span className="unity-card">
+      <span className="mdps-card">
         <span className="header">
           <span className="title">{title}</span>
           <span className="icons">
             <Link to={url} target={"_blank"} onClick={ (e) => {onClickExternalHandler(e)}}><IconExternalLink /></Link>
           </span>
         </span>
-        <div className="description">{description}</div>
+       { description && <div className="description">{description}</div> }
         <div className="footer">
           <Pill label={type}/>
         </div>

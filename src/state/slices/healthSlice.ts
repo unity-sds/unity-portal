@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Config from "../../Config";
 import { GetToken } from '../../AuthorizationWrapper';
+import { formatRoute } from '../../utils/routes';
 
 enum HEALTH_ACTIONS {
   GET_HEALTH = "health/getHealth",
@@ -15,9 +16,15 @@ type HealthCheck = {
 
 export type Service = {
   componentName:string;
+  componentCategory:string;
+  componentType:string;
+  description:string;
+  healthChecks: Array<HealthCheck>;
   healthCheckUrl:string;
   landingPageUrl:string;
-  healthChecks: Array<HealthCheck>;
+  nativeRoute:boolean;
+  reportHealthStatus:boolean;
+  route:string; // needed for portal routing
   ssmKey:string;
 };
 
@@ -35,137 +42,6 @@ const initialState:HealthState = {
   status: 'idle',
 };
 
-const getItems = () => {
-
-  // Get additional links that should be added for the given project and venue
-
-  const project = Config['general']['project'].toUpperCase();
-  const venue = Config['general']['venue'].toUpperCase();
-
-  let serviceItems:Service[] = Array<Service>();
-
-  if( project === "UNITY" && venue === 'DEV') {
-
-    serviceItems = [
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.dev.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-
-  }
-
-  if( project === "UNITY" && venue === 'TEST') {
-
-    serviceItems = [
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.test.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-
-  }
-
-  if( project === "UNITY" && venue === 'OPS') {
-
-    serviceItems = [
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-
-  }
-
-  if( project === "EMIT" && venue === "DEV" ) {
-
-    serviceItems = [
-      {
-        componentName: "Jupyterhub",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/emit/dev/jupyter/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      },
-      {
-        componentName: "Airflow",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "http://k8s-sps-airflowi-9a4fb23ed9-117303406.us-west-2.elb.amazonaws.com:5000/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      },
-      {
-        componentName: "Airflow-ogc",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "http://k8s-sps-ogcproce-927cdf8d63-717063809.us-west-2.elb.amazonaws.com:5001/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      },
-      {
-        componentName: "STAC Browser",
-        ssmKey: "",
-        healthCheckUrl: "",
-        landingPageUrl: "https://www.mdps.mcp.nasa.gov:4443/data/stac_browser/",
-        healthChecks: [
-          {
-            status: "UNKNOWN",
-            httpResponseCode: "",
-            date: ""
-          }
-        ]
-      }
-    ];
-  }
-
-  return serviceItems;
-
-}
-
 /**
  * Get all the instruments from the PDS OpenSearch API
  */ 
@@ -173,7 +49,7 @@ export const getHealthData = createAsyncThunk(
   HEALTH_ACTIONS.GET_HEALTH,
   async (_:void, thunkAPI) => {
     
-    const url = Config['cs']['health_endpoint'];
+    const url = Config['cs']['healthEndpointUrl'];
     const token = GetToken();
     
     const config:AxiosRequestConfig = {
@@ -209,9 +85,27 @@ const healthSlice = createSlice({
       state.status = "succeeded";
       state.lastUpdated = Date.now();
 
-      // Parse and store the fetched data into the state
-      const data = action.payload;
-      state.items = data.concat(getItems());
+      const data = Config.general.defaultRoutes;
+
+      // Add portal route for each application
+      action.payload.forEach( (service:Service) => {
+        service.nativeRoute = false;
+        service.route = "/applications/" + formatRoute(service.componentName);
+        service.reportHealthStatus = true;
+        data.push(service);
+      })
+
+      // sort services alphabetically by their componentName
+      data.sort( (a:Service, b:Service) => {
+        
+        if( a.componentName > b.componentName ) return 1;
+        if( a.componentName < b.componentName ) return -1;
+        
+        return 0;
+
+      });
+
+      state.items = data;
 
     });
     
@@ -219,7 +113,7 @@ const healthSlice = createSlice({
       // When data is fetched unsuccessfully
       state.status = "failed";
 
-      state.items = getItems();
+      state.items = Array<Service>();
       // Update the error message for proper error handling
       state.error = action.error.message;
     });
