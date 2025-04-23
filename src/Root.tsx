@@ -14,7 +14,6 @@ import NotFound from "./routes/errors/not-found";
 import { useAppDispatch, useAppSelector } from "./state/hooks";
 import { useEffect, useState } from "react";
 import { getHealthData } from "./state/slices/healthSlice";
-import { formatRoute } from "./utils/strings";
 import { Progress } from "@nasa-jpl/react-stellar";
 
 function Root() {
@@ -69,7 +68,8 @@ function Root() {
           <Routes>
             {
               healthState.items.map( (item, index) => {
-                return <Route key={index} path={"/applications/" + formatRoute(item.componentName)} element={<WebView url={item.landingPageUrl} />} />
+                if( !item.nativeRoute )
+                  return <Route key={index} path={item.route} element={<WebView url={item.landingPageUrl} />} />
               })
             }
             <Route path="/" element={<Navigate to="/home" replace={true} />} />

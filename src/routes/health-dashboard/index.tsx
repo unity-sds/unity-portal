@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { IconWarning, Error } from "@nasa-jpl/react-stellar";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Service } from "../../state/slices/healthSlice";
 
  const LinkCellRenderer = (props:CustomCellRendererProps) => {
   return <Link to={props.value} target="_blank">{props.value}</Link>
@@ -74,6 +75,12 @@ function HealthDashboard() {
     []
   );
 
+  const getHealthDashboardData = () => {
+    return healthState.items.filter( (service:Service) => {
+      return service.reportHealthStatus ? true : false;
+    })
+  }
+
   // Example of consuming Grid Event
   const cellClickedListener = useCallback( (event:CellClickedEvent) => {
 
@@ -129,7 +136,7 @@ function HealthDashboard() {
         { healthApiError && <Error><IconWarning />{healthApiErrorMessage}</Error> }
         <div className="ag-theme-stellar mdps-aggrid-container">
           <AgGridReact
-            rowData={healthState.items} // Row Data for Rows
+            rowData={getHealthDashboardData()} // Row Data for Rows
             columnDefs={columnDefs} // Column Defs for Columns
             defaultColDef={defaultColDef} // Default Column Properties
             animateRows={true} // Optional - set to 'true' to have rows animate when sorted

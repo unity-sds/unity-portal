@@ -1,4 +1,35 @@
-const Config = {
+import { Service } from "./state/slices/healthSlice";
+
+type Config = {
+  general: {
+    appTitle:string,
+    version:string,
+    adminEmail:string,
+    wwwDomain:string,
+    basePath:string,
+    project:string,
+    venue:string,
+    defaultRoutes:Service[]
+  },
+  auth: {
+    oauthRedirectUri:string,
+    oauthLogoutEndpoint:string,
+    oauthProviderUrl:string,
+    appAdminGroupName:string,
+    appViewerGroupName:string,
+  },
+  cs: {
+    healthEndpointUrl:string
+  },
+  ads: {
+    url:string
+  },
+  sps: {
+    endpoint:string
+  }
+}
+
+const Config:Config = {
 
    ['general']: {
       appTitle: "MDPS",
@@ -7,7 +38,35 @@ const Config = {
       wwwDomain: import.meta.env.VITE_WWW_DOMAIN,
       basePath: import.meta.env.VITE_BASE_PATH,
       project: import.meta.env.VITE_PROJECT,
-      venue: import.meta.env.VITE_VENUE
+      venue: import.meta.env.VITE_VENUE,
+      defaultRoutes: [
+        {
+          componentName: "Health Dashboard",
+          componentCategory: "",
+          componentType: "ui",
+          description: "Check the health status of services running in this venue.",
+          healthChecks: [],
+          healthCheckUrl: "",
+          landingPageUrl: "/health-dashboard",
+          nativeRoute: true,
+          reportHealthStatus: false,
+          route: "/health-dashboard",
+          ssmKey: ""
+        },
+        {
+          componentName: "Documentation (Gitbook)",
+          componentCategory: "",
+          componentType: "ui",
+          description: "Documentation to help become familiar with the Unity platform.",
+          healthChecks: [],
+          healthCheckUrl: "",
+          landingPageUrl: "https://unity-sds.gitbook.io/docs",
+          nativeRoute: true,
+          reportHealthStatus: false,
+          route: "https://unity-sds.gitbook.io/docs",
+          ssmKey: ""
+        }
+      ]
    },
    
    ['auth']: {
