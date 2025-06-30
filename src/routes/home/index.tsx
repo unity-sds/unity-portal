@@ -14,6 +14,7 @@ function Home() {
   const appCards = uiItems.map( (item) => {
     return (
       <Card
+        alwaysOpenInNewWindow={!item.isPortalIntegrated}
         description={item.description}
         route={item.route}
         title={item.componentName}

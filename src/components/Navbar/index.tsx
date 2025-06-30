@@ -61,7 +61,13 @@ export default function Navbar() {
 
   }, [healthState]);
 
+  const getLinkUrl = (isPortalIntegrated:boolean, internalLinkUrl:string, externalLinkUrl:string) => {
+    return isPortalIntegrated ? internalLinkUrl : externalLinkUrl
+  }
 
+  const getLinkTarget = (isPortalIntegrated:boolean):string => {
+    return isPortalIntegrated ? "_self" : "_blank";
+  }
 
   return (
     <StellarNavbar mobileBreakpoint={800}>
@@ -95,7 +101,7 @@ export default function Navbar() {
               <NavLink to="/"><MenuItem>Home</MenuItem></NavLink>
               {
                 uiItems.map( (service, index) => {
-                  return <NavLink to={service.route} key={index}>
+                  return <NavLink to={ getLinkUrl(service.isPortalIntegrated, service.route, service.landingPageUrl) } target={ getLinkTarget(service.isPortalIntegrated) } key={index}>
                     <MenuItem>{service.componentName}</MenuItem>
                   </NavLink>
                 })
@@ -157,7 +163,7 @@ export default function Navbar() {
               <NavLink to="/"><MenuItem>Home</MenuItem></NavLink>
               {
                 uiItems.map( (service, index) => {
-                  return <NavLink to={service.route} key={index}>
+                  return <NavLink to={ getLinkUrl(service.isPortalIntegrated, service.route, service.landingPageUrl) } target={ getLinkTarget(service.isPortalIntegrated) } key={index}>
                     <MenuItem>{service.componentName}</MenuItem>
                   </NavLink>
                 })
@@ -228,7 +234,7 @@ export default function Navbar() {
         <NavLink to="/" className="st-react-navbar-link"><IconHome />{' '}Home</NavLink>
         {
           uiItems.map( (service, index) => {
-            return <NavLink key={index} className="st-react-navbar-link" to={service.route}>{service.componentName}</NavLink>
+            return <NavLink to={ getLinkUrl(service.isPortalIntegrated, service.route, service.landingPageUrl) } target={ getLinkTarget(service.isPortalIntegrated)} className="st-react-navbar-link" key={index}>{service.componentName}</NavLink>
           })
         }
         {
