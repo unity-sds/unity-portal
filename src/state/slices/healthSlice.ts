@@ -21,6 +21,7 @@ export type Service = {
   description:string;
   healthChecks: Array<HealthCheck>;
   healthCheckUrl:string;
+  isPortalIntegrated:boolean;
   landingPageUrl:string;
   nativeRoute:boolean;
   reportHealthStatus:boolean;
@@ -88,11 +89,18 @@ const healthSlice = createSlice({
       const data = Config.general.defaultRoutes;
 
       // Add portal route for each application
-      action.payload.forEach( (service:Service) => {
+      action.payload.forEach( (service:Service, index:number) => {
+        
         service.nativeRoute = false;
         service.route = "/applications/" + formatRoute(service.componentName);
         service.reportHealthStatus = true;
+
+        if( !("isPortalIntegrated" in action.payload[index]) ) {
+          service.isPortalIntegrated = false;
+        }
+        
         data.push(service);
+
       })
 
       // sort services alphabetically by their componentName

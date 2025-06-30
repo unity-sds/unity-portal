@@ -3,6 +3,7 @@ import { Pill } from "../../components/Pill";
 import { Link } from "react-router-dom";
 
 export type CardProps = {
+  alwaysOpenInNewWindow:boolean;
   description:string;
   route:string;
   title:string;
@@ -11,6 +12,7 @@ export type CardProps = {
 }
 
 export const Card = ({
+  alwaysOpenInNewWindow,
   description,
   route,
   title,
@@ -25,7 +27,7 @@ export const Card = ({
   }
 
   return (
-    <Link to={route}>
+    <Link to={alwaysOpenInNewWindow ? url : route} target={alwaysOpenInNewWindow ? "_blank" : "_self"}>
       <span className="mdps-card">
         <span className="header">
           <span className="title">{title}</span>
