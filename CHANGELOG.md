@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] 2025-06-29
+- Changed how links are opened for UI applications based on the newly added `isPortalIntegrated` flag that is returned by the health endpoint for each MDPS service [#8](https://github.com/unity-sds/ui-ux/issues/8)
+
 ## [0.9.0] 2025-04-23
 - Changed project and venue information location. This information is now available in the navbar instead of on the homepage of the application [#59](https://github.com/unity-sds/unity-portal/issues/59)
 - Changed Docker image build workflow is triggered when a tag is created and no longer triggered when code is merged to `main` or `features/*` branches [#51](https://github.com/unity-sds/unity-ui/issues/51)
